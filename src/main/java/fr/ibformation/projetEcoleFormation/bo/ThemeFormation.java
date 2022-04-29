@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ThemeFormation extends Formation {
+public class ThemeFormation {
 	@Id
 	@GeneratedValue
 	private Integer idTheme;

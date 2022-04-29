@@ -18,6 +18,7 @@ public class EntrepriseClient {
 	private String adresse;
 	private String codePostal;
 	private String ville;
+	
 	public EntrepriseClient(String nomEntreprise, String adresse, String codePostal, String ville) {
 		super();
 		this.nomEntreprise = nomEntreprise;

@@ -26,7 +26,7 @@ public class CentreFormation {
 	private String ville;
 	
 	@OneToMany
-	Set <SalleFormation> listeSalleFormation = new HashSet<>();
+	private Set <SalleFormation> listeSalleFormation = new HashSet<>();
 	
 	public CentreFormation(String nom, String codePostal, String ville) {
 		super();
