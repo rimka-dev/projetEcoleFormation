@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,8 +25,6 @@ public class EntrepriseClient {
 	private String adresse;
 	private String codePostal;
 	private String ville;
-	
-	
 	@OneToMany
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
 	

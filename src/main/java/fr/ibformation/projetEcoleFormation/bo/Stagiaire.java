@@ -24,7 +24,6 @@ public class Stagiaire extends Utilisateur {
 	private String ville;
 	
 	@ManyToOne
-	@JsonBackReference
 	private EntrepriseClient entreprise;
 	
 	@ManyToOne
@@ -37,10 +36,11 @@ public class Stagiaire extends Utilisateur {
 		this.ville = ville;
 	}
 	
+
 	
 	@Override
 	public String toString() {
-		return "Stagiaire [adresse=" + adresse + ", codePostal=" + codePostal + ", ville=" + ville + "]";
+		return super.toString()+ "Stagiaire [adresse=" + adresse + ", codePostal=" + codePostal + ", ville=" + ville + "]";
 	}
 
 	

@@ -36,7 +36,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		entreprise1.addStagiaire(stagiaire1);
 		System.out.println(stagiaire1.getEntreprise());
 		entrepriseClientDAO.save(entreprise1);
-
+		System.out.println(entreprise1.getListeStagiaires());
+		
+		
+		
 
 	}
 }
