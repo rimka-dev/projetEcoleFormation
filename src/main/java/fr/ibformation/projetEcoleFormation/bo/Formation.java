@@ -42,7 +42,7 @@ public class Formation {
 
 	public void addThemeFormation(ThemeFormation theme) {
 		this.listeThemeFormation.add(theme);
-		theme.setFormation(theme);
+		theme.setFormation(this);
 	}
 	
 	
