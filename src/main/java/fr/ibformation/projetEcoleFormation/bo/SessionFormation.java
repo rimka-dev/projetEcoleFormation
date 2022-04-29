@@ -1,0 +1,64 @@
+package fr.ibformation.projetEcoleFormation.bo;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class SessionFormation {
+	@Id
+	@GeneratedValue
+	private Integer idSession;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	private String typeFormation;
+	private Boolean salleInstallee;
+	private Boolean formateurConfirme;
+	private Boolean supportImprime;
+	private Boolean convocationEnvoyee;
+	private Boolean planningMisAjour;
+	private Boolean listePresenceImprimee;
+	private Boolean ticketRepasImprime;
+	private Boolean formulaireEvalGenere;
+	
+	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
+			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,
+			Boolean listePresenceImprimee, Boolean ticketRepasImprime, Boolean formulaireEvalGenere) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.typeFormation = typeFormation;
+		this.salleInstallee = salleInstallee;
+		this.formateurConfirme = formateurConfirme;
+		this.supportImprime = supportImprime;
+		this.convocationEnvoyee = convocationEnvoyee;
+		this.planningMisAjour = planningMisAjour;
+		this.listePresenceImprimee = listePresenceImprimee;
+		this.ticketRepasImprime = ticketRepasImprime;
+		this.formulaireEvalGenere = formulaireEvalGenere;
+	}
+
+	@Override
+	public String toString() {
+		return "SessionFormation [idSession=" + idSession + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", typeFormation=" + typeFormation + ", salleInstallee=" + salleInstallee + ", formateurConfirme="
+				+ formateurConfirme + ", supportImprime=" + supportImprime + ", convocationEnvoyee="
+				+ convocationEnvoyee + ", planningMisAjour=" + planningMisAjour + ", listePresenceImprimee="
+				+ listePresenceImprimee + ", ticketRepasImprime=" + ticketRepasImprime + ", formulaireEvalGenere="
+				+ formulaireEvalGenere + "]";
+	}
+	
+	
+	
+	
+	
+	
+
+}
