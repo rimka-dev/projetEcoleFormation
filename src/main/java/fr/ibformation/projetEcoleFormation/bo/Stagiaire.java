@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,13 +21,14 @@ public class Stagiaire extends Utilisateur {
 	private String ville;
 	
 	@ManyToOne
+	@JsonBackReference
 	private EntrepriseClient entreprise;
 	
 	@ManyToOne
 	private EvaluationSession evalSession;
 	
-	public Stagiaire(String adresse, String codePostal, String ville) {
-		super();
+	public Stagiaire(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
+		super( nom,  prenom,  mail,  mdp,  statut);
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;

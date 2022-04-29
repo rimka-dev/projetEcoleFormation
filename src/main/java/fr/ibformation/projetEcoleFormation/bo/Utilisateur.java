@@ -14,7 +14,8 @@ public abstract class Utilisateur {
 	@Id
 	@GeneratedValue
 	private Integer idUtilisateur;
-	private String nom;
+
+	 String nom;
 	private String prenom;
 	private String mail;
 	private String mdp;

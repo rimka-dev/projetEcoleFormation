@@ -23,8 +23,8 @@ public class Formateur extends Utilisateur {
 	@OneToMany
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
-	public Formateur(String adresse, String codePostal, String ville) {
-		super();
+	public Formateur(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
+		super( nom,  prenom,  mail,  mdp,  statut);
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
