@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Formateur {
-	@Id
-	@GeneratedValue
-	private Integer idFormateur;
+public class Formateur extends Utilisateur {
 	private String adresse;
 	private String codePostal;
 	private String ville;
@@ -23,9 +20,10 @@ public class Formateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
+	
 	@Override
 	public String toString() {
-		return "Formateur [idFormateur=" + idFormateur + ", adresse=" + adresse + ", codePostal=" + codePostal
+		return "Formateur [adresse=" + adresse + ", codePostal=" + codePostal
 				+ ", ville=" + ville + "]";
 	}
 	

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Utilisateur {
+public abstract class Utilisateur {
 	@Id
 	@GeneratedValue
 	private Integer idUtilisateur;
@@ -19,6 +19,8 @@ public class Utilisateur {
 	private String mail;
 	private String mdp;
 	private String statut;
+		
+	
 	public Utilisateur(String nom, String prenom, String mail, String mdp, String statut) {
 		super();
 		this.nom = nom;
