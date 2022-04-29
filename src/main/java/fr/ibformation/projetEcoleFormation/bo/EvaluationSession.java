@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.bo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,12 @@ public class EvaluationSession {
 	private Integer niveauSatisfaction;
 	private Boolean recommandationFormation;
 	private Boolean autresProjetsFormations;
+	
+	@ManyToOne
+	private Formateur formateur;
+	
+	@ManyToOne
+	private Stagiaire stagiaire;
 	
 	public EvaluationSession(Integer noteEnvironnement, Integer noteContenuFormation, Integer niveauSatisfaction,
 			Boolean recommandationFormation, Boolean autresProjetsFormations) {

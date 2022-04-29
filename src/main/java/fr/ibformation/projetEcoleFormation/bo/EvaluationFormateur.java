@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.bo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ public class EvaluationFormateur {
 	private Integer noteReponsesQuestions;
 	private Integer noteTechniqueAnimation;
 	private Integer noteMoyenneFormateur;
+	
+	@ManyToOne
+	private Formateur formateur;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
 			Integer noteReponsesQuestions, Integer noteTechniqueAnimation, Integer noteMoyenneFormateur) {
