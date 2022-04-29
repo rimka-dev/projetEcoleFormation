@@ -35,7 +35,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		EntrepriseClient entreprise1 = new EntrepriseClient("Boufdsf","6 rue de la bergerie","66000","Perpignan");
 		entreprise1.addStagiaire(stagiaire1);
 		System.out.println(stagiaire1.getEntreprise());
-		//entrepriseClientDAO.save(entreprise1);
+		entrepriseClientDAO.save(entreprise1);
 
 
 	}

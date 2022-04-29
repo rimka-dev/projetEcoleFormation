@@ -3,6 +3,8 @@ package fr.ibformation.projetEcoleFormation.bo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Utilisateur {
 	@Id
 	@GeneratedValue
 	private Integer idUtilisateur;
-
-	 String nom;
+	private String nom;
 	private String prenom;
 	private String mail;
 	private String mdp;
