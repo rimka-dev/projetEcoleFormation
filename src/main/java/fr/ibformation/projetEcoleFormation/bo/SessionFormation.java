@@ -2,15 +2,20 @@ package fr.ibformation.projetEcoleFormation.bo;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class SessionFormation {
 	@Id
@@ -27,6 +32,13 @@ public class SessionFormation {
 	private Boolean listePresenceImprimee;
 	private Boolean ticketRepasImprime;
 	private Boolean formulaireEvalGenere;
+	
+	@ManyToOne
+	private Formation formation;
+	
+	@OneToOne
+	private SalleFormation salleFormation;
+	
 	
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
 			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,

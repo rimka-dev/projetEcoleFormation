@@ -1,14 +1,19 @@
 package fr.ibformation.projetEcoleFormation.bo;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class SalleFormation {
 	@Id
@@ -16,7 +21,13 @@ public class SalleFormation {
 	private Integer idSalleFormation;
 	private String nom;
 	private Integer etage;
-	
+
+	@OneToOne
+	private SessionFormation sessionFormation;
+
+	@ManyToOne
+	private CentreFormation centreFormation;
+
 	public SalleFormation(String nom, Integer etage) {
 		super();
 		this.nom = nom;
@@ -27,7 +38,5 @@ public class SalleFormation {
 	public String toString() {
 		return "SalleFormation [idSalleFormation=" + idSalleFormation + ", nom=" + nom + ", etage=" + etage + "]";
 	}
-
-	
 
 }
