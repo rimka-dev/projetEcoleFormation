@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.ibformation.projetEcoleFormation.bll.LieuException;
+import fr.ibformation.projetEcoleFormation.bll.LieuFormationManger;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
@@ -53,6 +55,11 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	@Autowired
 	SessionFormationDAO sessionFormationDAO;
 	
+//================== BLL Manager ================
+	
+	@Autowired
+	LieuFormationManger lieuManager;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
@@ -71,14 +78,67 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Karim ======================================
 		
+		/**
+		 * CRUD Salle de formation
+		 */
 		
+		SalleFormation salleVerte = new SalleFormation("Salle verte", 3);
+		SalleFormation salleRouge = new SalleFormation("Salle Rouge", 1);
+		//=== Create =========
+		lieuManager.addSalleFormation(salleVerte);
+		lieuManager.addSalleFormation(salleRouge);
+		//======== Update =====
+		salleRouge.setEtage(4);
+		lieuManager.updateSalleFormation(salleRouge);
+		//======= Read all ======
+		lieuManager.getAllSalle().forEach(System.out::println);
+		//====== Read by ID =========
+		Integer id = salleRouge.getIdSalleFormation();
+		System.out.println("salle par id "+lieuManager.getSallaById(id));
+		// === Delete =========
+		lieuManager.deleteSalle(salleVerte);
 		
+		//lieuManager.deleteSalle(salleVerte);
 		
+		/**
+		 * CRUD Centre de formation 
+		 */
 		
+		CentreFormation centre1 = new CentreFormation("ibFormation","rue de la defense" , "92742","Nanterre");
+		CentreFormation centre2 = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
+		//=== Create =========
+		lieuManager.addCentreFormation(centre1);
+		lieuManager.addCentreFormation(centre2);
+		//======== Update ==================
+		centre2.setCodePostal("75018");
+		lieuManager.updateCentreFormation(centre2);
+		// =========== get all =============
+		lieuManager.getAllCentreFormation().forEach(System.out::println);
+		// ========== get by ID ============
+		Integer id1 = centre1.getIdCentreFormation();
+		System.out.println("Centre de formation par ID "+lieuManager.getCentreFormationById(id1)); 
+		//========= delete by ID ===========
+		lieuManager.deleteCentreFormationById(id1);
 		
+		/**
+		 * CRUD Entreprise
+		 */
 		
-		
-		
+		EntrepriseClient entrepriseOne = new EntrepriseClient("Sogeti", "Boulevard des entreprises", "92130", "issy les moulineaux");
+		EntrepriseClient entrepriseTwo = new EntrepriseClient("Microsoft", "Boulevard des entreprises", "90001", "californie");
+		//======== Create ======================
+		lieuManager.addEntreprise(entrepriseOne);
+		lieuManager.addEntreprise(entrepriseTwo);
+		//======== Update ======================
+		entrepriseOne.setNomEntreprise("Capgemini");
+		lieuManager.updateEntreprise(entrepriseOne);
+		//======== get all ======================
+		lieuManager.getAllEntreprise().forEach(System.out::println);
+		//======== get by id ====================
+		Integer idEntreprise = entrepriseOne.getIdEntrepriseClient();
+		System.out.println("Entreprise par ID "+lieuManager.getEntrepriseById(idEntreprise));
+		//======== delete by ID =================
+		lieuManager.deleteEntrepriseById(idEntreprise);
 		
 		
 		

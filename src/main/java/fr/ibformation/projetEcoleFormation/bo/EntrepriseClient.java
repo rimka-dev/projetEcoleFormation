@@ -3,12 +3,11 @@ package fr.ibformation.projetEcoleFormation.bo;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
