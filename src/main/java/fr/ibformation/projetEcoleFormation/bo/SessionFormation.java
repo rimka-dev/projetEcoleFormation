@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,10 +40,10 @@ public class SessionFormation {
 	@ManyToOne
 	private SalleFormation salleFormation;
 	
-	@OneToOne
+	@ManyToOne
 	private Formateur formateur;
 	
-	@OneToOne
+	@ManyToOne
 	private EntrepriseClient entreprise;
 	
 	@OneToMany(mappedBy = "sessionFormation")

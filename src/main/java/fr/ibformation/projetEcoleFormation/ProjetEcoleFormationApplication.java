@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.transaction.Transactional;
 
+import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bll.UtilisateurManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -52,7 +54,9 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	ThemeFormationDAO themeFormationDAO;
 	@Autowired
 	SessionFormationDAO sessionFormationDAO;
-	
+
+	@Autowired
+	UtilisateurManager utilisateurManager;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
@@ -61,14 +65,21 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Override
 	@Transactional
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws UtilisateurManagerException {
 		
 		//===================== Celine ==============================
 		
 		
 		//===================== Anael ==================================
-		
-		
+
+		Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
+		EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
+		System.out.println("--------------------------------------");
+		utilisateurManager.getAllStagiaire().forEach(System.out::println);
+		System.out.println("--------------------------------------");
+
+
 		//===================== Karim ======================================
 		
 		
