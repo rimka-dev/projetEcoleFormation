@@ -29,9 +29,11 @@ public interface UtilisateurManager {
     public EvaluationSession getEvaluationSessionById(Integer id);
     public List<EvaluationSession> getAllEvaluationSession();
     public void addEvaluationSessionToStagiaire(Stagiaire stagiaire, EvaluationSession... evaluationSession);
+    public void addEvaluationFormateurToStagiaire(Stagiaire stagiaire, EvaluationFormateur... evaluationFormateur);
 
 
-    // CRUD EvaluationFormateur
+
+        // CRUD EvaluationFormateur
     public void addEvaluationFormateur(EvaluationFormateur evaluationFormateur);
     public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur);;
     public void modifyEvaluationFormateur(EvaluationFormateur evaluationFormateur);;

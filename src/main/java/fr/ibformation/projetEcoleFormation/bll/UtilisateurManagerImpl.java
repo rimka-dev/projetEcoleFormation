@@ -142,6 +142,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     }
 
     @Override
+    public void addEvaluationFormateurToStagiaire(Stagiaire stagiaire, EvaluationFormateur... evaluationFormateur) {
+        for (EvaluationFormateur eval : evaluationFormateur) {
+            stagiaire.addEvalFormateur(eval);
+        }
+        stagiaireDAO.save(stagiaire);
+    }
+
+
+
+    @Override
     @Transactional
     public void addEvaluationFormateur(EvaluationFormateur evaluationSession) {
         evaluationFormateurDAO.save(evaluationSession);

@@ -1,5 +1,6 @@
 package fr.ibformation.projetEcoleFormation.bll;
 
+import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
@@ -23,7 +24,7 @@ public class UtilisateurManagerTests {
     void addStagiaire() {
         Stagiaire s1 = new Stagiaire("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addStagiaire(s1);
-        assertNotNull(s1.getPrenom());
+        assertNotNull(s1.getIdUtilisateur());
     }
 
     @Test
@@ -154,6 +155,11 @@ public class UtilisateurManagerTests {
 
 
     // ------------------------- Tests CRUD Evaluation Formateur -------------------------
-
-
+    @Test
+    @Transactional
+    void addEvaluationFormateur() {
+        EvaluationFormateur ef1 = new EvaluationFormateur(5, 4, 3, 4, 4, 4);
+        manager.addEvaluationFormateur(ef1);
+        assertNotNull(ef1.getIdEvalFormateur());
+    }
 }
