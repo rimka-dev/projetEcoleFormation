@@ -76,7 +76,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Override
 	@Transactional
-	public void run(String... args) throws UtilisateurManagerException {
+	public void run(String... args) throws Exception {
 		
 		//===================== Celine ==============================
 		
