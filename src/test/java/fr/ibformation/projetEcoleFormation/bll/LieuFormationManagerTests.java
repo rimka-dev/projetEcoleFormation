@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 
 @SpringBootTest
-class LieuFormationTests {
+class LieuFormationManagerTests {
 
 	@Autowired
     LieuFormationManager lieuManager;
