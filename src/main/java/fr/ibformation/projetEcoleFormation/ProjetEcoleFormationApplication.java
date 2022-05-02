@@ -120,8 +120,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		CentreFormation centre1 = new CentreFormation("ibFormation","rue de la defense" , "92742","Nanterre");
 		CentreFormation centre2 = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
 		//=== Create =========
+		centre2.addSalleFormation(salleRouge);
 		lieuManager.addCentreFormation(centre1);
 		lieuManager.addCentreFormation(centre2);
+		
 		//======== Update ==================
 		centre2.setCodePostal("75018");
 		lieuManager.updateCentreFormation(centre2);
