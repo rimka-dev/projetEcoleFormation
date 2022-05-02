@@ -23,8 +23,8 @@ public interface UtilisateurManager {
 
     // CRUD EvaluationSession
     public void addEvaluationSession(EvaluationSession evaluationSession);
-    public void deleteEvaluationSession(EvaluationSession evaluationSession);;
-    public void modifyEvaluationSession(EvaluationSession evaluationSession);;
+    public void deleteEvaluationSession(EvaluationSession evaluationSession);
+    public void modifyEvaluationSession(EvaluationSession evaluationSession);
     public void deleteEvaluationSessionById(Integer id) throws UtilisateurManagerException;
     public EvaluationSession getEvaluationSessionById(Integer id);
     public List<EvaluationSession> getAllEvaluationSession();
