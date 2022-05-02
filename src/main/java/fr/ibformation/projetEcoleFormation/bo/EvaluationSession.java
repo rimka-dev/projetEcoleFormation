@@ -32,7 +32,6 @@ public class EvaluationSession {
 		this.niveauSatisfaction = niveauSatisfaction;
 		this.recommandationFormation = recommandationFormation;
 		this.autresProjetsFormations = autresProjetsFormations;
-		this.stagiaire = stagiaire;
 	}
 
 	@Override

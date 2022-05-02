@@ -62,6 +62,28 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
+		
+		//===================== Celine ==============================
+		
+		
+		//===================== Anael ==================================
+		
+		
+		//===================== Karim ======================================
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		//===================== test BO DAL (BDD) =================================================
 		Stagiaire stagiaire1 = new Stagiaire("Dupont","Jean","fdsfsd@fdsfds.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
 		Formateur formateur1 = new Formateur("Dufdfds","Pierre","fdsfsd@fdsfds.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
 		stagiaireDAO.save(stagiaire1);
@@ -79,6 +101,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		EvaluationSession evalSession1 = new EvaluationSession(2,3,4,true, true);
 		evalSession1.setStagiaire(stagiaire1);
 	    evaluationSessionDAO.save(evalSession1);
+
 	    
 		EvaluationFormateur evalForm1 = new EvaluationFormateur(2,3,4,5,3,4);
 		evalForm1.setFormateur(formateur1);
