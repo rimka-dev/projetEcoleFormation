@@ -25,6 +25,9 @@ public class EvaluationFormateur {
 	@ManyToOne
 	private Formateur formateur;
 	
+	@ManyToOne
+	private Stagiaire stagiaire;
+	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
 			Integer noteReponsesQuestions, Integer noteTechniqueAnimation, Integer noteMoyenneFormateur) {
 		super();

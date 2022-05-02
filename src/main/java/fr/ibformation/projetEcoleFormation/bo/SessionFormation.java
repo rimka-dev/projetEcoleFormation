@@ -1,12 +1,14 @@
 package fr.ibformation.projetEcoleFormation.bo;
 
 import java.time.LocalDate;
-
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
@@ -36,8 +38,17 @@ public class SessionFormation {
 	@ManyToOne
 	private Formation formation;
 	
-	@OneToOne
+	@ManyToOne
 	private SalleFormation salleFormation;
+	
+	@OneToOne
+	private Formateur formateur;
+	
+	@OneToOne
+	private EntrepriseClient entreprise;
+	
+	@OneToMany(mappedBy = "sessionFormation")
+	private Set <Stagiaire> listeStagiaires = new HashSet<>();
 	
 	
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
@@ -55,6 +66,12 @@ public class SessionFormation {
 		this.listePresenceImprimee = listePresenceImprimee;
 		this.ticketRepasImprime = ticketRepasImprime;
 		this.formulaireEvalGenere = formulaireEvalGenere;
+	}
+	
+	
+	public void addStagiaire(Stagiaire stagiaire) {
+		this.listeStagiaires.add(stagiaire);
+		stagiaire.setSessionFormation(this);
 	}
 
 	@Override

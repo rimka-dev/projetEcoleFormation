@@ -22,9 +22,6 @@ public class EvaluationSession {
 	private Boolean autresProjetsFormations;
 	
 	@ManyToOne
-	private Formateur formateur;
-	
-	@ManyToOne
 	private Stagiaire stagiaire;
 	
 	public EvaluationSession(Integer noteEnvironnement, Integer noteContenuFormation, Integer niveauSatisfaction,
@@ -35,6 +32,7 @@ public class EvaluationSession {
 		this.niveauSatisfaction = niveauSatisfaction;
 		this.recommandationFormation = recommandationFormation;
 		this.autresProjetsFormations = autresProjetsFormations;
+		this.stagiaire = stagiaire;
 	}
 
 	@Override
@@ -42,12 +40,7 @@ public class EvaluationSession {
 		return "EvaluationSession [idEvalSession=" + idEvalSession + ", noteEnvironnement=" + noteEnvironnement
 				+ ", noteContenuFormation=" + noteContenuFormation + ", niveauSatisfaction=" + niveauSatisfaction
 				+ ", recommandationFormation=" + recommandationFormation + ", autresProjetsFormations="
-				+ autresProjetsFormations + "]";
+				+ autresProjetsFormations + ", stagiaire=" + stagiaire + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

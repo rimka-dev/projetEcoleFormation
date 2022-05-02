@@ -1,10 +1,14 @@
 package fr.ibformation.projetEcoleFormation.bo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
@@ -22,8 +26,8 @@ public class SalleFormation {
 	private String nom;
 	private Integer etage;
 
-	@OneToOne
-	private SessionFormation sessionFormation;
+	@OneToMany(mappedBy = "salleFormation")
+	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
 
 	@ManyToOne
 	private CentreFormation centreFormation;
@@ -32,6 +36,11 @@ public class SalleFormation {
 		super();
 		this.nom = nom;
 		this.etage = etage;
+	}
+	
+	public void addSessionFormation(SessionFormation session) {
+		this.listeSessionsFormation.add(session);
+		session.setSalleFormation(this);
 	}
 
 	@Override

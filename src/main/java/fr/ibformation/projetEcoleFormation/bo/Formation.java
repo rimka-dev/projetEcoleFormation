@@ -8,13 +8,17 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data 
+@Getter
+@Setter
 @NoArgsConstructor
 public class Formation {
 	@Id
@@ -24,25 +28,28 @@ public class Formation {
 	private String nomFormation;
 	private String description;
 	private Integer prix;
+	private String nomThemeFormation;
 	
-	@OneToMany
-	Set <ThemeFormation> listeThemeFormation = new HashSet<>();
+	@ManyToMany(mappedBy = "listeFormations")
+	Set <SousThemeFormation> listeSousThemeFormation = new HashSet<>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "formation")
 	Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
-	public Formation(String nomDomaine, String nomFormation, String description, Integer prix) {
+	public Formation(String nomDomaine, String nomFormation, String description, Integer prix,
+			String nomThemeFormation) {
 		super();
 		this.nomDomaine = nomDomaine;
 		this.nomFormation = nomFormation;
 		this.description = description;
 		this.prix = prix;
+		this.nomThemeFormation = nomThemeFormation;
 	}
 	
 
-	public void addThemeFormation(ThemeFormation theme) {
-		this.listeThemeFormation.add(theme);
-		theme.setFormation(this);
+	public void addSousThemeFormation(SousThemeFormation sousThemeFormation) {
+		this.listeSousThemeFormation.add(sousThemeFormation);
+		sousThemeFormation.getListeFormations().add(this);
 	}
 	
 	
@@ -50,11 +57,12 @@ public class Formation {
 		this.listeSessionFormation.add(session);
 		session.setFormation(this);
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "Formation [idFormation=" + idFormation + ", nomDomaine=" + nomDomaine + ", nomFormation=" + nomFormation
-				+ ", description=" + description + ", prix=" + prix + "]";
+				+ ", description=" + description + ", prix=" + prix + ", nomThemeFormation=" + nomThemeFormation + "]";
 	}
 	
 	

@@ -22,15 +22,18 @@ public class CentreFormation {
 	@GeneratedValue
 	private Integer idCentreFormation;
 	private String nom;
+	private String adresse;
 	private String codePostal;
 	private String ville;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "centreFormation")
 	private Set <SalleFormation> listeSalleFormation = new HashSet<>();
 	
-	public CentreFormation(String nom, String codePostal, String ville) {
+
+	public CentreFormation(String nom, String adresse, String codePostal, String ville) {
 		super();
 		this.nom = nom;
+		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
@@ -39,14 +42,12 @@ public class CentreFormation {
 		this.listeSalleFormation.add(salle);
 		salle.setCentreFormation(this);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CentreFormation [idCentreFormation=" + idCentreFormation + ", nom=" + nom + ", codePostal=" + codePostal
-				+ ", ville=" + ville + "]";
+		return "CentreFormation [idCentreFormation=" + idCentreFormation + ", nom=" + nom + ", adresse=" + adresse
+				+ ", codePostal=" + codePostal + ", ville=" + ville + "]";
 	}
-	
-	
 	
 
 }

@@ -3,11 +3,12 @@ package fr.ibformation.projetEcoleFormation.bo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,12 @@ public class EntrepriseClient {
 	private String adresse;
 	private String codePostal;
 	private String ville;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "entreprise")
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
+	
+	@OneToMany(mappedBy = "entreprise")
+	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
 	
 	public EntrepriseClient(String nomEntreprise, String adresse, String codePostal, String ville) {
 		super();
@@ -39,6 +44,11 @@ public class EntrepriseClient {
 	public void addStagiaire(Stagiaire stagiaire) {
 		this.listeStagiaires.add(stagiaire);
 		stagiaire.setEntreprise(this);
+	}
+	
+	public void addSessionFormation(SessionFormation session) {
+		this.listeSessionsFormation.add(session);
+		session.setEntreprise(this);
 	}
 	
 	@Override

@@ -1,15 +1,12 @@
 package fr.ibformation.projetEcoleFormation.bo;
 
-import javax.persistence.CascadeType;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,8 +23,14 @@ public class Stagiaire extends Utilisateur {
 	@ManyToOne
 	private EntrepriseClient entreprise;
 	
+	@OneToMany(mappedBy = "stagiaire")
+	private Set <EvaluationSession> listeEvalSession = new HashSet<>();
+	
+	@OneToMany(mappedBy = "stagiaire")
+	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
+	
 	@ManyToOne
-	private EvaluationSession evalSession;
+	private SessionFormation sessionFormation;
 	
 	public Stagiaire(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
 		super( nom,  prenom,  mail,  mdp,  statut);
@@ -37,6 +40,16 @@ public class Stagiaire extends Utilisateur {
 	}
 	
 
+	public void addEvalSession(EvaluationSession evalSession) {
+		this.listeEvalSession.add(evalSession);
+		evalSession.setStagiaire(this);
+	}
+	
+	public void addEvalFormateur(EvaluationFormateur evalFormateur) {
+		this.listeEvalFormateur.add(evalFormateur);
+		evalFormateur.setStagiaire(this);
+	}
+	
 	
 	@Override
 	public String toString() {

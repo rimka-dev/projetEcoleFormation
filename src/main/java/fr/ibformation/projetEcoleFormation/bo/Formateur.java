@@ -1,18 +1,20 @@
 package fr.ibformation.projetEcoleFormation.bo;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Formateur extends Utilisateur {
 	private String adresse;
@@ -20,8 +22,11 @@ public class Formateur extends Utilisateur {
 	private String ville;
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy = "formateur")
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
+	
+	@OneToMany(mappedBy = "formateur")
+	private Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
 	public Formateur(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
 		super( nom,  prenom,  mail,  mdp,  statut);
@@ -33,6 +38,11 @@ public class Formateur extends Utilisateur {
 	public void addEvalFormateur(EvaluationFormateur evalFormateur) {
 		this.listeEvalFormateur.add(evalFormateur);
 		evalFormateur.setFormateur(this);
+	}
+	
+	public void addSessionFormation(SessionFormation session) {
+		this.listeSessionFormation.add(session);
+		session.setFormateur(this);
 	}
 	
 	@Override
