@@ -5,13 +5,11 @@ import java.time.LocalDate;
 import javax.transaction.Transactional;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
-import fr.ibformation.projetEcoleFormation.bll.UtilisateurManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import fr.ibformation.projetEcoleFormation.bll.LieuException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManger;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
