@@ -10,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import fr.ibformation.projetEcoleFormation.bll.LieuFormationManger;
+import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
@@ -59,7 +59,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 //================== BLL Manager ================
 	
 	@Autowired
-	LieuFormationManger lieuManager;
+	LieuFormationManager lieuManager;
 	
 
 

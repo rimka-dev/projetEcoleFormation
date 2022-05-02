@@ -15,7 +15,7 @@ import fr.ibformation.projetEcoleFormation.dal.EntrepriseClientDAO;
 import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 
 @Service
-public class LieuFormationImp implements LieuFormationManger {
+public class LieuFormationManagerImpl implements LieuFormationManager {
 	
 	@Autowired SalleFormationDAO salleDAO;
 	@Autowired CentreFormationDAO centreFormationDAO;

@@ -16,7 +16,7 @@ import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 class LieuFormationTests {
 
 	@Autowired
-	LieuFormationManger lieuManager;
+    LieuFormationManager lieuManager;
 
 	//============= test sur la salle ==========================
 	@Test

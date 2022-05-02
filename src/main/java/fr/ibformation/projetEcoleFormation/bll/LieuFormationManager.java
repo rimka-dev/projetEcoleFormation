@@ -8,7 +8,7 @@ import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 
 
-public interface LieuFormationManger {
+public interface LieuFormationManager {
 
 	public void addSalleFormation(SalleFormation salle);
 
