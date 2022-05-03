@@ -22,17 +22,19 @@ public class Stagiaire extends Utilisateur {
 	private String ville;
 	
 	@ManyToOne
+	@JsonBackReference
 	private EntrepriseClient entreprise;
 	
 	@OneToMany(mappedBy = "stagiaire")
-	@JsonBackReference(value="session-evaluation-stagiaire")
+	@JsonBackReference(value="evaluation-session-stagiaire")
 	private Set <EvaluationSession> listeEvalSession = new HashSet<>();
 	
 	@OneToMany(mappedBy = "stagiaire")
-	@JsonBackReference(value="formateur-evaluation-stagiaire")
+	@JsonBackReference(value="evaluation-formateur-stagiaire")
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
 	@ManyToOne
+	@JsonBackReference(value="session-formation-stagiaire")
 	private SessionFormation sessionFormation;
 	
 	public Stagiaire(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {

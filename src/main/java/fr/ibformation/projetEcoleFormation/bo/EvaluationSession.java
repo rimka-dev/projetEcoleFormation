@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class EvaluationSession {
 	private Boolean autresProjetsFormations;
 	
 	@ManyToOne
-	@JsonManagedReference(value="session-evaluation-stagiaire")
+	@JsonBackReference(value="stagiaire-EvaluationSession")
 	private Stagiaire stagiaire;
 	
 	public EvaluationSession(Integer noteEnvironnement, Integer noteContenuFormation, Integer niveauSatisfaction,

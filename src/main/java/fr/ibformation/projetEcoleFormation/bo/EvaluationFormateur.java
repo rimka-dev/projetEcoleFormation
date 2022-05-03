@@ -25,11 +25,11 @@ public class EvaluationFormateur {
 	private Integer noteMoyenneFormateur;
 	
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	private Formateur formateur;
 	
 	@ManyToOne
-	@JsonManagedReference(value="formateur-evaluation-stagiaire")
+	@JsonBackReference(value="formateur-evaluation-stagiaire")
 	private Stagiaire stagiaire;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,

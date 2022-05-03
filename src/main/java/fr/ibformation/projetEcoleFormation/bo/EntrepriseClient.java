@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,9 +28,11 @@ public class EntrepriseClient {
 	private String ville;
 	
 	@OneToMany(mappedBy = "entreprise")
+	@JsonManagedReference
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
 	
 	@OneToMany(mappedBy = "entreprise")
+	@JsonManagedReference
 	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
 	
 	public EntrepriseClient(String nomEntreprise, String adresse, String codePostal, String ville) {

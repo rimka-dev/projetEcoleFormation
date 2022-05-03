@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +26,13 @@ public class Formateur extends Utilisateur {
 	
 	
 	@OneToMany(mappedBy = "formateur")
-	@JsonBackReference(value="trainer-session")
+	@JsonManagedReference(value="evaluation-session-Formateur")
+	@JsonIgnore
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
 	@OneToMany(mappedBy = "formateur")
-	@JsonBackReference(value="formation-session")
+	@JsonManagedReference(value="session-formation-Formateur")
+	@JsonIgnore
 	private Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
 	public Formateur(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
