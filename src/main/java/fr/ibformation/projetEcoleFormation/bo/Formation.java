@@ -36,13 +36,11 @@ public class Formation {
 	private String nomThemeFormation;
 	
 	@ManyToMany(mappedBy = "listeFormations")
-	@JsonManagedReference(value="soustheme-formation")
 	@JsonIgnore
 	Set <SousThemeFormation> listeSousThemeFormation = new HashSet<>();
 	
 	@OneToMany(mappedBy = "formation")
-	@JsonBackReference(value="session-formation")
-	@JsonIgnoreProperties(value = {"listeSessionFormation","listeSousThemeFormation", "handler","hibernateLazyInitializer"}, allowSetters = true)
+	@JsonIgnore
 	Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
 	public Formation(String nomDomaine, String nomFormation, String description, Integer prix,
