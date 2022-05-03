@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +42,9 @@ public class SessionFormation {
 	private Formation formation;
 	
 	@ManyToOne
+	//@JsonIgnore
+	@JsonManagedReference(value="salle-session")
+	//@JsonBackReference(value="salle-session")
 	private SalleFormation salleFormation;
 	
 	@ManyToOne

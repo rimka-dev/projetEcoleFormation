@@ -43,7 +43,7 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 	}
 
 	@Override
-	public SalleFormation getSallaById(Integer id) {
+	public SalleFormation getSalleById(Integer id) {
 		
 		return salleDAO.findById(id).orElse(null);
 	}
@@ -52,7 +52,7 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 	@Transactional
 	public void deleteSalle(SalleFormation salle) throws LieuException {
 		salleDAO.findById(salle.getIdSalleFormation())
-				.orElseThrow(()->new LieuException("Cet élément n'exisite plus"));
+				.orElseThrow(()->new LieuException("Cet élément n'existe plus"));
 		salleDAO.delete(salle);
 		
 	}
@@ -85,7 +85,9 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 
 	@Override
 	@Transactional
-	public void deleteCentreFormationById(Integer id1) {
+	public void deleteCentreFormationById(Integer id1) throws LieuException {
+		centreFormationDAO.findById(id1)
+		.orElseThrow(()->new LieuException("Cet Id n'existe pas"));
 		centreFormationDAO.deleteById(id1);
 		
 	}

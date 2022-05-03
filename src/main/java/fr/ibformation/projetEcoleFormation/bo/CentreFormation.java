@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +30,7 @@ public class CentreFormation {
 	private String ville;
 	
 	@OneToMany(mappedBy = "centreFormation")
+	@JsonManagedReference(value="salle-centre")
 	private Set <SalleFormation> listeSalleFormation = new HashSet<>();
 	
 

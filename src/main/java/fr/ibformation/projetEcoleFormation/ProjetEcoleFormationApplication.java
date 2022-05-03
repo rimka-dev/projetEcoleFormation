@@ -208,11 +208,11 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		lieuManager.getAllSalle().forEach(System.out::println);
 		//====== Read by ID =========
 		Integer id = salleRouge.getIdSalleFormation();
-		System.out.println("salle par id "+lieuManager.getSallaById(id));
+		System.out.println("salle par id "+lieuManager.getSalleById(id));
 		// === Delete =========
 		lieuManager.deleteSalle(salleVerte);
 		
-		//lieuManager.deleteSalle(salleVerte);
+		//lieuManager.deleteSalle(salleVerte); //test de delete un élément qui n'existe pas 
 		
 		/**
 		 * CRUD Centre de formation 
@@ -235,6 +235,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		System.out.println("Centre de formation par ID "+lieuManager.getCentreFormationById(id1)); 
 		//========= delete by ID ===========
 		lieuManager.deleteCentreFormationById(id1);
+		//lieuManager.deleteCentreFormationById(id1); //test element n'existe pas
 		
 		/**
 		 * CRUD Entreprise
