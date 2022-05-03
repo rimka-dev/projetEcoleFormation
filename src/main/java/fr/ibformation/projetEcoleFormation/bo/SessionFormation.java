@@ -44,9 +44,7 @@ public class SessionFormation {
 	private Formation formation;
 	
 	@ManyToOne
-	//@JsonIgnore
 	@JsonManagedReference(value="salle-session")
-	//@JsonBackReference(value="salle-session")
 	private SalleFormation salleFormation;
 	
 	@ManyToOne

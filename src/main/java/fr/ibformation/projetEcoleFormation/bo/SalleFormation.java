@@ -31,7 +31,6 @@ public class SalleFormation {
 	
 	@OneToMany(mappedBy = "salleFormation")
 	@JsonBackReference(value="salle-session")
-	//@JsonManagedReference(value="salle-session")
 	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
 
 	@ManyToOne
