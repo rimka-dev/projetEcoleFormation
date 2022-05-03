@@ -16,7 +16,7 @@ public interface LieuFormationManager {
 
 	public List<SalleFormation> getAllSalle();
 
-	public SalleFormation getSallaById(Integer id);
+	public SalleFormation getSalleById(Integer id);
 
 	public void deleteSalle(SalleFormation salle) throws LieuException;
 
@@ -28,7 +28,7 @@ public interface LieuFormationManager {
 
 	public CentreFormation getCentreFormationById(Integer id);
 
-	public void deleteCentreFormationById(Integer id1);
+	public void deleteCentreFormationById(Integer id1) throws LieuException;
 
 	public void addEntreprise(EntrepriseClient entreprise);
 

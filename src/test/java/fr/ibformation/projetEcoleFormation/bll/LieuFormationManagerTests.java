@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 
 @SpringBootTest
@@ -18,7 +19,7 @@ class LieuFormationManagerTests {
 	@Autowired
     LieuFormationManager lieuManager;
 
-	//============= test sur la salle ==========================
+	//============= test sur les salles de formation ==========================
 	@Test
 	@Transactional
 	void addSalle() {
@@ -33,7 +34,7 @@ class LieuFormationManagerTests {
 	void getSalleById() {
 		SalleFormation salle = new SalleFormation("Salle bleu", 5);
 		lieuManager.addSalleFormation(salle);
-		SalleFormation salleBis = lieuManager.getSallaById(salle.getIdSalleFormation());
+		SalleFormation salleBis = lieuManager.getSalleById(salle.getIdSalleFormation());
 		assertEquals(salleBis.getIdSalleFormation(), salle.getIdSalleFormation());
 		
 	}
@@ -52,11 +53,49 @@ class LieuFormationManagerTests {
 	
 	@Test
 	@Transactional
-	void deleteSalle() {
+	void deleteSalle() throws LieuException {
 		SalleFormation salleAteilier = new SalleFormation("Salle de travaux", 4);
 		lieuManager.addSalleFormation(salleAteilier);
-		//lieuManager.deleteSalle(salleAteilier);
-		assertNull(lieuManager.getSallaById(salleAteilier.getIdSalleFormation()));
+		try {
+			lieuManager.deleteSalle(salleAteilier);
+		} catch (LieuException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		assertNull(lieuManager.getSalleById(salleAteilier.getIdSalleFormation()));
+	}
+	
+	//====================== test sur le centre de formation ==================
+	@Test
+	@Transactional
+	void addCentreFormation() {
+		CentreFormation centre2 = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
+		lieuManager.addCentreFormation(centre2);
+		assertNotNull(centre2.getIdCentreFormation());
+		
+	}
+	
+	@Test
+	@Transactional
+	void updateCentreFormation() {
+		CentreFormation centreA = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
+		lieuManager.addCentreFormation(centreA);
+		centreA.setCodePostal("75020");
+		lieuManager.updateCentreFormation(centreA);
+		assertEquals(centreA.getCodePostal(), "75020");
+		
+	}
+	
+	@Test
+	@Transactional
+	void deleteCentreFormation() throws LieuException  {
+		CentreFormation centreB = new CentreFormation("ibCegos","rue de la liberte" , "75014","Paris");
+		lieuManager.addCentreFormation(centreB);
+		
+		lieuManager.deleteCentreFormationById(centreB.getIdCentreFormation());
+			
+		System.err.println(centreB.getIdCentreFormation());
+		//assertNull(lieuManager.getCentreFormationById(centreB.getIdCentreFormation()));
 	}
 	
 	
