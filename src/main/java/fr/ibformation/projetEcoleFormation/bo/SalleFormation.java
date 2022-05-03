@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,14 +28,13 @@ public class SalleFormation {
 	private Integer idSalleFormation;
 	private String nom;
 	private Integer etage;
-	
+
 	@OneToMany(mappedBy = "salleFormation")
-	@JsonBackReference(value="salle-session")
-	//@JsonManagedReference(value="salle-session")
-	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
+	@JsonIgnore
+	private Set<SessionFormation> listeSessionsFormation = new HashSet<>();
 
 	@ManyToOne
-	@JsonBackReference(value="salle-centre")
+	@JsonBackReference(value = "salle-centre")
 	private CentreFormation centreFormation;
 
 	public SalleFormation(String nom, Integer etage) {
@@ -43,7 +42,7 @@ public class SalleFormation {
 		this.nom = nom;
 		this.etage = etage;
 	}
-	
+
 	public void addSessionFormation(SessionFormation session) {
 		this.listeSessionsFormation.add(session);
 		session.setSalleFormation(this);

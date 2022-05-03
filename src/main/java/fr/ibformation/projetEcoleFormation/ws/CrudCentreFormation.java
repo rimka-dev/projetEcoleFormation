@@ -14,47 +14,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.ibformation.projetEcoleFormation.bll.LieuException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
+import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
+
 
 @RestController
 @RequestMapping("/WS")
-public class CrudSalleFormation {
+public class CrudCentreFormation {
 	@Autowired
 	private LieuFormationManager manager;
 	
-	@GetMapping("/salleFormation")
-	public List<SalleFormation> getSalleFormation(){
-		return manager.getAllSalle();
+	@GetMapping("/centreFormation")
+	public List<CentreFormation> getAllCentreFormation(){
+		return manager.getAllCentreFormation();
 		
 	}
 	
-	@GetMapping("/salleFormation/{id}")
-	public SalleFormation getSalleById(@PathVariable("id") Integer id) {
-		return manager.getSalleById(id);
+	@GetMapping("/centreFormation/{id}")
+	public CentreFormation getCentreFormationById(@PathVariable("id") Integer id) {
+		return manager.getCentreFormationById(id);
 		
 	}
 	
-	@PostMapping("/salleFormation")
-	public SalleFormation addSalleFormation(@RequestBody SalleFormation salle ) {
-		 manager.addSalleFormation(salle);
-		 return salle;
+	@PostMapping("/centreFormation")
+	public CentreFormation addCentreFormation(@RequestBody CentreFormation centre ) {
+		 manager.addCentreFormation(centre);
+		 return centre;
 		
 	}
 	
-	@PutMapping("/salleFormation")
-	public SalleFormation modifaySalleFormation(@RequestBody SalleFormation salle ) {
-		manager.updateSalleFormation(salle);
-		return salle;
+	@PutMapping("/centreFormation")
+	public CentreFormation modifayCentreFormation(@RequestBody CentreFormation centre ) {
+		manager.updateCentreFormation(centre);
+		return centre;
 		
 	}
 	
-	
-	@DeleteMapping("/salleFormation/{id}")
-	public void deleteSalleFormation(@PathVariable("id") Integer id) throws LieuException {
-		SalleFormation salle = manager.getSalleById(id);
-		manager.deleteSalle(salle);
+	@DeleteMapping("/centreFormation/{id}")
+	public void deleteCentreFormation(@PathVariable("id") Integer id) throws LieuException {
+		
+		manager.deleteCentreFormationById(id);
 	}
-	
-	
 
 }

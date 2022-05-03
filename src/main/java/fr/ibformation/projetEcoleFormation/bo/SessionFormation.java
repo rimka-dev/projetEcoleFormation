@@ -44,9 +44,6 @@ public class SessionFormation {
 	private Formation formation;
 	
 	@ManyToOne
-	//@JsonIgnore
-	@JsonManagedReference(value="salle-session")
-	//@JsonBackReference(value="salle-session")
 	private SalleFormation salleFormation;
 	
 	@ManyToOne
@@ -66,8 +63,6 @@ public class SessionFormation {
 	
 	@OneToOne
 	private EvaluationFormateur evalFormateur;
-	
-	
 	
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
 			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,
