@@ -30,7 +30,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void deleteStagiaire(Stagiaire stagiaire) {
+    public void deleteStagiaire(Stagiaire stagiaire) throws UtilisateurManagerException {
+        stagiaireDAO.findById(stagiaire.getIdUtilisateur())
+                .orElseThrow(()->new UtilisateurManagerException("Stagiaire introuvable"));
         stagiaireDAO.delete(stagiaire);
     }
 
@@ -69,7 +71,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void deleteFormateur(Formateur formateur) {
+    public void deleteFormateur(Formateur formateur) throws UtilisateurManagerException {
+        formateurDAO.findById(formateur.getIdUtilisateur())
+                .orElseThrow(()->new UtilisateurManagerException("Formateur introuvable"));
         formateurDAO.delete(formateur);
     }
 
@@ -105,7 +109,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void deleteEvaluationSession(EvaluationSession evaluationSession) {
+    public void deleteEvaluationSession(EvaluationSession evaluationSession) throws UtilisateurManagerException {
+        evaluationSessionDAO.findById(evaluationSession.getIdEvalSession())
+            .orElseThrow(()->new UtilisateurManagerException("Stagiaire introuvable"));
         evaluationSessionDAO.delete(evaluationSession);
     }
 
@@ -119,7 +125,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Transactional
     public void deleteEvaluationSessionById(Integer id) throws UtilisateurManagerException {
         evaluationSessionDAO.findById(id)
-                .orElseThrow(()->new UtilisateurManagerException("Evaluation introuvable"));
+                .orElseThrow(()->new UtilisateurManagerException("Evaluation de session introuvable"));
         evaluationSessionDAO.deleteById(id);
     }
 
@@ -159,7 +165,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur) {
+    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur) throws UtilisateurManagerException {
+        evaluationFormateurDAO.findById(evaluationFormateur.getIdEvalFormateur())
+                .orElseThrow(()->new UtilisateurManagerException("Evaluation formateur introuvable"));
         evaluationFormateurDAO.delete(evaluationFormateur);
     }
 

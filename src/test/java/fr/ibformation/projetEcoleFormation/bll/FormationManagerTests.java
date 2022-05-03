@@ -19,7 +19,7 @@ import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 
 @SpringBootTest
-public class FormationTests {
+public class FormationManagerTests {
 	@Autowired
 	private FormationManager formationManager;
 	

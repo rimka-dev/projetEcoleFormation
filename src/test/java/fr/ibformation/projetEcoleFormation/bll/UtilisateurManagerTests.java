@@ -29,7 +29,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteStagiaire() {
+    void deleteStagiaire() throws UtilisateurManagerException {
         Stagiaire s1 = new Stagiaire("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addStagiaire(s1);
         manager.deleteStagiaire(s1);
@@ -66,8 +66,8 @@ public class UtilisateurManagerTests {
         manager.addStagiaire(s1);
         manager.addStagiaire(s2);
         manager.addStagiaire(s3);
-        manager.deleteStagiaireById(2);
-        assertNull(manager.getStagiaireById(2));
+        manager.deleteStagiaireById(s2.getIdUtilisateur());
+        assertNull(manager.getStagiaireById(s2.getIdUtilisateur()));
     }
 
     // ------------------------- Tests CRUD Formateur ------------------------------------
@@ -82,7 +82,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteFormateur() {
+    void deleteFormateur() throws UtilisateurManagerException {
         Formateur f1 = new Formateur("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addFormateur(f1);
         manager.deleteFormateur(f1);
@@ -112,7 +112,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteFormateurById() {
+    void deleteFormateurById() throws UtilisateurManagerException {
         Formateur f1 = new Formateur("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
         Formateur f2 = new Formateur("Mouse","Mickey","ezezez@gmail.com","mdp1","Stagiaire","5 rue du coq","31000","Toulouse");
         Formateur f3 = new Formateur("Larue","Michelle","aaa@gmail.com","mdp2","Stagiaire","4 rue du coq","31000","Toulouse");
@@ -145,7 +145,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteEvaluationSession() {
+    void deleteEvaluationSession() throws UtilisateurManagerException {
         EvaluationSession e1 = new EvaluationSession(4,5,5,true,true);
         manager.addEvaluationSession(e1);
         manager.deleteEvaluationSession(e1);
