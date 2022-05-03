@@ -7,7 +7,7 @@ import java.util.List;
 public interface UtilisateurManager {
     // CRUD Stagiaire
     public void addStagiaire(Stagiaire stagiaire);
-    public void deleteStagiaire(Stagiaire stagiaire);
+    public void deleteStagiaire(Stagiaire stagiaire) throws UtilisateurManagerException;
     public void modifyStagiaire(Stagiaire stagiaire);
     public void deleteStagiaireById(Integer id) throws UtilisateurManagerException;
     public Stagiaire getStagiaireById(Integer id);
@@ -15,7 +15,7 @@ public interface UtilisateurManager {
 
     // CRUD Formateur
     public void addFormateur(Formateur formateur);
-    public void deleteFormateur(Formateur formateur);
+    public void deleteFormateur(Formateur formateur) throws UtilisateurManagerException;
     public void modifyFormateur(Formateur formateur);
     public void deleteFormateurById(Integer id) throws UtilisateurManagerException;
     public Formateur getFormateurById(Integer id);
@@ -23,7 +23,7 @@ public interface UtilisateurManager {
 
     // CRUD EvaluationSession
     public void addEvaluationSession(EvaluationSession evaluationSession);
-    public void deleteEvaluationSession(EvaluationSession evaluationSession);
+    public void deleteEvaluationSession(EvaluationSession evaluationSession) throws UtilisateurManagerException;
     public void modifyEvaluationSession(EvaluationSession evaluationSession);
     public void deleteEvaluationSessionById(Integer id) throws UtilisateurManagerException;
     public EvaluationSession getEvaluationSessionById(Integer id);
@@ -35,7 +35,7 @@ public interface UtilisateurManager {
 
         // CRUD EvaluationFormateur
     public void addEvaluationFormateur(EvaluationFormateur evaluationFormateur);
-    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur);;
+    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur) throws UtilisateurManagerException;;
     public void modifyEvaluationFormateur(EvaluationFormateur evaluationFormateur);;
     public void deleteEvaluationFormateurById(Integer id) throws UtilisateurManagerException;
     public EvaluationFormateur getEvaluationFormateurById(Integer id);
