@@ -21,40 +21,37 @@ import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 public class CrudSalleFormation {
 	@Autowired
 	private LieuFormationManager manager;
-	
+
 	@GetMapping("/salleFormation")
-	public List<SalleFormation> getSalleFormation(){
+	public List<SalleFormation> getSalleFormation() {
 		return manager.getAllSalle();
-		
+
 	}
-	
+
 	@GetMapping("/salleFormation/{id}")
 	public SalleFormation getSalleById(@PathVariable("id") Integer id) {
 		return manager.getSalleById(id);
-		
+
 	}
-	
+
 	@PostMapping("/salleFormation")
-	public SalleFormation addSalleFormation(@RequestBody SalleFormation salle ) {
-		 manager.addSalleFormation(salle);
-		 return salle;
-		
+	public SalleFormation addSalleFormation(@RequestBody SalleFormation salle) {
+		manager.addSalleFormation(salle);
+		return salle;
+
 	}
-	
+
 	@PutMapping("/salleFormation")
-	public SalleFormation modifaySalleFormation(@RequestBody SalleFormation salle ) {
+	public SalleFormation modifaySalleFormation(@RequestBody SalleFormation salle) {
 		manager.updateSalleFormation(salle);
 		return salle;
-		
+
 	}
-	
-	
+
 	@DeleteMapping("/salleFormation/{id}")
 	public void deleteSalleFormation(@PathVariable("id") Integer id) throws LieuException {
 		SalleFormation salle = manager.getSalleById(id);
 		manager.deleteSalle(salle);
 	}
-	
-	
 
 }
