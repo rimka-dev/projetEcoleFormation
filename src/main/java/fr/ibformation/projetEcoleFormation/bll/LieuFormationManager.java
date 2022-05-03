@@ -40,4 +40,5 @@ public interface LieuFormationManager {
 
 	public void deleteEntrepriseById(Integer id);
 
+
 }

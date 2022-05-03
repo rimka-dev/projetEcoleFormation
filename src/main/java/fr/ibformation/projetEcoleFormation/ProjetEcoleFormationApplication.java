@@ -10,7 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
+
+import fr.ibformation.projetEcoleFormation.bll.FormationManager;
+
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
@@ -29,8 +33,8 @@ import fr.ibformation.projetEcoleFormation.dal.FormateurDAO;
 import fr.ibformation.projetEcoleFormation.dal.FormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
+import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
-import fr.ibformation.projetEcoleFormation.dal.ThemeFormationDAO;
 
 @SpringBootApplication
 public class ProjetEcoleFormationApplication implements CommandLineRunner {
@@ -51,7 +55,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	@Autowired
 	FormationDAO formationDAO;
 	@Autowired
-	ThemeFormationDAO themeFormationDAO;
+	SousThemeFormationDAO sousThemeFormationDAO;
 	@Autowired
 	SessionFormationDAO sessionFormationDAO;
 
@@ -67,6 +71,9 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	UtilisateurManager utilisateurManager;
 
 
+	@Autowired
+	private FormationManager formationManager;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		
@@ -77,6 +84,100 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		//===================== Celine ==============================
+		
+		EntrepriseClient entrepriseManag = new EntrepriseClient("Manag","6 rue de la bergerie","66000","Perpignan");
+		entrepriseClientDAO.save(entrepriseManag);
+		Stagiaire stagiaireManag = new Stagiaire("Manag","Jean","fdsfsd@fdsfds.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
+	
+		
+		// CRUD Session Formation ///
+		
+		/// ==== Create =====
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "intra-entreprise-manag", true, true, true, false, false, false, false, false);
+		sessionManag.setEntreprise(entrepriseManag);
+		sessionManag.addStagiaire(stagiaireManag);
+		
+		
+		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "inter-entreprise-manag", true, true, true, false, false, false, false, false);
+		sessionManag.setEntreprise(entrepriseManag);
+		sessionManag.addStagiaire(stagiaireManag);
+		
+		
+		formationManager.addSessionFormation(sessionManag);
+		Integer idSession = sessionManag.getIdSession();
+		
+		
+		/// ==== Modify =====
+		sessionManag2.setDateFin(LocalDate.of(2022, 10, 20));
+		formationManager.modifySessionFormation(sessionManag2);
+		
+		
+		/// ==== Liste =====
+		formationManager.getListeSessionsFormation().forEach(System.out::println);
+		
+		formationManager.getSessionFormationById(idSession);
+		
+		/// ==== Delete =====
+	
+		formationManager.deleteSessionFormationById(idSession);
+		
+		
+		
+		
+		// CRUD Sous-Theme Formation ///
+		SousThemeFormation sousTheme1Manag = new SousThemeFormation("JAVA");
+		SousThemeFormation sousTheme2Manag = new SousThemeFormation("HTML");
+		SousThemeFormation sousTheme3Manag = new SousThemeFormation("CSS");
+		
+		/// ==== Create =====
+		formationManager.addSousThemeFormation(sousTheme1Manag, sousTheme2Manag, sousTheme3Manag);
+		
+		/// ==== Modify =====
+		sousTheme2Manag.setNomSousTheme("Javascript");
+		formationManager.modifySousThemeFormation(sousTheme2Manag);
+		
+		
+		/// ==== Liste =====
+		formationManager.getListeSousThemesFormation().forEach(System.out::println);
+		
+		
+		
+		/// ==== Delete =====
+		Integer idSousTheme = sousTheme1Manag.getIdSousTheme();
+		formationManager.deleteSousThemeFormationById(idSousTheme);
+		
+		
+		
+		// CRUD Formation ///
+		
+		Formation formation1 = new Formation ("InformatiqueManag", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		Formation formation2 = new Formation ("InformatiqueManag", "Apprendre le developpement PYTHON", "description", 1040, "Langages de développement");
+		
+		/// ==== Create =====
+		formationManager.addFormation(formation1);
+		formationManager.addFormation(formation2);
+		
+		
+		formationManager.addSousThemeToFormation(formation1, sousTheme1Manag, sousTheme2Manag, sousTheme3Manag);
+		
+		/// ==== Modify =====
+		formation1.setNomFormation("Parcourir le JAVA");
+		formationManager.modifyFormation(formation1);
+		
+		/// ==== Liste =====
+		formationManager.getListeFormations().forEach(System.out::println);
+		
+		Integer idFormation = formation1.getIdFormation();
+		formationManager.getFormationById(idFormation);
+		
+		/// ==== Delete =====
+		
+		Integer idFormation2 = formation2.getIdFormation();
+		formationManager.deleteFormationById(idFormation2);
+		
+		formation1.addSessionFormation(sessionManag2);
+		formationManager.modifySessionFormation(sessionManag2);
+		
 		
 		
 		//===================== Anael ==================================
@@ -214,19 +315,20 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		entreprise1.addSessionFormation(session1);
 		entrepriseClientDAO.save(entreprise1);
 		
-		Formation formation1 = new Formation ("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
-		formation1.addSousThemeFormation(sousTheme1);
-		formation1.addSousThemeFormation(sousTheme2);
-		formation1.addSousThemeFormation(sousTheme3);
-		formation1.addSessionFormation(session1);
-		formationDAO.save(formation1);
+		Formation formation1bis = new Formation ("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		formation1bis.addSousThemeFormation(sousTheme1);
+		formation1bis.addSousThemeFormation(sousTheme2);
+		formation1bis.addSousThemeFormation(sousTheme3);
+		formation1bis.addSessionFormation(session1);
+		formationDAO.save(formation1bis);
 		
 		
-		sousTheme1.addFormation(formation1);
-		themeFormationDAO.save(sousTheme1);
-		themeFormationDAO.save(sousTheme2);
-		themeFormationDAO.save(sousTheme3);
+		sousTheme1.addFormation(formation1bis);
+		sousThemeFormationDAO.save(sousTheme1);
+		sousThemeFormationDAO.save(sousTheme2);
+		sousThemeFormationDAO.save(sousTheme3);
 		
-		System.out.println(formation1.getListeSousThemeFormation());
+		System.out.println(formation1bis.getListeSousThemeFormation());
 	}
+	
 }
