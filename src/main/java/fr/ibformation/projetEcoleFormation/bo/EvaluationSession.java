@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,9 @@ public class EvaluationSession {
 	
 	@ManyToOne
 	private Stagiaire stagiaire;
+	
+	@OneToOne
+	private SessionFormation sessionFormation;
 	
 	public EvaluationSession(Integer noteEnvironnement, Integer noteContenuFormation, Integer niveauSatisfaction,
 			Boolean recommandationFormation, Boolean autresProjetsFormations) {

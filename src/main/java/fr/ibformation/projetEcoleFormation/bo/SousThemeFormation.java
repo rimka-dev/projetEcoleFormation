@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +28,7 @@ public class SousThemeFormation {
 	private String nomSousTheme;
 	
 	@ManyToMany
+	@JsonBackReference(value="soustheme-formation")
 	private Set <Formation> listeFormations = new HashSet<>();
 
 	public SousThemeFormation(String nomSousTheme) {
