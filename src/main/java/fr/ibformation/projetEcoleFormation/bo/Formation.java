@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,11 +35,14 @@ public class Formation {
 	private String nomThemeFormation;
 	
 	@ManyToMany(mappedBy = "listeFormations")
-	@JsonManagedReference
+	@JsonManagedReference(value="soustheme-formation")
+	@JsonIgnore
 	Set <SousThemeFormation> listeSousThemeFormation = new HashSet<>();
 	
 	@OneToMany(mappedBy = "formation")
-	@JsonManagedReference
+	@JsonBackReference(value="session-formation")
+	@JsonIgnore
+
 	Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
 	public Formation(String nomDomaine, String nomFormation, String description, Integer prix,

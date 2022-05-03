@@ -9,6 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -37,7 +42,7 @@ public class SessionFormation {
 	private Boolean formulaireEvalGenere;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference(value="session-formation")
 	private Formation formation;
 	
 	@ManyToOne
@@ -55,6 +60,13 @@ public class SessionFormation {
 	@OneToMany(mappedBy = "sessionFormation")
 	@JsonManagedReference
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
+	
+	@OneToOne
+	private EvaluationSession evalSession;
+	
+	@OneToOne
+	private EvaluationFormateur evalFormateur;
+	
 	
 	
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,

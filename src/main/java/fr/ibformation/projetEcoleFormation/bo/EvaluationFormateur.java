@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,6 +32,9 @@ public class EvaluationFormateur {
 	@ManyToOne
 	@JsonBackReference(value="formateur-evaluation-stagiaire")
 	private Stagiaire stagiaire;
+	
+	@OneToOne
+	private SessionFormation sessionFormation;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
 			Integer noteReponsesQuestions, Integer noteTechniqueAnimation, Integer noteMoyenneFormateur) {
