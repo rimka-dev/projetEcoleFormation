@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -41,8 +42,7 @@ public class Formation {
 	
 	@OneToMany(mappedBy = "formation")
 	@JsonBackReference(value="session-formation")
-	@JsonIgnore
-
+	@JsonIgnoreProperties(value = {"listeSessionFormation","listeSousThemeFormation", "handler","hibernateLazyInitializer"}, allowSetters = true)
 	Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
 	public Formation(String nomDomaine, String nomFormation, String description, Integer prix,
