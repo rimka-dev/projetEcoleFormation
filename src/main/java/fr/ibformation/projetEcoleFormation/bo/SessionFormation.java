@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -45,7 +44,6 @@ public class SessionFormation {
 	private Formation formation;
 	
 	@ManyToOne
-	@JsonManagedReference(value="salle-session")
 	private SalleFormation salleFormation;
 	
 	@ManyToOne
@@ -65,8 +63,6 @@ public class SessionFormation {
 	
 	@OneToOne
 	private EvaluationFormateur evalFormateur;
-	
-	
 	
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
 			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,
