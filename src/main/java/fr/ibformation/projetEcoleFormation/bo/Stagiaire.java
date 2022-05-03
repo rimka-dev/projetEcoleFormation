@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,9 +25,11 @@ public class Stagiaire extends Utilisateur {
 	private EntrepriseClient entreprise;
 	
 	@OneToMany(mappedBy = "stagiaire")
+	@JsonBackReference(value="session-evaluation-stagiaire")
 	private Set <EvaluationSession> listeEvalSession = new HashSet<>();
 	
 	@OneToMany(mappedBy = "stagiaire")
+	@JsonBackReference(value="formateur-evaluation-stagiaire")
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
 	@ManyToOne

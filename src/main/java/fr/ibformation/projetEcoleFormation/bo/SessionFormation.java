@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,9 +43,11 @@ public class SessionFormation {
 	private SalleFormation salleFormation;
 	
 	@ManyToOne
+	@JsonManagedReference
 	private Formateur formateur;
 	
 	@ManyToOne
+	@JsonManagedReference
 	private EntrepriseClient entreprise;
 	
 	@OneToMany(mappedBy = "sessionFormation")

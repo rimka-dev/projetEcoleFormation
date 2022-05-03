@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,9 +25,11 @@ public class EvaluationFormateur {
 	private Integer noteMoyenneFormateur;
 	
 	@ManyToOne
+	@JsonManagedReference
 	private Formateur formateur;
 	
 	@ManyToOne
+	@JsonManagedReference(value="formateur-evaluation-stagiaire")
 	private Stagiaire stagiaire;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
