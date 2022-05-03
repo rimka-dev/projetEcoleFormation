@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/WS")
 public class CrudFormateurWS {
     @Autowired
     private UtilisateurManager manager;
