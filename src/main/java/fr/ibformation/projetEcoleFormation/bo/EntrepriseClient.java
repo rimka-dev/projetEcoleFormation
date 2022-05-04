@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,10 +29,12 @@ public class EntrepriseClient {
 	
 	@OneToMany(mappedBy = "entreprise")
 	@JsonManagedReference
+	@JsonIgnore
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
 	
 	@OneToMany(mappedBy = "entreprise")
 	@JsonManagedReference
+	@JsonIgnore
 	private Set <SessionFormation> listeSessionsFormation = new HashSet<>();
 	
 	public EntrepriseClient(String nomEntreprise, String adresse, String codePostal, String ville) {
