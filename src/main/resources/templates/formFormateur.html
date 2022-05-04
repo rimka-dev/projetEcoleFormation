@@ -3,17 +3,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inscription Formateur</title>
+
+
 </head>
 <body>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 <form th:action="@{/inscription-formateur/valid}" th:object="${formateur}" method="post">
     <label>Mail</label>
 	<input type="text" th:field="*{mail}"/>
 	<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
 	<label>Mot de passe</label>
-	<input type="text" th:field="*{mdp}"/>
+	<input type="password" th:field="*{mdp}"/>
 	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 	<label>Confirmation Mot de passe</label>
-	<input type="text" th:field="*{mdp}"/>
+	<input type="password" th:field="*{mdp}"/>
 	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 	<label>Nom</label>
 	<input type="text" th:field="*{nom}"/>
@@ -31,8 +36,9 @@
 	<input type="text" th:field="*{ville}"/>
 	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
 	
-	
-	<input type="submit" value="valider"/>
+	 <tr> 
+                <td scope="col"><input type="button" id="btnConnecte" value="valider"></td>
+            </tr>
 </form>
 
 </body>
