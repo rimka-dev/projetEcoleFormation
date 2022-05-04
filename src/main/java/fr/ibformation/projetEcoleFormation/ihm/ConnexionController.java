@@ -30,6 +30,7 @@ public class ConnexionController {
         if(errors.hasErrors()) {
             return "connexion";
         }
+        formateur.setStatut("Formateur");
         manager.addFormateur(formateur);
         return "index";
     }
