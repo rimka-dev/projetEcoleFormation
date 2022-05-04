@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lst Formateur</title>
+</head>
+<body>
+<ul>
+    <li th:each="formateur : ${lstFormateurs}">
+        <span th:text="${formateur.nom}"/>
+        <span th:text="${formateur.prenom}"/>
+        <span th:text="${formateur.mail}"/>
+        <span th:text="${formateur.mdp}"/>
+    </li>
+</ul>
+</body>
+</html>
