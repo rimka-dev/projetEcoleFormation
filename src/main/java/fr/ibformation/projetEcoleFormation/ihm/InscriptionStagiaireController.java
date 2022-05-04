@@ -53,21 +53,5 @@ public class InscriptionStagiaireController {
 		lieuFormationManager.addEntreprise(e);
 		return "lstStagiaires";
 	}
-	
-	
-//@PostMapping("/validEntreprise")
-//public String validEntreprise(@Valid EntrepriseClient entreprise, BindingResult errors, Model model) {
-//	if (errors.hasErrors()) {
-//		return "formEntreprise";
-//	}
-//	lieuFormationManager.addEntreprise(entreprise);
-//	return "lstEntreprises";
-//}
-//	
-//	@GetMapping("/addEntreprise")
-//    public String addEntreprise(EntrepriseClient entreprise, Model model) {
-//        model.addAttribute("lstEntreprises", lieuFormationManager.getAllEntreprise());
-//        return "formEntreprise";
-//    }
-	
+
 }
