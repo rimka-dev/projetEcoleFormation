@@ -37,6 +37,7 @@ public class Formation {
 	Set <SousThemeFormation> listeSousThemeFormation = new HashSet<>();
 	
 	@OneToMany(mappedBy = "formation")
+	@JsonManagedReference(value="session-formation")
 	@JsonIgnore
 	Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	

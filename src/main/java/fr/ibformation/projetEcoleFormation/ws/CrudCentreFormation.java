@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.ibformation.projetEcoleFormation.bll.LieuException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
-import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 
 
 @RestController
