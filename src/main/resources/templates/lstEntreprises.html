@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Stagiaires</title>
+</head>
+<body>
+<ul>
+    <li th:each="entrepriseClient : ${lstEntreprises}">
+        <span th:text="${entrepriseClient.nom}"/>
+</ul>
+</body>
+</html>

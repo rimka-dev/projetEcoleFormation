@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Inscription Formateur</title>
+</head>
+<body>
+<form th:action="@{/inscription-formateur/valid}" th:object="${formateur}" method="post">
+    <label>Mail</label>
+	<input type="text" th:field="*{mail}"/>
+	<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
+	<label>Mot de passe</label>
+	<input type="text" th:field="*{mdp}"/>
+	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+	<label>Confirmation Mot de passe</label>
+	<input type="text" th:field="*{mdp}"/>
+	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+	<label>Nom</label>
+	<input type="text" th:field="*{nom}"/>
+	<span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/><br>
+    <label>Prénom </label>
+	<input type="text" th:field="*{prenom}"/>
+	<span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"/><br>
+	<label>Adresse </label>
+	<input type="text" th:field="*{adresse}"/>
+	<span th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"/><br>
+	<label>Code Postal</label>
+	<input type="text" th:field="*{codePostal}"/>
+	<span th:if="${#fields.hasErrors('codePostal')}" th:errors="*{codePostal}"/><br>
+	<label>Ville</label>
+	<input type="text" th:field="*{ville}"/>
+	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
+	
+	
+	<input type="submit" value="valider"/>
+</form>
+
+</body>
+</html>
