@@ -5,7 +5,7 @@
 <title>Inscription Stagiaire</title>
 </head>
 <body>
-<form th:action="@{/inscription-stagiaire/valid}" th:object="${stagiaire}" method="post">
+<form th:action="@{/inscription-stagiaire/valid}" th:object="${stagiaireDTO}" method="post">
     <label>Mail</label>
 	<input type="text" th:field="*{mail}"/>
 	<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
@@ -30,6 +30,21 @@
 	<label>Ville</label>
 	<input type="text" th:field="*{ville}"/>
 	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
+	
+	
+	<label>Nom Entreprise</label>
+	<input type="text" th:field="*{nomEntreprise}"/>
+	<span th:if="${#fields.hasErrors('nomEntreprise')}" th:errors="*{nomEntreprise}"/><br>
+	<label>Adresse Entreprise</label>
+	<input type="text" th:field="*{adresseEntreprise}"/>
+	<span th:if="${#fields.hasErrors('adresseEntreprise')}" th:errors="*{adresseEntreprise}"/><br>
+	<label>Code Postal Entreprise</label>
+	<input type="text" th:field="*{codePostalEntreprise}"/>
+	<span th:if="${#fields.hasErrors('codePostalEntreprise')}" th:errors="*{codePostalEntreprise}"/><br>
+	<label>Ville Entreprise</label>
+	<input type="text" th:field="*{villeEntreprise}"/>
+	<span th:if="${#fields.hasErrors('villeEntreprise')}" th:errors="*{villeEntreprise}"/><br>
+	
 	
 	<input type="submit" value="valider"/>
 </form>

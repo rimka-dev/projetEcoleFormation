@@ -16,6 +16,7 @@ import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
+import fr.ibformation.projetEcoleFormation.ws.StagiaireDTO;
 
 @Controller
 @RequestMapping("/inscription-stagiaire")
@@ -34,36 +35,39 @@ public class InscriptionStagiaireController {
 	}
 	
 	@GetMapping("/add")
-    public String add(Stagiaire stagiaire, Model model) {
+    public String add(StagiaireDTO stagiaireDTO, Model model) {
         model.addAttribute("lstStagiaires", utilisateurManager.getAllStagiaire());
         return "formStagiaire";
     }
 	
 		
 	@PostMapping("/valid")
-	public String validInscription(@Valid Stagiaire stagiaire, BindingResult errors, Model model) {
+	public String validInscription(@Valid StagiaireDTO stagiaireDTO, BindingResult errors, Model model) {
 		if (errors.hasErrors()) {
 			return "formStagiaire";
 		}
-		stagiaire.setStatut("Stagiaire");
-		utilisateurManager.addStagiaire(stagiaire);
-		return "redirect:/inscription-stagiaire/addEntreprise";
+		stagiaireDTO.setStatut("Stagiaire");
+		Stagiaire s = stagiaireDTO.toStagiaire();
+		EntrepriseClient e = stagiaireDTO.toEntreprise();
+		utilisateurManager.addStagiaire(s);
+		lieuFormationManager.addEntreprise(e);
+		return "lstStagiaires";
 	}
 	
 	
-@PostMapping("/validEntreprise")
-public String validEntreprise(@Valid EntrepriseClient entreprise, BindingResult errors, Model model) {
-	if (errors.hasErrors()) {
-		return "formEntreprise";
-	}
-	lieuFormationManager.addEntreprise(entreprise);
-	return "lstEntreprises";
-}
-	
-	@GetMapping("/addEntreprise")
-    public String addEntreprise(EntrepriseClient entreprise, Model model) {
-        model.addAttribute("lstEntreprises", lieuFormationManager.getAllEntreprise());
-        return "formEntreprise";
-    }
+//@PostMapping("/validEntreprise")
+//public String validEntreprise(@Valid EntrepriseClient entreprise, BindingResult errors, Model model) {
+//	if (errors.hasErrors()) {
+//		return "formEntreprise";
+//	}
+//	lieuFormationManager.addEntreprise(entreprise);
+//	return "lstEntreprises";
+//}
+//	
+//	@GetMapping("/addEntreprise")
+//    public String addEntreprise(EntrepriseClient entreprise, Model model) {
+//        model.addAttribute("lstEntreprises", lieuFormationManager.getAllEntreprise());
+//        return "formEntreprise";
+//    }
 	
 }
