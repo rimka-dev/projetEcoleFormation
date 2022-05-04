@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de connexion</title>
+</head>
+<body>
+<a th:href="@{/ihm/annotation/search}">recherches</a>
+<form th:action="@{/ihm/annotation/valid}" th:object="${annotation}" method="post">
+    <label>Email</label>
+    <input type="text" th:field="*{email}"/>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/><br>
+    
+    <label>Mot de passe</label>
+    <input type="text" th:field="*{mdp}"/>
+    <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+
+    <input type="submit" value="Se connecter"/>
+</form>
+</body>
+</html>
