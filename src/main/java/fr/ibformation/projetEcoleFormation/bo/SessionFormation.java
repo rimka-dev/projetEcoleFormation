@@ -40,14 +40,14 @@ public class SessionFormation {
 	private Boolean formulaireEvalGenere;
 	
 	@ManyToOne
-	@JsonManagedReference(value="session-formation")
+	@JsonBackReference(value="session-formation")
 	private Formation formation;
 	
 	@ManyToOne
 	private SalleFormation salleFormation;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="session-formation-formateur")
 	private Formateur formateur;
 	
 	@ManyToOne
@@ -55,7 +55,7 @@ public class SessionFormation {
 	private EntrepriseClient entreprise;
 	
 	@OneToMany(mappedBy = "sessionFormation")
-	@JsonManagedReference
+	@JsonManagedReference(value="session-formation-stagiaire")
 	private Set <Stagiaire> listeStagiaires = new HashSet<>();
 	
 	@OneToOne

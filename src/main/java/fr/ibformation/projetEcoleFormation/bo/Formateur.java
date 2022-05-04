@@ -26,12 +26,12 @@ public class Formateur extends Utilisateur {
 	
 	
 	@OneToMany(mappedBy = "formateur")
-	@JsonManagedReference(value="evaluation-session-Formateur")
+	@JsonManagedReference(value="evaluation-session-formateur")
 	@JsonIgnore
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
 	@OneToMany(mappedBy = "formateur")
-	@JsonManagedReference(value="session-formation-Formateur")
+	@JsonManagedReference(value="session-formation-formateur")
 	@JsonIgnore
 	private Set <SessionFormation> listeSessionFormation = new HashSet<>();
 	
