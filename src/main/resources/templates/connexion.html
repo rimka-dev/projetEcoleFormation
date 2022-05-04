@@ -5,13 +5,20 @@
     <title>Page de connexion</title>
 </head>
 <body>
-<a th:href="@{/ihm/annotation/search}">recherches</a>
-<form th:action="@{/ihm/annotation/valid}" th:object="${annotation}" method="post">
-    <label>Email</label>
-    <input type="text" th:field="*{email}"/>
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/><br>
-    
-    <label>Mot de passe</label>
+<form th:action="@{/ihm/connexion/formateur}" th:object="${formateur}" method="post">
+    <label>nom</label>
+    <input type="text" th:field="*{nom}"/>
+    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/><br>
+
+    <label>prenom</label>
+    <input type="text" th:field="*{prenom}"/>
+    <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"/><br>
+
+    <label>mail</label>
+    <input type="text" th:field="*{mail}"/>
+    <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
+
+    <label>mdp</label>
     <input type="text" th:field="*{mdp}"/>
     <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 
