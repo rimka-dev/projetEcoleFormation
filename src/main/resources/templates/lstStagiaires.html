@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Stagiaires</title>
+</head>
+<body>
+<ul>
+    <li th:each="stagiaire : ${lstStagiaires}">
+        <span th:text="${stagiaire.nom}"/>
+        <span th:text="${stagiaire.prenom}"/>
+        <span th:text="${stagiaire.mail}"/>
+        <span th:text="${stagiaire.mdp}"/>
+    </li>
+</ul>
+</body>
+</html>

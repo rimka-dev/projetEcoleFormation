@@ -27,12 +27,19 @@ public class InscriptionFormateurController {
 		return "lstFormateurs";
 	}
 	
+	@GetMapping("/add")
+    public String add(Formateur formateur, Model model) {
+        model.addAttribute("lstFormateurs", utilisateurManager.getAllFormateur());
+        return "formFormateur";
+    }
+	
 		
 	@PostMapping("/valid")
 	public String validInscription(@Valid Formateur formateur, BindingResult errors, Model model) {
 		if (errors.hasErrors()) {
 			return "formFormateur";
 		}
+		formateur.setStatut("Formateur");
 		utilisateurManager.addFormateur(formateur);
 		return "lstFormateurs";
 	}

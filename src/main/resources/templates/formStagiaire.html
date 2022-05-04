@@ -5,7 +5,7 @@
 <title>Inscription Stagiaire</title>
 </head>
 <body>
-<form th:action="@{/inscription-stagiaire/valid/{id}(id=${stagiaire.idStagiaire})}" th:object="${stagiaire}" method="post">
+<form th:action="@{/inscription-stagiaire/valid}" th:object="${stagiaire}" method="post">
     <label>Mail</label>
 	<input type="text" th:field="*{mail}"/>
 	<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
@@ -30,7 +30,6 @@
 	<label>Ville</label>
 	<input type="text" th:field="*{ville}"/>
 	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
-	
 	
 	<input type="submit" value="valider"/>
 </form>
