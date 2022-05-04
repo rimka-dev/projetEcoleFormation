@@ -5,7 +5,7 @@
 <title>Inscription Formateur</title>
 </head>
 <body>
-<form th:action="@{/inscription-formateur})}" th:object="${formateur}" method="post">
+<form th:action="@{/inscription-formateur/valid})}" th:object="${formateur}" method="post">
     <label>Mail</label>
 	<input type="text" th:field="*{mail}"/>
 	<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>

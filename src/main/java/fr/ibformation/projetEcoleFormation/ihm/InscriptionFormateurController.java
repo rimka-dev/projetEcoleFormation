@@ -9,34 +9,34 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 
 @Controller
+@RequestMapping("/inscription-formateur")
 public class InscriptionFormateurController {
 
 	@Autowired
 	private UtilisateurManager utilisateurManager;
 	
-	@GetMapping("/inscription-formateur/add")
-	public String addFormateur(Formateur formateur, Model model) {
-		return "formFormateur";
+	@GetMapping("/lstFormateurs")
+	public String listFormations(Formateur formateur, Model model) {
+		model.addAttribute("lstFormateurs", utilisateurManager.getAllFormateur());
+		return "lstFormateurs";
 	}
 	
-	@PostMapping("/inscription-formateur/valid")
+		
+	@PostMapping("/valid")
 	public String validInscription(@Valid Formateur formateur, BindingResult errors, Model model) {
 		if (errors.hasErrors()) {
 			return "formFormateur";
 		}
 		utilisateurManager.addFormateur(formateur);
-		return "redirect:/";
-	}
-	
-	@GetMapping("/lstFormateurs")
-	public String listFormations(Model model) {
-		model.addAttribute("lstFormateurs", utilisateurManager.getAllFormateur());
 		return "lstFormateurs";
 	}
+	
+	
 	
 }
