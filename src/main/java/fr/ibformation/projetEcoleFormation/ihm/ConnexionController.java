@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.ihm;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
+import fr.ibformation.projetEcoleFormation.dal.FormateurDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class ConnexionController {
     @Autowired
     StagiaireDAO stagiaireDAO;
 
+    @Autowired
+    FormateurDAO formateurDAO;
+
 
     @GetMapping("/formateur")
     public String get(Formateur formateur, Model model) {
@@ -36,7 +40,11 @@ public class ConnexionController {
         if(errors.hasErrors()) {
             return "connexionFormateur";
         }
-        return "index";
+        Formateur checkUserMailExist = formateurDAO.findFormateurByEmail(formateur.getMail());
+        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(formateur.getMdp())){
+            return "index";
+        }
+        return "connexionFormateur";
     }
 
     @GetMapping("/stagiaire")
@@ -50,11 +58,10 @@ public class ConnexionController {
         if(errors.hasErrors()) {
             return "connexionStagiaire";
             }
-        //if(stagiaireDAO.findStagiaireByEmail(stagiaire).equals(stagiaire.getMail())){
-        //    return "index";
-        //}
-        Stagiaire s = stagiaireDAO.findStagiaireByEmail(stagiaire);
-        System.out.println(s.getMail());
+        Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
+        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
+            return "index";
+        }
         return "connexionStagiaire";
     }
 }

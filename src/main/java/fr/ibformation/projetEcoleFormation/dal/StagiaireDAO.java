@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 public interface StagiaireDAO extends CrudRepository<Stagiaire, Integer> {
 
     @Query("SELECT s FROM Stagiaire s where s.mail= ?1")
-    public Stagiaire findStagiaireByEmail(@Param("stagiaire") Stagiaire stagiaire);
+    Stagiaire findStagiaireByEmail(@Param("stagiaire") String mail);
+
+    @Query("SELECT s FROM Stagiaire s where s.mdp= ?1")
+    Stagiaire findStagiaireByPassword(@Param("stagiaire") String mdp);
 
 }
