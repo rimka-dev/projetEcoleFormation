@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,8 +21,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Formateur extends Utilisateur {
+	@NotBlank(message =  "Champs Adresse vide")
 	private String adresse;
+	@NotBlank(message =  "Champs Code Postal vide")
 	private String codePostal;
+	@NotBlank(message =  "Champs Ville vide")
 	private String ville;
 	
 	

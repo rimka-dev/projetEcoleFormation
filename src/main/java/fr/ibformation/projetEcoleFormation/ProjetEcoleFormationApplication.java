@@ -190,7 +190,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		//===================== Anael ==================================
 
 		Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
-		EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
 		utilisateurManager.getAllStagiaire().forEach(System.out::println);
@@ -282,7 +282,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	
 		
 		
-		EvaluationSession evalSession1 = new EvaluationSession(2,3,4,true, true);
+		EvaluationSession evalSession1 = new EvaluationSession(2,2,3,"satisfait",true, true);
 		evalSession1.setStagiaire(stagiaire1);
 	    evaluationSessionDAO.save(evalSession1);
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 
 @Controller
@@ -43,7 +44,5 @@ public class InscriptionFormateurController {
 		utilisateurManager.addFormateur(formateur);
 		return "lstFormateurs";
 	}
-	
-	
 	
 }

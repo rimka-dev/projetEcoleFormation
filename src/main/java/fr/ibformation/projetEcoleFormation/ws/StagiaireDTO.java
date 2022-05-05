@@ -1,5 +1,7 @@
 package fr.ibformation.projetEcoleFormation.ws;
 
+import javax.validation.constraints.NotBlank;
+
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import lombok.AllArgsConstructor;
@@ -11,17 +13,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StagiaireDTO {
 
+	@NotBlank(message = "Champs Nom vide")
 	private String nom;
+	@NotBlank(message = "Champs Prénom vide")
 	private String prenom;
+	@NotBlank(message =  "Champs Mail vide")
 	private String mail;
+	@NotBlank(message =  "Champs Mot de Passe vide")
 	private String mdp;
+	@NotBlank(message =  "Champs Adresse vide")
 	private String adresse;
+	@NotBlank(message =  "Champs Code Postal vide")
 	private String codePostal;
+	@NotBlank(message =  "Champs Ville vide")
 	private String ville;
 	private String statut;
+	@NotBlank(message =  "Champs Nom Entreprise vide")
 	private String nomEntreprise;
+	@NotBlank(message =  "Champs Adresse Entreprise vide")
 	private String adresseEntreprise;
+	@NotBlank(message =  "Champs Code Postal Entreprise vide")
 	private String codePostalEntreprise;
+	@NotBlank(message =  "Champs Ville Entreprise vide")
 	private String villeEntreprise;
 	
 	public StagiaireDTO(Stagiaire stagiaire) {

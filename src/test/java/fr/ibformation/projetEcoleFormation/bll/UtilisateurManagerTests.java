@@ -127,7 +127,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void addEvaluationSession() {
-        EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
         manager.addEvaluationSession(e1);
         assertEquals(5, e1.getNoteContenuFormation());
     }
@@ -137,7 +137,7 @@ public class UtilisateurManagerTests {
     @Transactional
     void addEvaluationSessionToStagiaire() {
         Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
-        EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
         manager.addEvaluationSessionToStagiaire(s1,e1);
         assertNotNull(s1.getListeEvalSession());
 
@@ -146,7 +146,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void deleteEvaluationSession() throws UtilisateurManagerException {
-        EvaluationSession e1 = new EvaluationSession(4,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,4,5,"satisfait",true,true);
         manager.addEvaluationSession(e1);
         manager.deleteEvaluationSession(e1);
         assertNull(manager.getEvaluationSessionById(e1.getIdEvalSession()));
