@@ -193,9 +193,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
-		Stagiaire search = stagiaireDAO.findStagiaireByEmail(s1.getMail());
-		//System.out.println(search.getMdp());
-
 		System.out.println("--------------------------------------");
 
 
