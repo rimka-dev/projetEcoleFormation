@@ -43,7 +43,7 @@ public class ConnexionController {
         }
         Formateur checkUserMailExist = formateurDAO.findFormateurByEmail(formateur.getMail());
         if(checkUserMailExist != null &checkUserMailExist.getMdp().equals(formateur.getMdp())){
-            return "index";
+            return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionFormateur";
     }
