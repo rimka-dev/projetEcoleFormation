@@ -35,10 +35,8 @@
 	<label>Ville</label>
 	<input type="text" th:field="*{ville}"/>
 	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
-	
-	 <tr> 
-                <td scope="col"><input type="button" id="btnConnecte" value="valider"></td>
-            </tr>
+
+	<input type="submit" value="valider"/>
 </form>
 
 </body>

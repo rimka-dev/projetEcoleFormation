@@ -41,7 +41,7 @@ public class ConnexionController {
             return "connexionFormateur";
         }
         Formateur checkUserMailExist = formateurDAO.findFormateurByEmail(formateur.getMail());
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(formateur.getMdp())){
+        if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == formateur.getMdp().hashCode()){
             return "index";
         }
         return "connexionFormateur";
@@ -59,7 +59,7 @@ public class ConnexionController {
             return "connexionStagiaire";
             }
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
+        if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == stagiaire.getMdp().hashCode()) {
             return "index";
         }
         return "connexionStagiaire";
