@@ -18,7 +18,7 @@
 	<input type="password" th:field="*{mdp}"/>
 	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 	<label>Confirmation Mot de passe</label>
-	<input type="password" th:field="*{mdp}"/>
+	<input type="password"/>
 	<span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 	<label>Nom</label>
 	<input type="text" th:field="*{nom}"/>
@@ -36,7 +36,7 @@
 	<input type="text" th:field="*{ville}"/>
 	<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"/><br>
 
-	<input type="submit" value="valider"/>
+	<input type="submit" value="Se connecter"/>
 </form>
 
 </body>

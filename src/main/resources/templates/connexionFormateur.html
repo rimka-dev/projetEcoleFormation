@@ -12,7 +12,7 @@
     <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
 
     <label>Mot de passe</label>
-    <input type="text" th:field="*{mdp}"/>
+    <input type="password" th:field="*{mdp}"/>
     <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
 
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 
 @Controller
@@ -41,7 +42,7 @@ public class ConnexionController {
             return "connexionFormateur";
         }
         Formateur checkUserMailExist = formateurDAO.findFormateurByEmail(formateur.getMail());
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == formateur.getMdp().hashCode()){
+        if(checkUserMailExist != null &checkUserMailExist.getMdp().equals(formateur.getMdp())){
             return "index";
         }
         return "connexionFormateur";
@@ -59,8 +60,9 @@ public class ConnexionController {
             return "connexionStagiaire";
             }
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == stagiaire.getMdp().hashCode()) {
-            return "index";
+        //if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == stagiaire.getMdp().hashCode()) {
+        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
+            return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionStagiaire";
     }

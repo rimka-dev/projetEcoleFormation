@@ -41,7 +41,7 @@ public class InscriptionFormateurController {
 		}
 		formateur.setStatut("Formateur");
 		utilisateurManager.addFormateur(formateur);
-		return "lstFormateurs";
+		return "connexionFormateur";
 	}
 	
 	

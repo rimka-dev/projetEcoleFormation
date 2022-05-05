@@ -25,7 +25,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Override
     @Transactional
     public void addStagiaire(Stagiaire stagiaire) {
-        stagiaire.setMdp(String.valueOf(stagiaire.getMdp().hashCode()));
+        //stagiaire.setMdp(String.valueOf(stagiaire.getMdp().hashCode()));
         stagiaireDAO.save(stagiaire);
     }
 
@@ -67,7 +67,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Override
     @Transactional
     public void addFormateur(Formateur formateur) {
-        formateur.setMdp(String.valueOf(formateur.getMdp().hashCode()));
+        //formateur.setMdp(String.valueOf(formateur.getMdp().hashCode()));
         formateurDAO.save(formateur);
     }
 

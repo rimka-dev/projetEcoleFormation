@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.ws.StagiaireDTO;
 
@@ -51,7 +50,7 @@ public class InscriptionStagiaireController {
 		EntrepriseClient e = stagiaireDTO.toEntreprise();
 		utilisateurManager.addStagiaire(s);
 		lieuFormationManager.addEntreprise(e);
-		return "lstStagiaires";
+		return "connexionStagiaire";
 	}
 
 }
