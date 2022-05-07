@@ -45,7 +45,7 @@ public class EvaluationFormateur {
 		this.noteDisponibilite = noteDisponibilite;
 		this.noteReponsesQuestions = noteReponsesQuestions;
 		this.noteTechniqueAnimation = noteTechniqueAnimation;
-		this.noteMoyenneFormateur = noteMoyenneFormateur;
+		this.noteMoyenneFormateur = (notePedagogie+noteMaitriseDomaine+noteDisponibilite+noteReponsesQuestions+noteTechniqueAnimation)/5;
 	}
 
 	@Override

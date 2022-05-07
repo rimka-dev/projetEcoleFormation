@@ -194,4 +194,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     public List<EvaluationFormateur> getAllEvaluationFormateur() {
         return (List<EvaluationFormateur>) evaluationFormateurDAO.findAll();
     }
+
+
 }

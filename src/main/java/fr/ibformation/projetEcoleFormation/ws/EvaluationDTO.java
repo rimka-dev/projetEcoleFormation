@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
+import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
+import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,8 +38,25 @@ public class EvaluationDTO {
 	private Integer noteReponsesQuestions;
 	@NotNull
 	private Integer noteTechniqueAnimation;
+	@NotNull
+	private Integer idSession;
+	@NotNull
+	private String nom;
 	
-
+	public SessionFormation toSessionFormation() {
+	
+		SessionFormation session = new SessionFormation();
+		session.setIdSession(this.idSession);
+		return session;
+	}
+	
+	public Stagiaire toStagiaire() {
+		
+		Stagiaire stagiaire = new Stagiaire();
+		stagiaire.setNom(this.nom);
+		return stagiaire;
+	}
+	
 	public EvaluationSession toEvaluationSession() {
 		EvaluationSession evalSession = new EvaluationSession();
 		evalSession.setNoteAccueil(this.noteAccueil);
@@ -48,7 +67,8 @@ public class EvaluationDTO {
 		evalSession.setAutresProjetsFormations(this.autresProjetsFormations);
 		return evalSession;
 	
-	}
+	}	
+	
 	
 	public EvaluationFormateur toEvaluationFormateur() {
 		EvaluationFormateur evalFormateur = new EvaluationFormateur();

@@ -96,7 +96,7 @@ public class FormationManagerTests {
 	
 	@Test
 	@Transactional
-	void deleteSessionFormationTest() {
+	void deleteSessionFormationTest() throws FormationException {
 		SessionFormation sessionFormation  = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
 		formationManager.addSessionFormation(sessionFormation);
 		Integer idSessionFormation = sessionFormation.getIdSession();

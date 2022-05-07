@@ -1,15 +1,18 @@
 package fr.ibformation.projetEcoleFormation.bll;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
+import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.dal.FormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
@@ -44,9 +47,22 @@ public class FormationManagerImpl implements FormationManager {
 	public void deleteFormationById(Integer idFormation)  throws FormationException {
 		Formation formation = formationDAO.findById(idFormation)
 				.orElseThrow(() -> new FormationException("Formation Inexistante"));
-		if(formation.getListeSousThemeFormation().size()>0) {
-			throw new FormationException("Cette formation est lié à des sous-themes");
+		
+		for (SessionFormation session : formation.getListeSessionFormation()) {
+			deleteSessionFormationById(session.getIdSession());
 		}
+		formation.getListeSessionFormation().clear();
+		
+		//https://stackoverflow.com/a/38302308
+		for (SousThemeFormation sousTheme : formation.getListeSousThemeFormation()) {
+			sousTheme.getListeFormations().remove(formation);
+		}
+		
+		formation.getListeSousThemeFormation().clear();
+		
+		
+		formationDAO.save(formation);
+		
 		formationDAO.deleteById(idFormation);
 		
 	}
@@ -86,9 +102,6 @@ public class FormationManagerImpl implements FormationManager {
 	public void deleteSousThemeFormationById(Integer idSousThemeFormation) throws FormationException {
 		SousThemeFormation sousThemeFormation = sousThemeFormationDAO.findById(idSousThemeFormation)
 				.orElseThrow(() -> new FormationException("Sous-Theme Formation Inexistant"));
-		if(sousThemeFormation.getListeFormations().size()>0) {
-			throw new FormationException("Ce sous-theme est lié à une formation");
-		}
 		sousThemeFormationDAO.deleteById(idSousThemeFormation);
 		
 	}
@@ -111,7 +124,17 @@ public class FormationManagerImpl implements FormationManager {
 	}
 	@Override
 	@Transactional
-	public void deleteSessionFormationById(Integer idSessionFormation)  {
+	public void deleteSessionFormationById(Integer idSessionFormation) throws FormationException {
+		SessionFormation session = sessionFormationDAO.findById(idSessionFormation)
+				.orElseThrow(() -> new FormationException("SessionFormation Inexistant"));
+		//on doit supprimer le lien entre stagiaire et sessionFormation
+		//https://stackoverflow.com/a/38302308
+		for (Stagiaire stagiaire : session.getListeStagiaires()) {
+			stagiaire.getListeSessionFormation().remove(session);
+		}
+        session.getListeStagiaires().clear();
+		
+        sessionFormationDAO.save(session);
 		sessionFormationDAO.deleteById(idSessionFormation);
 		
 	}

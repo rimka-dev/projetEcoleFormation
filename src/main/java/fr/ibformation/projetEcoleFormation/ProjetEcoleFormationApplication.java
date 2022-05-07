@@ -126,7 +126,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		/// ==== Delete =====
 	
-		formationManager.deleteSessionFormationById(idSession);
+//		formationManager.deleteSessionFormationById(idSession);
 		
 		
 		
@@ -150,9 +150,9 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		
 		/// ==== Delete =====
-		Integer idSousTheme = sousTheme1Manag.getIdSousTheme();
-		formationManager.deleteSousThemeFormationById(idSousTheme);
-		
+//		Integer idSousTheme = sousTheme1Manag.getIdSousTheme();
+//		formationManager.deleteSousThemeFormationById(idSousTheme);
+//		
 		
 		
 		// CRUD Formation ///
@@ -179,8 +179,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		/// ==== Delete =====
 		
-		Integer idFormation2 = formation2.getIdFormation();
-		formationManager.deleteFormationById(idFormation2);
+//		Integer idFormation2 = formation2.getIdFormation();
+//		formationManager.deleteFormationById(idFormation2);
 		
 		formation1.addSessionFormation(sessionManag2);
 		formationManager.modifySessionFormation(sessionManag2);
@@ -217,7 +217,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		Integer id = salleRouge.getIdSalleFormation();
 		System.out.println("salle par id "+lieuManager.getSalleById(id));
 		// === Delete =========
-		lieuManager.deleteSalle(salleVerte);
+//		lieuManager.deleteSalle(salleVerte);
 		
 		//lieuManager.deleteSalle(salleVerte); //test de delete un élément qui n'existe pas 
 		
@@ -241,7 +241,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		Integer id1 = centre1.getIdCentreFormation();
 		System.out.println("Centre de formation par ID "+lieuManager.getCentreFormationById(id1)); 
 		//========= delete by ID ===========
-		lieuManager.deleteCentreFormationById(id1);
+//		lieuManager.deleteCentreFormationById(id1);
 		//lieuManager.deleteCentreFormationById(id1); //test element n'existe pas
 		
 		/**
@@ -262,7 +262,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		Integer idEntreprise = entrepriseOne.getIdEntrepriseClient();
 		System.out.println("Entreprise par ID "+lieuManager.getEntrepriseById(idEntreprise));
 		//======== delete by ID =================
-		lieuManager.deleteEntrepriseById(idEntreprise);
+//		lieuManager.deleteEntrepriseById(idEntreprise);
 		
 		
 		

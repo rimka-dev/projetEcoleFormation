@@ -24,7 +24,7 @@ public interface FormationManager {
 	public void addSessionFormation(SessionFormation sessionFormation);
 	public List<SessionFormation> getListeSessionsFormation();
 	public void modifySessionFormation(SessionFormation sessionFormation);
-	public void deleteSessionFormationById(Integer idSessionFormation);
+	public void deleteSessionFormationById(Integer idSessionFormation) throws FormationException;
 	public SessionFormation getSessionFormationById(Integer idSessionFormation);
 	
 	

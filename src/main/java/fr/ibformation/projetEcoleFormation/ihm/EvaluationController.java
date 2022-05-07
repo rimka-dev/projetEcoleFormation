@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
+import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.ws.EvaluationDTO;
 
@@ -22,7 +24,8 @@ public class EvaluationController {
 
 	@Autowired
 	private UtilisateurManager utilisateurManager;
-	
+	@Autowired
+	private FormationManager formationManager;
 
 	@GetMapping("/add")
     public String add(EvaluationDTO evaluationDTO, Model model) {
@@ -37,16 +40,18 @@ public class EvaluationController {
 			return "evalFormation";
 		}
 		
-		Stagiaire stagiaire = getStagiaire();
+		//Stagiaire stagiaire = getStagiaire();
 		
 		EvaluationSession evalSession = evaluationDTO.toEvaluationSession();
 		EvaluationFormateur evalFormateur = evaluationDTO.toEvaluationFormateur();
-
-		evalSession.setStagiaire(stagiaire);
-		evalFormateur.setStagiaire(stagiaire);
-		
+        SessionFormation session = evaluationDTO.toSessionFormation();
+		//evalSession.setStagiaire(stagiaire);
+		//evalFormateur.setStagiaire(stagiaire);
+        Stagiaire stagiaire = evaluationDTO.toStagiaire();
 		utilisateurManager.addEvaluationFormateur(evalFormateur);
 		utilisateurManager.addEvaluationSession(evalSession);
+		formationManager.addSessionFormation(session);
+		utilisateurManager.addStagiaire(stagiaire);
 		return "lstFormateurs";
 	}
 

@@ -1,7 +1,9 @@
 package fr.ibformation.projetEcoleFormation.ws;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
+import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 @CrossOrigin
 @RestController
 @RequestMapping("/WS")
@@ -49,7 +52,22 @@ public class CrudFormationWS {
 	
 	@DeleteMapping("/formation/{id}")
 	public void deleteFormationById(@PathVariable("id") Integer id) throws FormationException {
+//		Formation formation = formationManager.getFormationById(id);
+//		List <SousThemeFormation> sousThemes = formationManager.getListeSousThemesFormation();
+//		if (sousThemes.size() >0) {
+//			System.out.println(formation.getListeSousThemeFormation().size());
+//			for (SousThemeFormation sousTheme : sousThemes) {
+//					sousThemes.remove(sousTheme);
+//			}
+//			
+//		//formationManager.modifyFormation(formation);
+//		}
 		formationManager.deleteFormationById(id);
 	}
+	
+//	@DeleteMapping ("/formation/{id}")
+//		public void deleteSousThemeByIdFormation(@PathVariable("id") Integer id) throws FormationException {
+//		formationManager.deleteSousThemeFormationById(id);
+//	}
 	
 }

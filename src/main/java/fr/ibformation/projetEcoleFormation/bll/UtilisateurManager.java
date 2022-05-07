@@ -35,10 +35,15 @@ public interface UtilisateurManager {
 
         // CRUD EvaluationFormateur
     public void addEvaluationFormateur(EvaluationFormateur evaluationFormateur);
-    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur) throws UtilisateurManagerException;;
+    public void deleteEvaluationFormateur(EvaluationFormateur evaluationFormateur) throws UtilisateurManagerException;
     public void modifyEvaluationFormateur(EvaluationFormateur evaluationFormateur);;
     public void deleteEvaluationFormateurById(Integer id) throws UtilisateurManagerException;
     public EvaluationFormateur getEvaluationFormateurById(Integer id);
     public List<EvaluationFormateur> getAllEvaluationFormateur();
 
-}
+    
+    	
+    }
+
+    
+
