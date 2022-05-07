@@ -51,7 +51,7 @@ public class CrudFormationWS {
 	}
 	
 	@DeleteMapping("/formation/{id}")
-	public void deleteFormationById(@PathVariable("id") Integer id) throws FormationException {
+	public List<Formation> deleteFormationById(@PathVariable("id") Integer id) throws FormationException {
 //		Formation formation = formationManager.getFormationById(id);
 //		List <SousThemeFormation> sousThemes = formationManager.getListeSousThemesFormation();
 //		if (sousThemes.size() >0) {
@@ -63,6 +63,7 @@ public class CrudFormationWS {
 //		//formationManager.modifyFormation(formation);
 //		}
 		formationManager.deleteFormationById(id);
+		return formationManager.getListeFormations();
 	}
 	
 //	@DeleteMapping ("/formation/{id}")
