@@ -71,12 +71,13 @@ public class EvaluationDTO {
 	
 	
 	public EvaluationFormateur toEvaluationFormateur() {
-		EvaluationFormateur evalFormateur = new EvaluationFormateur();
-		evalFormateur.setNotePedagogie(this.notePedagogie);
-		evalFormateur.setNoteMaitriseDomaine(this.noteMaitriseDomaine);
-		evalFormateur.setNoteDisponibilite(this.noteDisponibilite);
-		evalFormateur.setNoteReponsesQuestions(this.noteReponsesQuestions);
-		evalFormateur.setNoteTechniqueAnimation(this.noteTechniqueAnimation);
+		EvaluationFormateur evalFormateur = new EvaluationFormateur(this.notePedagogie, this.noteMaitriseDomaine,this.noteDisponibilite, this.noteReponsesQuestions, this.noteTechniqueAnimation);
+//		evalFormateur.setNotePedagogie(this.notePedagogie);
+//		evalFormateur.setNoteMaitriseDomaine(this.noteMaitriseDomaine);
+//		evalFormateur.setNoteDisponibilite(this.noteDisponibilite);
+//		evalFormateur.setNoteReponsesQuestions(this.noteReponsesQuestions);
+//		evalFormateur.setNoteTechniqueAnimation(this.noteTechniqueAnimation);
+//		evalFormateur.setNoteMoyenneFormateur(this.noteMoyenneFormateur);
 		return evalFormateur;
 	}
 	

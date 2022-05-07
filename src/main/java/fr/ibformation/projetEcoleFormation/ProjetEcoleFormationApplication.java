@@ -68,7 +68,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	LieuFormationManager lieuManager;
 	
 
-
 	@Autowired
 	UtilisateurManager utilisateurManager;
 
@@ -92,25 +91,42 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Celine ==============================
 		
-		EntrepriseClient entrepriseManag = new EntrepriseClient("Manag","6 rue de la bergerie","66000","Perpignan");
+		EntrepriseClient entrepriseManag = new EntrepriseClient("DANONE","6 rue de la bergerie","66000","Perpignan");
 		entrepriseClientDAO.save(entrepriseManag);
-		Stagiaire stagiaireManag = new Stagiaire("Manag","Jean","fdsfsd@fdsfds.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
-	
+		Stagiaire stagiaireManag = new Stagiaire("DUPONT","Jean","dupont.jean@gmail.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
+		Formateur formateurManag = new Formateur("HENRI","Pierre","henri.pierre@gmail.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
+		SalleFormation salle = new SalleFormation("Seine", 3);
+	    utilisateurManager.addFormateur(formateurManag);
+		lieuManager.addSalleFormation(salle);
+		
+		Formation formation3 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
+		formationManager.addFormation(formation3);
 		
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
-		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "intra-entreprise-manag", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "intra-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		
 		
-		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "inter-entreprise-manag", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
-		
+		sessionManag.setFormateur(formateurManag);
+		sessionManag.setSalleFormation(salle);
+		sessionManag.setFormation(formation3);
 		
 		formationManager.addSessionFormation(sessionManag);
+		
+		EvaluationSession evalS = new EvaluationSession(2,2,3,"satisfait",true, true);
+		EvaluationFormateur evalF = new EvaluationFormateur(2,3,4,5,3);
+		utilisateurManager.addEvaluationFormateur(evalF);
+		utilisateurManager.addEvaluationSession(evalS);
+		sessionManag.setEvalFormateur(evalF);
+		sessionManag.setEvalSession(evalS);
+		formationManager.modifySessionFormation(sessionManag);
+		
 		Integer idSession = sessionManag.getIdSession();
 		
 		
@@ -157,8 +173,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		// CRUD Formation ///
 		
-		Formation formation1 = new Formation ("InformatiqueManag", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
-		Formation formation2 = new Formation ("InformatiqueManag", "Apprendre le developpement PYTHON", "description", 1040, "Langages de développement");
+		Formation formation1 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
+		Formation formation2 = new Formation ("Informatique", "Apprendre le developpement PYTHON", "Les bases de la programmation Python", 1040, "Langages de développement");
 		
 		/// ==== Create =====
 		formationManager.addFormation(formation1);
@@ -189,7 +205,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Anael ==================================
 
-		Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
+		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
@@ -202,18 +218,18 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		 * CRUD Salle de formation
 		 */
 		
-		SalleFormation salleVerte = new SalleFormation("Salle verte", 3);
-		SalleFormation salleRouge = new SalleFormation("Salle Rouge", 1);
+		SalleFormation salle1 = new SalleFormation("Rhone", 3);
+		SalleFormation salle2 = new SalleFormation("Garonne", 1);
 		//=== Create =========
-		lieuManager.addSalleFormation(salleVerte);
-		lieuManager.addSalleFormation(salleRouge);
+		lieuManager.addSalleFormation(salle1);
+		lieuManager.addSalleFormation(salle2);
 		//======== Update =====
-		salleRouge.setEtage(4);
-		lieuManager.updateSalleFormation(salleRouge);
+		salle1.setEtage(4);
+		lieuManager.updateSalleFormation(salle1);
 		//======= Read all ======
 		lieuManager.getAllSalle().forEach(System.out::println);
 		//====== Read by ID =========
-		Integer id = salleRouge.getIdSalleFormation();
+		Integer id = salle1.getIdSalleFormation();
 		System.out.println("salle par id "+lieuManager.getSalleById(id));
 		// === Delete =========
 //		lieuManager.deleteSalle(salleVerte);
@@ -224,10 +240,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		 * CRUD Centre de formation 
 		 */
 		
-		CentreFormation centre1 = new CentreFormation("ibFormation","rue de la defense" , "92742","Nanterre");
-		CentreFormation centre2 = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
+		CentreFormation centre1 = new CentreFormation("IT Training Nanterre","5 rue de la defense" , "92742","Nanterre");
+		CentreFormation centre2 = new CentreFormation("IT Training Paris","10 rue de la liberte" , "75010","Paris");
 		//=== Create =========
-		centre2.addSalleFormation(salleRouge);
+		centre2.addSalleFormation(salle1);
 		lieuManager.addCentreFormation(centre1);
 		lieuManager.addCentreFormation(centre2);
 		
@@ -247,13 +263,13 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		 * CRUD Entreprise
 		 */
 		
-		EntrepriseClient entrepriseOne = new EntrepriseClient("Sogeti", "Boulevard des entreprises", "92130", "issy les moulineaux");
-		EntrepriseClient entrepriseTwo = new EntrepriseClient("Microsoft", "Boulevard des entreprises", "90001", "californie");
+		EntrepriseClient entrepriseOne = new EntrepriseClient("SOGETI", "Boulevard des entreprises", "92130", "issy les moulineaux");
+		EntrepriseClient entrepriseTwo = new EntrepriseClient("MICROSOFT", "Boulevard des entreprises", "90001", "californie");
 		//======== Create ======================
 		lieuManager.addEntreprise(entrepriseOne);
 		lieuManager.addEntreprise(entrepriseTwo);
 		//======== Update ======================
-		entrepriseOne.setNomEntreprise("Capgemini");
+		entrepriseOne.setNomEntreprise("CAPGEMINI");
 		lieuManager.updateEntreprise(entrepriseOne);
 		//======== get all ======================
 		lieuManager.getAllEntreprise().forEach(System.out::println);
@@ -267,11 +283,11 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 	
 		//===================== test BO DAL (BDD) =================================================
-		Stagiaire stagiaire1 = new Stagiaire("Dupont","Jean","fdsfsd@fdsfds.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
-		Formateur formateur1 = new Formateur("Dufdfds","Pierre","fdsfsd@fdsfds.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
+		Stagiaire stagiaire1 = new Stagiaire("DUPONT","Jean","dupont@gmail.com","fdsfdsf","Stagiaire","5 rue de la vie","31000","Toulouse");
+		Formateur formateur1 = new Formateur("MARIN","Pierre","marin@gmail.com","fdsfdsf","Formateur","5 rue du bonheur","31000","Toulouse");
 		stagiaireDAO.save(stagiaire1);
 		formateurDAO.save(formateur1);
-		EntrepriseClient entreprise1 = new EntrepriseClient("Boufdsf","6 rue de la bergerie","66000","Perpignan");
+		EntrepriseClient entreprise1 = new EntrepriseClient("NESTLE","6 rue de la bergerie","66000","Perpignan");
 		entreprise1.addStagiaire(stagiaire1);
 		System.out.println(stagiaire1.getEntreprise());
 		entrepriseClientDAO.save(entreprise1);
@@ -286,7 +302,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	    evaluationSessionDAO.save(evalSession1);
 
 	    
-		EvaluationFormateur evalForm1 = new EvaluationFormateur(2,3,4,5,3,4);
+		EvaluationFormateur evalForm1 = new EvaluationFormateur(2,3,4,5,3);
 		evalForm1.setFormateur(formateur1);
 		evaluationFormateurDAO.save(evalForm1);
 		
@@ -312,7 +328,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		salleFormationDAO.save(salleForm1);
 		
 		
-		CentreFormation centreForm1 = new CentreFormation ("Ib Cegos", "rue de Paris", "75000", "PARIS");
+		CentreFormation centreForm1 = new CentreFormation ("IT Training Paris", "15 rue de Paris", "75000", "PARIS");
 		centreForm1.addSalleFormation(salleForm1);
 		centreFormationDAO.save(centreForm1);
 		
@@ -324,7 +340,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		entreprise1.addSessionFormation(session1);
 		entrepriseClientDAO.save(entreprise1);
 		
-		Formation formation1bis = new Formation ("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		Formation formation1bis = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
 		formation1bis.addSousThemeFormation(sousTheme1);
 		formation1bis.addSousThemeFormation(sousTheme2);
 		formation1bis.addSousThemeFormation(sousTheme3);

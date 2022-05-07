@@ -1,12 +1,14 @@
 package fr.ibformation.projetEcoleFormation.ihm;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,27 +29,39 @@ public class EvaluationController {
 	@Autowired
 	private FormationManager formationManager;
 
-	@GetMapping("/add")
-    public String add(EvaluationDTO evaluationDTO, Model model) {
-        model.addAttribute("lstFormateurs", utilisateurManager.getAllEvaluationSession());
+	@GetMapping("/add/{id}")
+    public String add(@PathVariable("id") Integer id, Model model) {
+        Stagiaire stagiaire = getStagiaire();
+
+		EvaluationDTO evaluationDTO = new EvaluationDTO();
+		
+		evaluationDTO.setIdSession(id);
+		evaluationDTO.setNom(stagiaire.getNom());
+
+        model.addAttribute("evaluation", evaluationDTO);
+        
+    	//SessionFormation session = formationManager.getSessionFormationById(id);
+    	
+        model.addAttribute("nom", evaluationDTO);
+        
         return "evalFormation";
     }
 	
 		
-	@PostMapping("/valid")
-	public String validInscription(@Valid EvaluationDTO evaluationDTO, BindingResult errors, Model model) {
+	@PostMapping("/valid/{id}")
+	public String validInscription(@Valid EvaluationDTO evaluationDTO, @PathVariable("id") Integer id, BindingResult errors, Model model) {
 		if (errors.hasErrors()) {
 			return "evalFormation";
 		}
 		
-		//Stagiaire stagiaire = getStagiaire();
+		Stagiaire stagiaire = getStagiaire();
 		
 		EvaluationSession evalSession = evaluationDTO.toEvaluationSession();
 		EvaluationFormateur evalFormateur = evaluationDTO.toEvaluationFormateur();
         SessionFormation session = evaluationDTO.toSessionFormation();
-		//evalSession.setStagiaire(stagiaire);
-		//evalFormateur.setStagiaire(stagiaire);
-        Stagiaire stagiaire = evaluationDTO.toStagiaire();
+		evalSession.setStagiaire(stagiaire);
+		evalFormateur.setStagiaire(stagiaire);
+        evaluationDTO.toStagiaire();
 		utilisateurManager.addEvaluationFormateur(evalFormateur);
 		utilisateurManager.addEvaluationSession(evalSession);
 		formationManager.addSessionFormation(session);

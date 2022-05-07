@@ -158,7 +158,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void addEvaluationFormateur() {
-        EvaluationFormateur ef1 = new EvaluationFormateur(5, 4, 3, 4, 4, 4);
+        EvaluationFormateur ef1 = new EvaluationFormateur(5, 4, 3, 4, 4);
         manager.addEvaluationFormateur(ef1);
         assertNotNull(ef1.getIdEvalFormateur());
     }

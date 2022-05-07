@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Sessions</title>
+</head>
+<body>
+<h1>Mes Sessions de formation</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom de la formation</th>
+            <th>ID Session</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Type de formation</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${sessions.empty}">
+            <td colspan="2">Aucune session inscrite</td>
+        </tr>
+        <tr th:each="sessionStagiaire : ${sessions}">
+        <td><span th:text="${sessionStagiaire.nomFormation}"> Nom formation </span></td>
+            <td><span th:text="${sessionStagiaire.idSession}"> Title </span></td>
+            <td><span th:text="${sessionStagiaire.dateDebut}"> Author </span></td>
+            <td><span th:text="${sessionStagiaire.dateFin}"> Author </span></td>
+            <td><span th:text="${sessionStagiaire.typeFormation}"> Author </span></td>
+            <td><a th:href="@{/evaluation-formation/add/{id}(id=${sessionStagiaire.idSession})}">Evaluer</a></td>
+           
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

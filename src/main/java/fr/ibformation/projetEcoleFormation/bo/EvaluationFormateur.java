@@ -38,7 +38,8 @@ public class EvaluationFormateur {
 	private SessionFormation sessionFormation;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
-			Integer noteReponsesQuestions, Integer noteTechniqueAnimation, Integer noteMoyenneFormateur) {
+
+			Integer noteReponsesQuestions, Integer noteTechniqueAnimation) {
 		super();
 		this.notePedagogie = notePedagogie;
 		this.noteMaitriseDomaine = noteMaitriseDomaine;
