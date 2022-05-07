@@ -193,7 +193,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
-		utilisateurManager.getAllStagiaire().forEach(System.out::println);
 		System.out.println("--------------------------------------");
 
 

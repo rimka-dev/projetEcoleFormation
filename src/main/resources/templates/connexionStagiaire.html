@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de connexion</title>
+</head>
+<body>
+<form th:action="@{/login/stagiaire-login}" th:object="${stagiaire}" method="post">
+
+    <label>mail</label>
+    <input type="text" th:field="*{mail}"/>
+    <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"/><br>
+
+    <label>Mot de passe</label>
+    <input type="password" th:field="*{mdp}"/>
+    <span th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"/><br>
+
+
+    <input type="submit" value="Se connecter"/>
+</form>
+</body>
+</html>
