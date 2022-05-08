@@ -1,5 +1,9 @@
 package fr.ibformation.projetEcoleFormation.bll;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +13,7 @@ import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
@@ -141,6 +146,16 @@ public class FormationManagerImpl implements FormationManager {
 	@Override
 	public SessionFormation getSessionFormationById(Integer idSessionFormation) {
 		return sessionFormationDAO.findById(idSessionFormation).orElse(null);
+	}
+	@Override
+	public Integer getExperienceGlobalFormateur(Integer idFormateur) {
+		Integer jour = 0; 
+		  for (SessionFormation session : sessionFormationDAO.findAllByFormateur(idFormateur)) {
+			  
+			 jour = (int) ChronoUnit.DAYS.between(session.getDateDebut(), session.getDateFin());
+			 jour++;
+	        }
+		return jour;
 	}
 	
 }

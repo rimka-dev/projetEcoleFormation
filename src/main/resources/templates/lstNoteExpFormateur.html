@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes et Expérience Formateur</title>
+</head>
+<body>
+<h1>Tableau des notes moyennes et expériences Formateur</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formateur</th>
+            <th>Note moyenne globale</th>
+            <th>Expérience globale (en jours)</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${noteExpFormateurs.empty}">
+            <td colspan="2">Aucun formateur évalué</td>
+        </tr>
+        <tr th:each="noteExperienceFormateur : ${noteExpFormateurs}">
+        <td><span th:text="${noteExperienceFormateur.nomFormateur} +' '+ ${noteExperienceFormateur.prenomFormateur}">Formateur</span></td>
+            <td><span th:text="${noteExperienceFormateur.noteMoyenne}">Note moyenne globale</span></td>
+            <td><span th:text="${noteExperienceFormateur.experienceFormateur}">Expérience globale </span></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

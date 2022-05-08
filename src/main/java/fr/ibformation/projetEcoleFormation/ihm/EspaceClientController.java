@@ -1,5 +1,6 @@
 package fr.ibformation.projetEcoleFormation.ihm;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +31,14 @@ public class EspaceClientController {
 		
 		List <SessionStagiaireDTO> sessions = new ArrayList<>();
 		
+		
 		for (SessionFormation session : formationManager.getListeSessionsFormation()) {
-			
 			SessionStagiaireDTO sessionDTO = new SessionStagiaireDTO();
-			
 			sessionDTO.setIdSession(session.getIdSession());
 			sessionDTO.setDateDebut(session.getDateDebut());
 			sessionDTO.setDateFin(session.getDateFin());
 			sessionDTO.setTypeFormation(session.getTypeFormation());
+			
 			
 			if (session.getFormation() != null) {
 				sessionDTO.setNomFormation(session.getFormation().getNomFormation());
@@ -46,8 +47,19 @@ public class EspaceClientController {
 			}
 			
 			
-			
 			sessions.add(sessionDTO);
+			
+			LocalDate now = LocalDate.now();
+			LocalDate sessionFini = session.getDateFin();
+
+			int compareValue = now.compareTo(sessionFini);
+			
+			if (compareValue >= 0) {
+				sessionDTO.setEstEvaluable(true);
+			} else if (compareValue < 0) {
+				sessionDTO.setEstEvaluable(false);
+			}
+
 		}
 		
 		model.addAttribute("sessions", sessions);

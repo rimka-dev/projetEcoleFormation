@@ -16,6 +16,7 @@ import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
+import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.ws.EvaluationDTO;
@@ -55,10 +56,15 @@ public class EvaluationController {
 		}
 		
 		Stagiaire stagiaire = getStagiaire();
+		Formateur formateur = getFormateur();
+		
 		
 		EvaluationSession evalSession = evaluationDTO.toEvaluationSession();
 		EvaluationFormateur evalFormateur = evaluationDTO.toEvaluationFormateur();
         SessionFormation session = evaluationDTO.toSessionFormation();
+        evalSession.setSessionFormation(session);
+        evalFormateur.setFormateur(formateur);
+        evalFormateur.setSessionFormation(session);
 		evalSession.setStagiaire(stagiaire);
 		evalFormateur.setStagiaire(stagiaire);
         evaluationDTO.toStagiaire();
@@ -80,6 +86,14 @@ public class EvaluationController {
 		stagiaire = utilisateurManager.getAllStagiaire().get(0);
 		
 		return stagiaire;
+	}
+	
+	Formateur getFormateur() {
+		Formateur formateur;
+
+		formateur = utilisateurManager.getAllFormateur().get(0);
+		
+		return formateur;
 	}
 	
 }

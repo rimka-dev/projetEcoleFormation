@@ -15,7 +15,7 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Type de formation</th>
-            <th>Actions</th>
+            <th>Evaluation</th>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +23,16 @@
             <td colspan="2">Aucune session inscrite</td>
         </tr>
         <tr th:each="sessionStagiaire : ${sessions}">
-        <td><span th:text="${sessionStagiaire.nomFormation}"> Nom formation </span></td>
-            <td><span th:text="${sessionStagiaire.idSession}"> Title </span></td>
-            <td><span th:text="${sessionStagiaire.dateDebut}"> Author </span></td>
-            <td><span th:text="${sessionStagiaire.dateFin}"> Author </span></td>
-            <td><span th:text="${sessionStagiaire.typeFormation}"> Author </span></td>
-            <td><a th:href="@{/evaluation-formation/add/{id}(id=${sessionStagiaire.idSession})}">Evaluer</a></td>
+        <td><span th:text="${sessionStagiaire.nomFormation}">Nom formation</span></td>
+            <td><span th:text="${sessionStagiaire.idSession}">ID Session</span></td>
+            <td><span th:text="${sessionStagiaire.dateDebut}">Date de début</span></td>
+            <td><span th:text="${sessionStagiaire.dateFin}">Date de fin</span></td>
+            <td><span th:text="${sessionStagiaire.typeFormation}">Type de formation</span></td>
+            <td>
+       
+    <a th:href="@{/evaluation-formation/add/{id}(id=${sessionStagiaire.idSession})}" th:if="${sessionStagiaire.estEvaluable}">Evaluer</a>
+    <span th:unless="${sessionStagiaire.estEvaluable}">Session non terminée</span>
+            </td>
            
         </tr>
     </tbody>

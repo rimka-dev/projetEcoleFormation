@@ -41,7 +41,7 @@ public interface UtilisateurManager {
     public EvaluationFormateur getEvaluationFormateurById(Integer id);
     public List<EvaluationFormateur> getAllEvaluationFormateur();
 
-    
+    public Double getNoteMoyenneGlobalFormateur(Integer idFormateur);
     	
     }
 

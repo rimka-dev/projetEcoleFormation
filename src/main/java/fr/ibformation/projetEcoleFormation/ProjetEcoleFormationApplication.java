@@ -94,23 +94,24 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		EntrepriseClient entrepriseManag = new EntrepriseClient("DANONE","6 rue de la bergerie","66000","Perpignan");
 		entrepriseClientDAO.save(entrepriseManag);
 		Stagiaire stagiaireManag = new Stagiaire("DUPONT","Jean","dupont.jean@gmail.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
+		Stagiaire stagiaire3 = new Stagiaire("NAIM","Yael","naim.yael@gmail.com","fdsfdsf","Stagiaire","5 rue fdsfsd","31000","Toulouse");
 		Formateur formateurManag = new Formateur("HENRI","Pierre","henri.pierre@gmail.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
+		Formateur formateur3 = new Formateur("CHICOT","Alix","chicot.alix@gmail.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
 		SalleFormation salle = new SalleFormation("Seine", 3);
+		SalleFormation salle3 = new SalleFormation("Loire", 2);
+		utilisateurManager.addStagiaire(stagiaireManag);
+		utilisateurManager.addStagiaire(stagiaire3);
 	    utilisateurManager.addFormateur(formateurManag);
+	    utilisateurManager.addFormateur(formateur3);
 		lieuManager.addSalleFormation(salle);
-		
+		lieuManager.addSalleFormation(salle3);
 		Formation formation3 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
 		formationManager.addFormation(formation3);
 		
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
-		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "intra-entreprise", true, true, true, false, false, false, false, false);
-		sessionManag.setEntreprise(entrepriseManag);
-		sessionManag.addStagiaire(stagiaireManag);
-		
-		
-		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,04,10), LocalDate.of(2022,05,8), "intra-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		sessionManag.setFormateur(formateurManag);
@@ -119,16 +120,39 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		formationManager.addSessionFormation(sessionManag);
 		
+		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,03,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
+		sessionManag2.setEntreprise(entrepriseManag);
+		sessionManag2.addStagiaire(stagiaire3);
+		sessionManag2.setFormateur(formateur3);
+		sessionManag2.setSalleFormation(salle);
+		sessionManag2.setFormation(formation3);
+		formationManager.addSessionFormation(sessionManag2);
+		
+		
 		EvaluationSession evalS = new EvaluationSession(2,2,3,"satisfait",true, true);
 		EvaluationFormateur evalF = new EvaluationFormateur(2,3,4,5,3);
 		utilisateurManager.addEvaluationFormateur(evalF);
 		utilisateurManager.addEvaluationSession(evalS);
+		evalF.setStagiaire(stagiaireManag);
+		evalF.setSessionFormation(sessionManag);
 		sessionManag.setEvalFormateur(evalF);
 		sessionManag.setEvalSession(evalS);
+		evalF.setFormateur(formateurManag);
 		formationManager.modifySessionFormation(sessionManag);
 		
 		Integer idSession = sessionManag.getIdSession();
 		
+		
+		EvaluationSession evalS2 = new EvaluationSession(5,5,5,"très satisfait",true, true);
+		EvaluationFormateur evalF2 = new EvaluationFormateur(5,5,4,5,5);
+		utilisateurManager.addEvaluationFormateur(evalF2);
+		utilisateurManager.addEvaluationSession(evalS2);
+		evalF2.setStagiaire(stagiaire3);
+		evalF2.setSessionFormation(sessionManag2);
+		sessionManag2.setEvalFormateur(evalF2);
+		sessionManag2.setEvalSession(evalS2);
+		evalF2.setFormateur(formateur3);
+		formationManager.modifySessionFormation(sessionManag2);
 		
 		/// ==== Modify =====
 		sessionManag2.setDateFin(LocalDate.of(2022, 10, 20));
@@ -210,7 +234,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
 		System.out.println("--------------------------------------");
-
 
 		//===================== Karim ======================================
 		
@@ -315,7 +338,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		stagiaireDAO.save(stagiaire1);
 		
 
-		SessionFormation session1 = new SessionFormation(LocalDate.of(2022,05,10), LocalDate.of(2022,05,15), "intra-entreprise", true, true, true, false, false, false, false, false);
+		SessionFormation session1 = new SessionFormation(LocalDate.of(2022,01,10), LocalDate.of(2022,05,15), "intra-entreprise", true, true, true, false, false, false, false, false);
 		session1.setEntreprise(entreprise1);
 		session1.addStagiaire(stagiaire1);
 		sessionFormationDAO.save(session1);

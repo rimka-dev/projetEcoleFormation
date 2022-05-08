@@ -197,5 +197,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
         return (List<EvaluationFormateur>) evaluationFormateurDAO.findAll();
     }
 
+	@Override
+	public Double getNoteMoyenneGlobalFormateur(Integer idFormateur) {
+		Double sommeNote = 0.0; 
+		  for (EvaluationFormateur evalFormateur : evaluationFormateurDAO.findAllByFormateur(idFormateur)) {
+			 sommeNote += evalFormateur.getNoteMoyenneFormateur();
+	        }
+		  
+		  Double moyenne = sommeNote/(evaluationFormateurDAO.findAllByFormateur(idFormateur).size());
+		  return moyenne;
+	} 
+
 
 }

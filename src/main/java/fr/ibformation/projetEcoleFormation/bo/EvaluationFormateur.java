@@ -24,7 +24,7 @@ public class EvaluationFormateur {
 	private Integer noteDisponibilite;
 	private Integer noteReponsesQuestions;
 	private Integer noteTechniqueAnimation;
-	private Integer noteMoyenneFormateur;
+	private Double noteMoyenneFormateur;
 	
 	@ManyToOne
 	@JsonBackReference
@@ -46,7 +46,7 @@ public class EvaluationFormateur {
 		this.noteDisponibilite = noteDisponibilite;
 		this.noteReponsesQuestions = noteReponsesQuestions;
 		this.noteTechniqueAnimation = noteTechniqueAnimation;
-		this.noteMoyenneFormateur = (notePedagogie+noteMaitriseDomaine+noteDisponibilite+noteReponsesQuestions+noteTechniqueAnimation)/5;
+		this.noteMoyenneFormateur = (double) ((notePedagogie+noteMaitriseDomaine+noteDisponibilite+noteReponsesQuestions+noteTechniqueAnimation)/5);
 	}
 
 	@Override

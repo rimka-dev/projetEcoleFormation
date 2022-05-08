@@ -28,4 +28,6 @@ public interface FormationManager {
 	public SessionFormation getSessionFormationById(Integer idSessionFormation);
 	
 	
+	public Integer getExperienceGlobalFormateur(Integer idFormateur);
+	
 }

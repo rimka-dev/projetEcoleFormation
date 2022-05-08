@@ -17,17 +17,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SessionStagiaireDTO {
 
-	@NotBlank(message =  "Champs Code Postal vide")
+	@NotBlank(message =  "Champs Nom Formation vide")
 	private String nomFormation;
 	
-	@NotBlank(message =  "Champs Ville vide")
+	@NotBlank(message =  "Champs ID Session vide")
 	private Integer idSession;
-	@NotBlank(message =  "Champs Nom Entreprise vide")
+	@NotBlank(message =  "Champs Date de début vide")
 	private LocalDate dateDebut;
-	@NotBlank(message =  "Champs Adresse Entreprise vide")
+	@NotBlank(message =  "Champs Date de fin vide")
 	private LocalDate dateFin;
-	@NotBlank(message =  "Champs Code Postal Entreprise vide")
+	@NotBlank(message =  "Champs Type de formation vide")
 	private String typeFormation;
+	@NotBlank
+	private Boolean estEvaluable;
 	
 	
 
