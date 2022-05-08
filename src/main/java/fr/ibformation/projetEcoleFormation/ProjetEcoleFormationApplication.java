@@ -166,7 +166,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		/// ==== Delete =====
 	
-//		formationManager.deleteSessionFormationById(idSession);
+       //formationManager.deleteSessionFormationById(idSession);
 		
 		
 		
@@ -197,8 +197,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		// CRUD Formation ///
 		
+
 		Formation formation1 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
 		Formation formation2 = new Formation ("Informatique", "Apprendre le developpement PYTHON", "Les bases de la programmation Python", 1040, "Langages de développement");
+
 		
 		/// ==== Create =====
 		formationManager.addFormation(formation1);
