@@ -52,8 +52,22 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Override
     @Transactional
     public void deleteStagiaireById(Integer id) throws UtilisateurManagerException {
-        stagiaireDAO.findById(id)
+        Stagiaire stagiaire = stagiaireDAO.findById(id)
                 .orElseThrow(()->new UtilisateurManagerException("Stagiaire introuvable"));
+        for(SessionFormation session : stagiaire.getListeSessionFormation()) {
+        	session.getListeStagiaires().remove(stagiaire);
+        }
+        stagiaire.getListeSessionFormation().clear();
+        
+        for(EvaluationSession evalSession : stagiaire.getListeEvalSession()) {
+        	evalSession.setStagiaire(null);
+        }
+        for(EvaluationFormateur evalFormateur : stagiaire.getListeEvalFormateur()) {
+        	evalFormateur.setStagiaire(null);
+        }
+        
+        
+        stagiaireDAO.save(stagiaire);
         stagiaireDAO.deleteById(id);
     }
 

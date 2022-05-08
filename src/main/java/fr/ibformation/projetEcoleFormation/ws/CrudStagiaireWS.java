@@ -44,8 +44,9 @@ public class CrudStagiaireWS {
     }
 
     @DeleteMapping("/stagiaire/{id}")
-    public void deleteFormateurById(@PathVariable("id") Integer id) throws UtilisateurManagerException {
+    public  List<Stagiaire> deleteFormateurById(@PathVariable("id") Integer id) throws UtilisateurManagerException {
         manager.deleteStagiaireById(id);
+        return manager.getAllStagiaire();
     }
 
 }
