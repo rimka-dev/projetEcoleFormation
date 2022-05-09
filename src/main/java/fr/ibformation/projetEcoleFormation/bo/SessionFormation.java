@@ -7,13 +7,12 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,32 +37,32 @@ public class SessionFormation {
 	private Boolean listePresenceImprimee;
 	private Boolean ticketRepasImprime;
 	private Boolean formulaireEvalGenere;
-	
+
 	@ManyToOne
-	@JsonBackReference(value="session-formation")
+	@JsonBackReference(value = "session-formation")
 	private Formation formation;
-	
+
 	@ManyToOne
 	private SalleFormation salleFormation;
-	
+
 	@ManyToOne
-	@JsonBackReference(value="session-formation-formateur")
+	@JsonBackReference(value = "session-formation-formateur")
 	private Formateur formateur;
-	
+
 	@ManyToOne
 	@JsonBackReference
 	private EntrepriseClient entreprise;
-	
-	@OneToMany(mappedBy = "sessionFormation")
-	@JsonManagedReference(value="session-formation-stagiaire")
-	private Set <Stagiaire> listeStagiaires = new HashSet<>();
-	
+
+	@ManyToMany(mappedBy = "listeSessionFormation")
+	@JsonManagedReference(value = "session-formation-stagiaire")
+	private Set<Stagiaire> listeStagiaires = new HashSet<>();
+
 	@OneToOne
 	private EvaluationSession evalSession;
-	
+
 	@OneToOne
 	private EvaluationFormateur evalFormateur;
-	
+
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
 			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,
 			Boolean listePresenceImprimee, Boolean ticketRepasImprime, Boolean formulaireEvalGenere) {
@@ -80,11 +79,10 @@ public class SessionFormation {
 		this.ticketRepasImprime = ticketRepasImprime;
 		this.formulaireEvalGenere = formulaireEvalGenere;
 	}
-	
-	
+
 	public void addStagiaire(Stagiaire stagiaire) {
 		this.listeStagiaires.add(stagiaire);
-		stagiaire.setSessionFormation(this);
+		stagiaire.getListeSessionFormation().add(this);
 	}
 
 	@Override
@@ -96,11 +94,5 @@ public class SessionFormation {
 				+ listePresenceImprimee + ", ticketRepasImprime=" + ticketRepasImprime + ", formulaireEvalGenere="
 				+ formulaireEvalGenere + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 }

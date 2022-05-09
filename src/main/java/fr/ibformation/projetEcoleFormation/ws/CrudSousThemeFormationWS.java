@@ -32,7 +32,7 @@ public class CrudSousThemeFormationWS {
 	}
 
 	@PostMapping("/sous-theme-formation")
-	public SousThemeFormation addSousThemeFormation(@RequestBody SousThemeFormation sousThemeFormation) {
+	public SousThemeFormation addSousThemeFormation(@RequestBody SousThemeFormation sousThemeFormation) throws FormationException {
 		formationManager.addSousThemeFormation(sousThemeFormation);
 		return sousThemeFormation;
 	}

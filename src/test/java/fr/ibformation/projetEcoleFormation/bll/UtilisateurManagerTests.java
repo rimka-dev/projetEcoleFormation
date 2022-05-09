@@ -21,7 +21,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void addStagiaire() {
+    void addStagiaire() throws FormationException {
         Stagiaire s1 = new Stagiaire("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addStagiaire(s1);
         assertNotNull(s1.getIdUtilisateur());
@@ -29,7 +29,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteStagiaire() throws UtilisateurManagerException {
+    void deleteStagiaire() throws UtilisateurManagerException, FormationException {
         Stagiaire s1 = new Stagiaire("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addStagiaire(s1);
         manager.deleteStagiaire(s1);
@@ -38,7 +38,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void modifyStagiaire() {
+    void modifyStagiaire() throws FormationException {
         Stagiaire s1 = new Stagiaire("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addStagiaire(s1);
         s1.setCodePostal("11000");
@@ -47,7 +47,7 @@ public class UtilisateurManagerTests {
     }
 
     @Test
-    void getAllStagiaire() {
+    void getAllStagiaire() throws FormationException {
         Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
         Stagiaire s2 = new Stagiaire("Mouse","Mickey","ezezez@gmail.com","mdp1","Stagiaire","5 rue du coq","31000","Toulouse");
         Stagiaire s3 = new Stagiaire("Larue","Michelle","aaa@gmail.com","mdp2","Stagiaire","4 rue du coq","31000","Toulouse");
@@ -59,7 +59,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteStagiaireById() throws UtilisateurManagerException {
+    void deleteStagiaireById() throws UtilisateurManagerException, FormationException {
         Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
         Stagiaire s2 = new Stagiaire("Mouse","Mickey","ezezez@gmail.com","mdp1","Stagiaire","5 rue du coq","31000","Toulouse");
         Stagiaire s3 = new Stagiaire("Larue","Michelle","aaa@gmail.com","mdp2","Stagiaire","4 rue du coq","31000","Toulouse");
@@ -74,7 +74,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void addFormateur() {
+    void addFormateur() throws FormationException {
         Formateur f1 = new Formateur("test","letest","test@gmail.com","mdp2","Formateur","4 rue du test","31000","Toulouse");
         manager.addFormateur(f1);
         assertNotNull(f1.getPrenom());
@@ -82,7 +82,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteFormateur() throws UtilisateurManagerException {
+    void deleteFormateur() throws UtilisateurManagerException, FormationException {
         Formateur f1 = new Formateur("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addFormateur(f1);
         manager.deleteFormateur(f1);
@@ -91,7 +91,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void modifyFormateur() {
+    void modifyFormateur() throws FormationException {
         Formateur f1 = new Formateur("test","letest","test@gmail.com","mdp2","Stagiaire","4 rue du test","31000","Toulouse");
         manager.addFormateur(f1);
         f1.setCodePostal("11000");
@@ -100,7 +100,7 @@ public class UtilisateurManagerTests {
     }
 
     @Test
-    void getAllFormateur() {
+    void getAllFormateur() throws FormationException {
         Formateur f1 = new Formateur("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
         Formateur f2 = new Formateur("Mouse","Mickey","ezezez@gmail.com","mdp1","Stagiaire","5 rue du coq","31000","Toulouse");
         Formateur f3 = new Formateur("Larue","Michelle","aaa@gmail.com","mdp2","Stagiaire","4 rue du coq","31000","Toulouse");
@@ -112,7 +112,7 @@ public class UtilisateurManagerTests {
 
     @Test
     @Transactional
-    void deleteFormateurById() throws UtilisateurManagerException {
+    void deleteFormateurById() throws UtilisateurManagerException, FormationException {
         Formateur f1 = new Formateur("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
         Formateur f2 = new Formateur("Mouse","Mickey","ezezez@gmail.com","mdp1","Stagiaire","5 rue du coq","31000","Toulouse");
         Formateur f3 = new Formateur("Larue","Michelle","aaa@gmail.com","mdp2","Stagiaire","4 rue du coq","31000","Toulouse");
@@ -127,7 +127,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void addEvaluationSession() {
-        EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
         manager.addEvaluationSession(e1);
         assertEquals(5, e1.getNoteContenuFormation());
     }
@@ -137,7 +137,7 @@ public class UtilisateurManagerTests {
     @Transactional
     void addEvaluationSessionToStagiaire() {
         Stagiaire s1 = new Stagiaire("Larue","Benoit","fdsfds@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
-        EvaluationSession e1 = new EvaluationSession(5,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
         manager.addEvaluationSessionToStagiaire(s1,e1);
         assertNotNull(s1.getListeEvalSession());
 
@@ -146,7 +146,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void deleteEvaluationSession() throws UtilisateurManagerException {
-        EvaluationSession e1 = new EvaluationSession(4,5,5,true,true);
+        EvaluationSession e1 = new EvaluationSession(5,4,5,"satisfait",true,true);
         manager.addEvaluationSession(e1);
         manager.deleteEvaluationSession(e1);
         assertNull(manager.getEvaluationSessionById(e1.getIdEvalSession()));
@@ -158,7 +158,7 @@ public class UtilisateurManagerTests {
     @Test
     @Transactional
     void addEvaluationFormateur() {
-        EvaluationFormateur ef1 = new EvaluationFormateur(5, 4, 3, 4, 4, 4);
+        EvaluationFormateur ef1 = new EvaluationFormateur(5, 4, 3, 4, 4);
         manager.addEvaluationFormateur(ef1);
         assertNotNull(ef1.getIdEvalFormateur());
     }

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -23,7 +24,7 @@ public class EvaluationFormateur {
 	private Integer noteDisponibilite;
 	private Integer noteReponsesQuestions;
 	private Integer noteTechniqueAnimation;
-	private Integer noteMoyenneFormateur;
+	private Double noteMoyenneFormateur;
 	
 	@ManyToOne
 	@JsonBackReference
@@ -37,14 +38,15 @@ public class EvaluationFormateur {
 	private SessionFormation sessionFormation;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
-			Integer noteReponsesQuestions, Integer noteTechniqueAnimation, Integer noteMoyenneFormateur) {
+
+			Integer noteReponsesQuestions, Integer noteTechniqueAnimation) {
 		super();
 		this.notePedagogie = notePedagogie;
 		this.noteMaitriseDomaine = noteMaitriseDomaine;
 		this.noteDisponibilite = noteDisponibilite;
 		this.noteReponsesQuestions = noteReponsesQuestions;
 		this.noteTechniqueAnimation = noteTechniqueAnimation;
-		this.noteMoyenneFormateur = noteMoyenneFormateur;
+		this.noteMoyenneFormateur = (double) ((notePedagogie+noteMaitriseDomaine+noteDisponibilite+noteReponsesQuestions+noteTechniqueAnimation)/5);
 	}
 
 	@Override

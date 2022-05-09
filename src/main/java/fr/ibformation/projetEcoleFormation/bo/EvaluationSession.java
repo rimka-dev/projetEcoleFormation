@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -18,9 +19,10 @@ public class EvaluationSession {
 	@Id
 	@GeneratedValue
 	private Integer idEvalSession;
+	private Integer noteAccueil;
 	private Integer noteEnvironnement;
 	private Integer noteContenuFormation;
-	private Integer niveauSatisfaction;
+	private String niveauSatisfaction;
 	private Boolean recommandationFormation;
 	private Boolean autresProjetsFormations;
 	
@@ -31,9 +33,11 @@ public class EvaluationSession {
 	@OneToOne
 	private SessionFormation sessionFormation;
 	
-	public EvaluationSession(Integer noteEnvironnement, Integer noteContenuFormation, Integer niveauSatisfaction,
-			Boolean recommandationFormation, Boolean autresProjetsFormations) {
+	public EvaluationSession(Integer noteAccueil, Integer noteEnvironnement,
+			Integer noteContenuFormation, String niveauSatisfaction, Boolean recommandationFormation,
+			Boolean autresProjetsFormations) {
 		super();
+		this.noteAccueil = noteAccueil;
 		this.noteEnvironnement = noteEnvironnement;
 		this.noteContenuFormation = noteContenuFormation;
 		this.niveauSatisfaction = niveauSatisfaction;
@@ -43,10 +47,11 @@ public class EvaluationSession {
 
 	@Override
 	public String toString() {
-		return "EvaluationSession [idEvalSession=" + idEvalSession + ", noteEnvironnement=" + noteEnvironnement
-				+ ", noteContenuFormation=" + noteContenuFormation + ", niveauSatisfaction=" + niveauSatisfaction
-				+ ", recommandationFormation=" + recommandationFormation + ", autresProjetsFormations="
-				+ autresProjetsFormations + ", stagiaire=" + stagiaire + "]";
+		return "EvaluationSession [idEvalSession=" + idEvalSession + ", noteAccueil=" + noteAccueil
+				+ ", noteEnvironnement=" + noteEnvironnement + ", noteContenuFormation=" + noteContenuFormation
+				+ ", niveauSatisfaction=" + niveauSatisfaction + ", recommandationFormation=" + recommandationFormation
+				+ ", autresProjetsFormations=" + autresProjetsFormations + ", stagiaire=" + stagiaire + "]";
 	}
 
+	
 }

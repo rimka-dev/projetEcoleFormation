@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -33,9 +35,10 @@ public class Stagiaire extends Utilisateur {
 	@JsonBackReference(value="evaluation-formateur-stagiaire")
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
-	@ManyToOne
+	@ManyToMany
 	@JsonBackReference(value="session-formation-stagiaire")
-	private SessionFormation sessionFormation;
+	private Set <SessionFormation> listeSessionFormation = new HashSet<>();
+
 	
 	public Stagiaire(String nom, String prenom, String mail, String mdp, String statut, String adresse, String codePostal, String ville) {
 		super( nom,  prenom,  mail,  mdp,  statut);
@@ -55,6 +58,11 @@ public class Stagiaire extends Utilisateur {
 		evalFormateur.setStagiaire(this);
 	}
 	
+	
+	public void addSessionFormation(SessionFormation sessionFormation) {
+		this.listeSessionFormation.add(sessionFormation);
+		sessionFormation.getListeStagiaires().add(this);
+	}
 	
 	@Override
 	public String toString() {

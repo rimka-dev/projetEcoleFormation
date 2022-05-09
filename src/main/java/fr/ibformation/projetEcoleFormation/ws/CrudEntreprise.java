@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.LieuException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
@@ -35,7 +36,7 @@ public class CrudEntreprise {
 	}
 	
 	@PostMapping("/entreprise")
-	public EntrepriseClient addEntrepriseClient(@RequestBody EntrepriseClient entreprise ) {
+	public EntrepriseClient addEntrepriseClient(@RequestBody EntrepriseClient entreprise ) throws FormationException {
 		 manager.addEntreprise(entreprise);
 		 return entreprise;
 		

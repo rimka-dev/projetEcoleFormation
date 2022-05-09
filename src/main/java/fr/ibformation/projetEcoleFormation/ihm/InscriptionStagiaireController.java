@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
@@ -41,7 +42,7 @@ public class InscriptionStagiaireController {
 	
 		
 	@PostMapping("/valid")
-	public String validInscription(@Valid StagiaireDTO stagiaireDTO, BindingResult errors, Model model) {
+	public String validInscription(@Valid StagiaireDTO stagiaireDTO, BindingResult errors, Model model) throws FormationException {
 		if (errors.hasErrors()) {
 			return "formStagiaire";
 		}
