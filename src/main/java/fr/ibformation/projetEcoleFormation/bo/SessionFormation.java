@@ -58,6 +58,7 @@ public class SessionFormation {
 	private Set<Stagiaire> listeStagiaires = new HashSet<>();
 
 	@OneToOne
+	@JsonManagedReference(value="evaluation-session")
 	private EvaluationSession evalSession;
 
 	@OneToOne

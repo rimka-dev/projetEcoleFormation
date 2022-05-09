@@ -27,10 +27,11 @@ public class EvaluationSession {
 	private Boolean autresProjetsFormations;
 	
 	@ManyToOne
-	@JsonBackReference(value="stagiaire-EvaluationSession")
+	@JsonBackReference(value="evaluation-session-stagiaire")
 	private Stagiaire stagiaire;
 	
 	@OneToOne
+	@JsonBackReference(value="evaluation-session")
 	private SessionFormation sessionFormation;
 	
 	public EvaluationSession(Integer noteAccueil, Integer noteEnvironnement,
