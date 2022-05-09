@@ -35,6 +35,7 @@ public class EvaluationFormateur {
 	private Stagiaire stagiaire;
 	
 	@OneToOne
+	@JsonBackReference(value="evaluation-formateur")
 	private SessionFormation sessionFormation;
 	
 	public EvaluationFormateur(Integer notePedagogie, Integer noteMaitriseDomaine, Integer noteDisponibilite,
