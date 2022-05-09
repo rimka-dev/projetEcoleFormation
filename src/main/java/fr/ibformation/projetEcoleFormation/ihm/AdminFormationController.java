@@ -1,6 +1,7 @@
 package fr.ibformation.projetEcoleFormation.ihm;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
+import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
-import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
+import fr.ibformation.projetEcoleFormation.ws.EvaluationDTO;
 import fr.ibformation.projetEcoleFormation.ws.NoteExperienceFormateurDTO;
-import fr.ibformation.projetEcoleFormation.ws.SessionStagiaireDTO;
+import fr.ibformation.projetEcoleFormation.ws.SessionDTO;
 
 @Controller
 @RequestMapping("/admin")
@@ -55,7 +58,72 @@ public class AdminFormationController {
 		return "lstNoteExpFormateur";
 	}
 	
+	@GetMapping("/mes-taches")
+	public String listMesTaches(Model model) {
+	
+		List <EvaluationDTO> evalSessions = new ArrayList<>();
 		
+		List <EvaluationDTO> evalFormateurs = new ArrayList<>();
+		
+		for (EvaluationSession evalSession : utilisateurManager.getListeEvaluationSessionMauvaiseNote()) {
+			
+			EvaluationDTO evaluationDTO = new EvaluationDTO();
+			evaluationDTO.setIdSession(evalSession.getSessionFormation().getIdSession());
+			evaluationDTO.setIdEvalSession(evalSession.getIdEvalSession());
+			evaluationDTO.setNoteAccueil(evalSession.getNoteAccueil());
+			evaluationDTO.setNoteEnvironnement(evalSession.getNoteEnvironnement());
+			evaluationDTO.setNoteContenuFormation(evalSession.getNoteContenuFormation());
+			evaluationDTO.setNom(evalSession.getStagiaire().getNom());
+			evaluationDTO.setPrenom(evalSession.getStagiaire().getPrenom());
+			evalSessions.add(evaluationDTO);
+			}
+		
+for (EvaluationFormateur evalFormateur : utilisateurManager.getListeEvaluationFormateurMauvaiseNote()) {
+			
+			EvaluationDTO evaluationDTO2 = new EvaluationDTO();
+			evaluationDTO2.setIdSession(evalFormateur.getSessionFormation().getIdSession());
+			evaluationDTO2.setIdEvalSession(evalFormateur.getIdEvalFormateur());
+			evaluationDTO2.setNotePedagogie(evalFormateur.getNotePedagogie());
+			evaluationDTO2.setNoteMaitriseDomaine(evalFormateur.getNoteMaitriseDomaine());
+			evaluationDTO2.setNoteDisponibilite(evalFormateur.getNoteDisponibilite());
+			evaluationDTO2.setNoteReponsesQuestions(evalFormateur.getNoteReponsesQuestions());
+			evaluationDTO2.setNoteTechniqueAnimation(evalFormateur.getNoteTechniqueAnimation());
+			evaluationDTO2.setNom(evalFormateur.getStagiaire().getNom());
+			evaluationDTO2.setPrenom(evalFormateur.getStagiaire().getPrenom());
+			evalFormateurs.add(evaluationDTO2);
+			}
+
+		model.addAttribute("sessionsAAnnuler", formationManager.getListeSessionsAAnnuler());
+		model.addAttribute("evaluationFormateurMauvaiseNote", evalFormateurs);
+		model.addAttribute("evaluationSessionMauvaiseNote", evalSessions);
+		return "lstTachesAdmin";
+	}
+	
+	@GetMapping("/liste-des-sessions")
+	public String listSessions(Model model) {
+
+		List <SessionDTO> sessions = new ArrayList<>();
+
+		for (SessionFormation session : formationManager.getListeSessionsFormation()) {
+			
+				SessionDTO sessionDTO = new SessionDTO();
+				sessionDTO.setIdSession(session.getIdSession());
+				sessionDTO.setDateDebut(session.getDateDebut());
+				sessionDTO.setDateFin(session.getDateFin());
+				sessionDTO.setTypeFormation(session.getTypeFormation());
+
+				if (session.getFormation() != null) {
+					sessionDTO.setNomFormation(session.getFormation().getNomFormation());
+				} else {
+					sessionDTO.setNomFormation("N/A");
+				}
+				sessions.add(sessionDTO);
+			}
+
+	model.addAttribute("sessions", sessions);
+	
+	return "lstSessionsAdmin";
+}
 	
 	////////////////////////////////////////////////////////////
 	///// Données de test

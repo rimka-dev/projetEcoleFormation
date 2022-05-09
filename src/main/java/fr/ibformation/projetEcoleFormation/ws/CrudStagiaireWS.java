@@ -1,5 +1,6 @@
 package fr.ibformation.projetEcoleFormation.ws;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManagerException;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
@@ -26,7 +27,7 @@ public class CrudStagiaireWS {
 
 
     @PostMapping("/stagiaire")
-    public Stagiaire addStagiaire(@RequestBody Stagiaire stagiaire) {
+    public Stagiaire addStagiaire(@RequestBody Stagiaire stagiaire) throws FormationException {
         manager.addStagiaire(stagiaire);
         return stagiaire;
     }

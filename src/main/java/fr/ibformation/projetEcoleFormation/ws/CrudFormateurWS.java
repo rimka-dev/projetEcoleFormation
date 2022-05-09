@@ -1,5 +1,6 @@
 package fr.ibformation.projetEcoleFormation.ws;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManagerException;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
@@ -26,7 +27,7 @@ public class CrudFormateurWS {
 
 
     @PostMapping("/formateur")
-    public Formateur addFormateur(@RequestBody Formateur formateur) {
+    public Formateur addFormateur(@RequestBody Formateur formateur) throws FormationException {
         manager.addFormateur(formateur);
         return formateur;
     }

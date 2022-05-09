@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mes tâches</title>
+</head>
+<body>
+	<h1>Mes tâches</h1>
+
+<h2>Liste des Sessions à annuler</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID Session</th>
+				<th>Causes</th>
+				<th>Liste des Sessions à annuler</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${sessionsAAnnuler.empty}">
+				<td colspan="2">Aucune session à annuler</td>
+			</tr>
+			<tr th:each="sessionFormation: ${sessionsAAnnuler}">
+				<td><span th:text="${sessionFormation.idSession}">ID
+						Session</span></td>
+				<td><span>Moins de 3 participants</span></td>
+				<td><a th:href="@{/admin/liste-des-sessions}">Liste des
+						Sessions</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+<h2>Liste des mauvaises notes d'évaluation de la Session</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID Evaluation</th>
+				<th>Note Accueil</th>
+				<th>Note Environnement</th>
+				<th>Note Contenu Formation</th>
+				<th>ID Session</th>
+				<th>Nom Stagiaire</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${evaluationSessionMauvaiseNote.empty}">
+				<td colspan="2">Aucune évaluation mal notée</td>
+			</tr>
+			
+			<tr th:each="evaluation: ${evaluationSessionMauvaiseNote}">
+				<td><span th:text="${evaluation.idEvalSession}">ID Evaluation</span></td>
+				<td><span th:text="${evaluation.noteAccueil}">Note Accueil</span></td>
+				<td><span th:text="${evaluation.noteEnvironnement}">Note Environnement</span></td>
+				<td><span th:text="${evaluation.noteContenuFormation}">Note Contenu Formation</span></td>
+				<td><span th:text="${evaluation.idSession}">ID Session</span></td>
+				<td><span th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom Stagiaire</span></td>
+			</tr>
+		</tbody>
+	</table>
+<h2>Liste des mauvaises notes d'évaluations du Formateur</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID Evaluation</th>
+				<th>Note Pédagogie</th>
+				<th>Note Maitrise du Domaine</th>
+				<th>Note Disponibilité</th>
+				<th>Note Questions Réponses</th>
+				<th>Note Techniques d'Animations</th>
+				<th>ID Session</th>
+				<th>Nom Stagiaire</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${evaluationFormateurMauvaiseNote.empty}">
+				<td colspan="2">Aucune évaluation mal notée</td>
+			</tr>
+			
+			<tr th:each="evaluation: ${evaluationFormateurMauvaiseNote}">
+				<td><span th:text="${evaluation.idEvalSession}">ID Evaluation</span></td>
+				<td><span th:text="${evaluation.notePedagogie}">Note Pédagogie</span></td>
+				<td><span th:text="${evaluation.noteMaitriseDomaine}">Note Maitrise du Domaine</span></td>
+				<td><span th:text="${evaluation.noteDisponibilite}">Note Disponibilité</span></td>
+				<td><span th:text="${evaluation.noteReponsesQuestions}">Note Questions Réponses</span></td>
+				<td><span th:text="${evaluation.noteTechniqueAnimation}">Note Techniques d'Animations</span></td>
+				<td><span th:text="${evaluation.idSession}">ID Session</span></td>
+				<td><span th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom Stagiaire</span></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

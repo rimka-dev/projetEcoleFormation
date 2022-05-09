@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,13 @@ public class FormationManagerImpl implements FormationManager {
 	
 	@Override
 	@Transactional
-	public void addFormation(Formation formation) {
+	public void addFormation(Formation formation) throws FormationException {
+		// CT002 : pas de doublon(nom/prenom)
+				for(Formation formationCourante : formationDAO.findAll()) {
+					if(formationCourante.getNomFormation().equals(formation.getNomFormation())){
+						throw new FormationException(formationCourante.getNomFormation()+" est déjà présente");
+					}
+				}
 		formationDAO.save(formation);
 	}
 	@Override
@@ -77,8 +84,14 @@ public class FormationManagerImpl implements FormationManager {
 	}
 	@Override
 	@Transactional
-	public void addSousThemeFormation(SousThemeFormation... sousThemesFormation) {
+	public void addSousThemeFormation(SousThemeFormation... sousThemesFormation) throws FormationException {
 		for (SousThemeFormation sousThemeFormation : sousThemesFormation) {
+			
+			for(SousThemeFormation sousThemeCourante : sousThemeFormationDAO.findAll()) {
+				if(sousThemeCourante.getNomSousTheme().equals(sousThemeFormation.getNomSousTheme())){
+					throw new FormationException(sousThemeFormation.getNomSousTheme()+" est déjà présent");
+				}
+			}
 			sousThemeFormationDAO.save(sousThemeFormation);
 		}
 	}
@@ -117,6 +130,8 @@ public class FormationManagerImpl implements FormationManager {
 		sessionFormationDAO.save(sessionFormation);
 		
 	}
+	
+	
 	@Override
 	public List<SessionFormation> getListeSessionsFormation() {
 		return (List<SessionFormation>) sessionFormationDAO.findAll();
@@ -158,4 +173,16 @@ public class FormationManagerImpl implements FormationManager {
 		return jour;
 	}
 	
+	
+	@Override
+	public List<SessionFormation> getListeSessionsAAnnuler() {
+		List <SessionFormation> sessions = (List<SessionFormation>) sessionFormationDAO.findAll();
+		List <SessionFormation> sessionsAnnuler = new ArrayList<>();
+		for (SessionFormation session : sessions) {
+			if (session.getListeStagiaires().size() <= 3) {
+				sessionsAnnuler.add(session);
+			}
+		}
+		return sessionsAnnuler;
+	}
 }

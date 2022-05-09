@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.LieuException;
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
@@ -37,7 +38,7 @@ public class CrudCentreFormation {
 	}
 	
 	@PostMapping("/centreFormation")
-	public CentreFormation addCentreFormation(@RequestBody CentreFormation centre ) {
+	public CentreFormation addCentreFormation(@RequestBody CentreFormation centre ) throws FormationException {
 		 manager.addCentreFormation(centre);
 		 return centre;
 		

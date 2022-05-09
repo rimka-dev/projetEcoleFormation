@@ -22,7 +22,7 @@ class LieuFormationManagerTests {
 	//============= test sur les salles de formation ==========================
 	@Test
 	@Transactional
-	void addSalle() {
+	void addSalle() throws FormationException {
 		SalleFormation salleRouge = new SalleFormation("Salle Rouge", 1);
 		lieuManager.addSalleFormation(salleRouge);
 		assertNotNull(salleRouge.getIdSalleFormation());
@@ -31,7 +31,7 @@ class LieuFormationManagerTests {
 	
 	@Test
 	@Transactional
-	void getSalleById() {
+	void getSalleById() throws FormationException {
 		SalleFormation salle = new SalleFormation("Salle bleu", 5);
 		lieuManager.addSalleFormation(salle);
 		SalleFormation salleBis = lieuManager.getSalleById(salle.getIdSalleFormation());
@@ -42,7 +42,7 @@ class LieuFormationManagerTests {
 
 	@Test
 	@Transactional
-	void updateSalle() {
+	void updateSalle() throws FormationException {
 		SalleFormation salleAteilier = new SalleFormation("Salle de travaux", 4);
 		lieuManager.addSalleFormation(salleAteilier);
 		salleAteilier.setEtage(6);
@@ -53,7 +53,7 @@ class LieuFormationManagerTests {
 	
 	@Test
 	@Transactional
-	void deleteSalle() throws LieuException {
+	void deleteSalle() throws LieuException, FormationException {
 		SalleFormation salleAteilier = new SalleFormation("Salle de travaux", 4);
 		lieuManager.addSalleFormation(salleAteilier);
 		try {
@@ -68,7 +68,7 @@ class LieuFormationManagerTests {
 	//====================== test sur le centre de formation ==================
 	@Test
 	@Transactional
-	void addCentreFormation() {
+	void addCentreFormation() throws FormationException {
 		CentreFormation centre2 = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
 		lieuManager.addCentreFormation(centre2);
 		assertNotNull(centre2.getIdCentreFormation());
@@ -77,7 +77,7 @@ class LieuFormationManagerTests {
 	
 	@Test
 	@Transactional
-	void updateCentreFormation() {
+	void updateCentreFormation() throws FormationException {
 		CentreFormation centreA = new CentreFormation("ibCegos","rue de la liberte" , "75010","Paris");
 		lieuManager.addCentreFormation(centreA);
 		centreA.setCodePostal("75020");
@@ -88,7 +88,7 @@ class LieuFormationManagerTests {
 	
 	@Test
 	@Transactional
-	void deleteCentreFormation() throws LieuException  {
+	void deleteCentreFormation() throws LieuException, FormationException  {
 		CentreFormation centreB = new CentreFormation("ibCegos","rue de la liberte" , "75014","Paris");
 		lieuManager.addCentreFormation(centreB);
 		

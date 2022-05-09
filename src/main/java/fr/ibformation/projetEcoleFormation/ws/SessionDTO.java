@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SessionStagiaireDTO {
+public class SessionDTO {
 
 	@NotBlank(message =  "Champs Nom Formation vide")
 	private String nomFormation;

@@ -42,6 +42,8 @@ public class EvaluationDTO {
 	private Integer idSession;
 	@NotNull
 	private String nom;
+	@NotNull
+	private String prenom;
 	
 	public SessionFormation toSessionFormation() {
 	
@@ -54,6 +56,7 @@ public class EvaluationDTO {
 		
 		Stagiaire stagiaire = new Stagiaire();
 		stagiaire.setNom(this.nom);
+		stagiaire.setPrenom(this.prenom);
 		return stagiaire;
 	}
 	

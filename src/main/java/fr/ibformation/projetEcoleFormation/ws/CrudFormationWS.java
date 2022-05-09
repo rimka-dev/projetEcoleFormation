@@ -39,7 +39,7 @@ public class CrudFormationWS {
 	}
 	
 	@PostMapping("/formation")
-	public Formation addFormation(@RequestBody Formation formation) {
+	public Formation addFormation(@RequestBody Formation formation) throws FormationException {
 		formationManager.addFormation(formation);
 		return formation;
 	}

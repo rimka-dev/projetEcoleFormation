@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UtilisateurManager {
     // CRUD Stagiaire
-    public void addStagiaire(Stagiaire stagiaire);
+    public void addStagiaire(Stagiaire stagiaire) throws FormationException;
     public void deleteStagiaire(Stagiaire stagiaire) throws UtilisateurManagerException;
     public void modifyStagiaire(Stagiaire stagiaire);
     public void deleteStagiaireById(Integer id) throws UtilisateurManagerException;
@@ -14,7 +14,7 @@ public interface UtilisateurManager {
     public List<Stagiaire> getAllStagiaire();
 
     // CRUD Formateur
-    public void addFormateur(Formateur formateur);
+    public void addFormateur(Formateur formateur) throws FormationException;
     public void deleteFormateur(Formateur formateur) throws UtilisateurManagerException;
     public void modifyFormateur(Formateur formateur);
     public void deleteFormateurById(Integer id) throws UtilisateurManagerException;
@@ -42,7 +42,8 @@ public interface UtilisateurManager {
     public List<EvaluationFormateur> getAllEvaluationFormateur();
 
     public Double getNoteMoyenneGlobalFormateur(Integer idFormateur);
-    	
+    public List<EvaluationFormateur> getListeEvaluationFormateurMauvaiseNote();
+    public List<EvaluationSession> getListeEvaluationSessionMauvaiseNote();
     }
 
     

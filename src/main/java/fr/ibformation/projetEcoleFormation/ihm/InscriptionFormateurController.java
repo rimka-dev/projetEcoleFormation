@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
@@ -36,7 +37,7 @@ public class InscriptionFormateurController {
 	
 		
 	@PostMapping("/valid")
-	public String validInscription(@Valid Formateur formateur, BindingResult errors, Model model) {
+	public String validInscription(@Valid Formateur formateur, BindingResult errors, Model model) throws FormationException {
 		if (errors.hasErrors()) {
 			return "formFormateur";
 		}

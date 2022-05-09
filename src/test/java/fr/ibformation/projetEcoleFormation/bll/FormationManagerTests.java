@@ -26,7 +26,7 @@ public class FormationManagerTests {
 
 	@Test
 	@Transactional
-	void addFormationTest() {
+	void addFormationTest() throws FormationException {
 		Formation formation = new Formation("InformatiqueManag", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		assertNotNull(formation.getIdFormation());
@@ -55,7 +55,7 @@ public class FormationManagerTests {
 	
 	@Test
 	@Transactional
-	void getListeFormationTest() {
+	void getListeFormationTest() throws FormationException {
 		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
 		Formation formation2 = new Formation("Informatique", "Apprendre le developpement PYTHON", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
@@ -66,7 +66,7 @@ public class FormationManagerTests {
 	
 	@Test
 	@Transactional
-	void getFormationByIdTest() {
+	void getFormationByIdTest() throws FormationException {
 		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		
@@ -127,7 +127,7 @@ public class FormationManagerTests {
 	
 	@Test
 	@Transactional
-	void addSousThemeFormationTest() {
+	void addSousThemeFormationTest() throws FormationException {
 		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
 		formationManager.addSousThemeFormation(sousThemeFormation);
 		assertNotNull(sousThemeFormation.getIdSousTheme());
@@ -168,7 +168,7 @@ public class FormationManagerTests {
 	
 	@Test
 	@Transactional
-	void getListeSousThemeFormationTest() {
+	void getListeSousThemeFormationTest() throws FormationException {
 		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
 		SousThemeFormation sousThemeFormation2 = new SousThemeFormation("HTML");
 		formationManager.addSousThemeFormation(sousThemeFormation);

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,8 +26,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void addStagiaire(Stagiaire stagiaire) {
+    public void addStagiaire(Stagiaire stagiaire) throws FormationException {
         //stagiaire.setMdp(String.valueOf(stagiaire.getMdp().hashCode()));
+    	
+    	for(Stagiaire stagiaireCourant : stagiaireDAO.findAll()) {
+			if(stagiaireCourant.getNom().equals(stagiaire.getNom()) && stagiaireCourant.getMail().equals(stagiaire.getMail())){
+				throw new FormationException(stagiaireCourant.getNom()+" est déjà présent");
+			}
+		}
+    	
         stagiaireDAO.save(stagiaire);
     }
 
@@ -66,8 +75,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
     @Override
     @Transactional
-    public void addFormateur(Formateur formateur) {
+    public void addFormateur(Formateur formateur) throws FormationException {
         //formateur.setMdp(String.valueOf(formateur.getMdp().hashCode()));
+    	
+    	for(Formateur formateurCourant : formateurDAO.findAll()) {
+			if(formateurCourant.getNom().equals(formateur.getNom()) && formateurCourant.getMail().equals(formateur.getMail())){
+				throw new FormationException(formateurCourant.getNom()+" est déjà présent");
+			}
+		}
+    	
         formateurDAO.save(formateur);
     }
 
@@ -206,7 +222,29 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		  
 		  Double moyenne = sommeNote/(evaluationFormateurDAO.findAllByFormateur(idFormateur).size());
 		  return moyenne;
-	} 
+	}
 
+	@Override
+	public List<EvaluationFormateur> getListeEvaluationFormateurMauvaiseNote() {
+		List<EvaluationFormateur> listeEvalFormateur = (List<EvaluationFormateur>) evaluationFormateurDAO.findAll();
+		List<EvaluationFormateur> listeEvalFormateurMauvaiseNote = new ArrayList<>();
+		for (EvaluationFormateur evalFormateur : listeEvalFormateur) {
+			if ((evalFormateur.getNoteDisponibilite() < 3) || (evalFormateur.getNoteMaitriseDomaine() < 3) || (evalFormateur.getNotePedagogie() < 3) || (evalFormateur.getNoteReponsesQuestions() <3) || (evalFormateur.getNoteTechniqueAnimation() <3)) {
+				listeEvalFormateurMauvaiseNote.add(evalFormateur);
+			}
+		}
+		return listeEvalFormateurMauvaiseNote;
+	}
 
+	@Override
+	public List<EvaluationSession> getListeEvaluationSessionMauvaiseNote() {
+		List<EvaluationSession> listeEvalSession = (List<EvaluationSession>) evaluationSessionDAO.findAll();
+		List<EvaluationSession> listeEvalSessionMauvaiseNote = new ArrayList<>();
+		for (EvaluationSession evalSession : listeEvalSession) {
+			if ((evalSession.getNoteAccueil() <3 || evalSession.getNoteEnvironnement() <3 || evalSession.getNoteContenuFormation() <3)) {
+				listeEvalSessionMauvaiseNote.add(evalSession);
+			}
+		}
+		return listeEvalSessionMauvaiseNote;
+	}
 }

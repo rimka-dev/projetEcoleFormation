@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
@@ -50,7 +51,7 @@ public class EvaluationController {
 	
 		
 	@PostMapping("/valid/{id}")
-	public String validInscription(@Valid EvaluationDTO evaluationDTO, @PathVariable("id") Integer id, BindingResult errors, Model model) {
+	public String validInscription(@Valid EvaluationDTO evaluationDTO, @PathVariable("id") Integer id, BindingResult errors, Model model) throws FormationException {
 		if (errors.hasErrors()) {
 			return "evalFormation";
 		}

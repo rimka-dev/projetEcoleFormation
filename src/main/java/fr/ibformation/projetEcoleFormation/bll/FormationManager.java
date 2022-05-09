@@ -2,19 +2,20 @@ package fr.ibformation.projetEcoleFormation.bll;
 
 import java.util.List;
 
+import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 
 public interface FormationManager {
-	public void addFormation(Formation formation);
+	public void addFormation(Formation formation) throws FormationException;
 	public List<Formation> getListeFormations();
 	public void modifyFormation(Formation formation);
 	public void deleteFormationById(Integer idFormation) throws FormationException;
 	public Formation getFormationById(Integer idFormation);
 	
 	
-	public void addSousThemeFormation(SousThemeFormation... sousThemesFormation);
+	public void addSousThemeFormation(SousThemeFormation... sousThemesFormation) throws FormationException;
 	public void addSousThemeToFormation(Formation formation, SousThemeFormation... sousThemesFormation);
 	public List<SousThemeFormation> getListeSousThemesFormation();
 	public void modifySousThemeFormation(SousThemeFormation sousThemeFormation);
@@ -29,5 +30,6 @@ public interface FormationManager {
 	
 	
 	public Integer getExperienceGlobalFormateur(Integer idFormateur);
+	public List<SessionFormation> getListeSessionsAAnnuler();
 	
 }

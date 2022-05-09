@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
 import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
 import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
+import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 import fr.ibformation.projetEcoleFormation.dal.CentreFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.EntrepriseClientDAO;
 import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
@@ -24,7 +25,12 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 //================= salle de formation ================================
 	@Override
 	@Transactional
-	public void addSalleFormation(SalleFormation salle) {
+	public void addSalleFormation(SalleFormation salle) throws FormationException {
+		for(SalleFormation salleCourante : salleDAO.findAll()) {
+			if(salleCourante.getNom().equals(salle.getNom())){
+				throw new FormationException(salleCourante.getNom()+" est déjà présent");
+			}
+		}
 		salleDAO.save(salle);
 
 	}
@@ -59,7 +65,12 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 //============= Centre de formation ======================================
 	@Override
 	@Transactional
-	public void addCentreFormation(CentreFormation centre) {
+	public void addCentreFormation(CentreFormation centre) throws FormationException {
+		for(CentreFormation centreCourant : centreFormationDAO.findAll()) {
+			if(centreCourant.getNom().equals(centre.getNom())){
+				throw new FormationException(centreCourant.getNom()+" est déjà présent");
+			}
+		}
 		centreFormationDAO.save(centre);
 		
 	}
@@ -94,7 +105,12 @@ public class LieuFormationManagerImpl implements LieuFormationManager {
 //========================= Entreprise Client ==================
 	@Override
 	@Transactional
-	public void addEntreprise(EntrepriseClient entreprise) {
+	public void addEntreprise(EntrepriseClient entreprise) throws FormationException {
+		for(EntrepriseClient entrepriseCourant : entrepriseDAO.findAll()) {
+			if(entrepriseCourant.getNomEntreprise().equals(entreprise.getNomEntreprise()) && entrepriseCourant.getAdresse().equals(entreprise.getAdresse())){
+				throw new FormationException(entrepriseCourant.getNomEntreprise()+" est déjà présente");
+			}
+		}
 		entrepriseDAO.save(entreprise);
 		
 	}

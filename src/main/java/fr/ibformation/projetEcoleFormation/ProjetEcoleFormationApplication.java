@@ -99,13 +99,20 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		Formateur formateur3 = new Formateur("CHICOT","Alix","chicot.alix@gmail.com","fdsfdsf","Formateur","5 rue fdsfsd","31000","Toulouse");
 		SalleFormation salle = new SalleFormation("Seine", 3);
 		SalleFormation salle3 = new SalleFormation("Loire", 2);
+		CentreFormation centre3 = new CentreFormation("IT Training Lyon","25 avenue du Soleil" , "69000","Lyon");
+		lieuManager.addCentreFormation(centre3);
+		lieuManager.addSalleFormation(salle);
+		lieuManager.addSalleFormation(salle3);
+		centre3.addSalleFormation(salle3);
+		centre3.addSalleFormation(salle);
+		
 		utilisateurManager.addStagiaire(stagiaireManag);
 		utilisateurManager.addStagiaire(stagiaire3);
 	    utilisateurManager.addFormateur(formateurManag);
 	    utilisateurManager.addFormateur(formateur3);
-		lieuManager.addSalleFormation(salle);
-		lieuManager.addSalleFormation(salle3);
-		Formation formation3 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
+		
+		
+		Formation formation3 = new Formation ("Informatique", "Apprendre le developpement JAVASCRIPT", "Les bases de la programmation Javascript", 1040, "Langages de développement");
 		formationManager.addFormation(formation3);
 		
 		// CRUD Session Formation ///
@@ -115,8 +122,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		sessionManag.setFormateur(formateurManag);
+		salle.addSessionFormation(sessionManag);
 		sessionManag.setSalleFormation(salle);
 		sessionManag.setFormation(formation3);
+	
 		
 		formationManager.addSessionFormation(sessionManag);
 		
@@ -124,7 +133,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		sessionManag2.setEntreprise(entrepriseManag);
 		sessionManag2.addStagiaire(stagiaire3);
 		sessionManag2.setFormateur(formateur3);
-		sessionManag2.setSalleFormation(salle);
+		salle3.addSessionFormation(sessionManag2);
+		sessionManag2.setSalleFormation(salle3);
 		sessionManag2.setFormation(formation3);
 		formationManager.addSessionFormation(sessionManag2);
 		
@@ -138,6 +148,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		sessionManag.setEvalFormateur(evalF);
 		sessionManag.setEvalSession(evalS);
 		evalF.setFormateur(formateurManag);
+		evalS.setSessionFormation(sessionManag);
+		evalS.setStagiaire(stagiaireManag);
 		formationManager.modifySessionFormation(sessionManag);
 		
 		Integer idSession = sessionManag.getIdSession();
@@ -152,6 +164,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		sessionManag2.setEvalFormateur(evalF2);
 		sessionManag2.setEvalSession(evalS2);
 		evalF2.setFormateur(formateur3);
+		evalS2.setSessionFormation(sessionManag2);
+		evalS2.setStagiaire(stagiaire3);
 		formationManager.modifySessionFormation(sessionManag2);
 		
 		/// ==== Modify =====
@@ -233,6 +247,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
+		e1.setSessionFormation(sessionManag2);
+		utilisateurManager.addEvaluationSession(e1);
 		utilisateurManager.addEvaluationSessionToStagiaire(s1,e1);
 		System.out.println("--------------------------------------");
 		System.out.println("--------------------------------------");
@@ -268,9 +284,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		CentreFormation centre1 = new CentreFormation("IT Training Nanterre","5 rue de la defense" , "92742","Nanterre");
 		CentreFormation centre2 = new CentreFormation("IT Training Paris","10 rue de la liberte" , "75010","Paris");
 		//=== Create =========
+		lieuManager.addCentreFormation(centre2);
 		centre2.addSalleFormation(salle1);
 		lieuManager.addCentreFormation(centre1);
-		lieuManager.addCentreFormation(centre2);
+		
 		
 		//======== Update ==================
 		centre2.setCodePostal("75018");
@@ -324,11 +341,13 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		EvaluationSession evalSession1 = new EvaluationSession(2,2,3,"satisfait",true, true);
 		evalSession1.setStagiaire(stagiaire1);
+		evalSession1.setSessionFormation(sessionManag);
 	    evaluationSessionDAO.save(evalSession1);
 
 	    
 		EvaluationFormateur evalForm1 = new EvaluationFormateur(2,3,4,5,3);
 		evalForm1.setFormateur(formateur1);
+		evalForm1.setSessionFormation(sessionManag2);
 		evaluationFormateurDAO.save(evalForm1);
 		
 		

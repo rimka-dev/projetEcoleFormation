@@ -10,7 +10,7 @@ import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
 
 public interface LieuFormationManager {
 
-	public void addSalleFormation(SalleFormation salle);
+	public void addSalleFormation(SalleFormation salle) throws FormationException;
 
 	public void updateSalleFormation(SalleFormation salle);
 
@@ -20,7 +20,7 @@ public interface LieuFormationManager {
 
 	public void deleteSalle(SalleFormation salle) throws LieuException;
 
-	public void addCentreFormation(CentreFormation centre);
+	public void addCentreFormation(CentreFormation centre) throws FormationException;
 
 	public void updateCentreFormation(CentreFormation centre);
 
@@ -30,7 +30,7 @@ public interface LieuFormationManager {
 
 	public void deleteCentreFormationById(Integer id1) throws LieuException;
 
-	public void addEntreprise(EntrepriseClient entreprise);
+	public void addEntreprise(EntrepriseClient entreprise) throws FormationException;
 
 	public void updateEntreprise(EntrepriseClient entreprise);
 
