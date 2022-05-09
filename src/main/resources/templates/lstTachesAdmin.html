@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+   <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link th:href="@{/css/style.css}" href="/css/style.css" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <title>Mes tâches</title>
 </head>
 <body>
@@ -26,6 +32,27 @@
 				<td><span>Moins de 3 participants</span></td>
 				<td><a th:href="@{/admin/liste-des-sessions}">Liste des
 						Sessions</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h2>Liste des Formateurs - Annulation après Date Limite</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID Session</th>
+				<th>Nom Formateur</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${formateurAnnulationApresLimite.empty}">
+				<td colspan="2">Aucune annulation formateur après limite</td>
+			</tr>
+			<tr th:each="sessionFormation: ${formateurAnnulationApresLimite}">
+				<td><span th:text="${sessionFormation.idSession}">ID
+						Session</span></td>
+				<td><span th:text="${sessionFormation.nom} + ' ' + ${sessionFormation.prenom}">Nom Formateur</span></td>
+			
 			</tr>
 		</tbody>
 	</table>

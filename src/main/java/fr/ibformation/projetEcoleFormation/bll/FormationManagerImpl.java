@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
+import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
@@ -185,4 +186,20 @@ public class FormationManagerImpl implements FormationManager {
 		}
 		return sessionsAnnuler;
 	}
+	@Override
+	public List<SessionFormation> getListeFormateurAnnulationApresLimite() {
+			Integer jour = 0; 
+			List<SessionFormation> listeSessions = (List<SessionFormation>) sessionFormationDAO.findAll();
+			List<SessionFormation> listeSessionAnnulationApresLimite = new ArrayList<>();
+			for (SessionFormation session : listeSessions) {
+	        if (session.getDateAnnulation() == null) {
+	        continue;
+	        }
+				jour = (int) ChronoUnit.DAYS.between(session.getDateAnnulation(), session.getDateDebut());
+				if (jour <15) {
+					listeSessionAnnulationApresLimite.add(session);
+				}
+			}return listeSessionAnnulationApresLimite;
+		}
+	
 }

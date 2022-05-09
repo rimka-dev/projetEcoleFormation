@@ -37,20 +37,18 @@
     </nav>
 </header>
 	<div class="container">
+	
+	<div th:object="${evaluation}" >
+			<label for="name">Numéro de Session : </label>
+			
+			<span th:text="${evaluation.idSession}">ID Session</span>
+			<label for="name">Nom Stagiaire :</label>
+			<span th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom Stagiaire :</span>
+			</div>
+			
 		<form th:action="@{/evaluation-formation/valid/{id}(id=${evaluation.idSession})}"
 			th:object="${evaluation}" method="post">
-			<div>
-			<label for="name">Numéro de Session: </label>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="text" id="idSession"
-					th:field="*{idSession}" value="*{idSession}" name="idSession">
-					</div>
-				<label for="name">Nom Stagiaire: </label>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="text" id="nom"
-					th:field="*{nom}" name="nom">
-					</div>
-			</div>
+			
 				<h2>Evaluation de l'accueil et de l'environnement</h2>
 				<div>
 				<label for="name">Qualité de l'accueil: </label>

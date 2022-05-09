@@ -37,15 +37,15 @@ public class EvaluationController {
 
 		EvaluationDTO evaluationDTO = new EvaluationDTO();
 		
-		evaluationDTO.setIdSession(id);
+        evaluationDTO.setIdSession(id);
 		evaluationDTO.setNom(stagiaire.getNom());
+		evaluationDTO.setPrenom(stagiaire.getPrenom());
 
         model.addAttribute("evaluation", evaluationDTO);
         
     	//SessionFormation session = formationManager.getSessionFormationById(id);
     	
-        model.addAttribute("nom", evaluationDTO);
-        
+ 
         return "evalFormation";
     }
 	
@@ -68,11 +68,11 @@ public class EvaluationController {
         evalFormateur.setSessionFormation(session);
 		evalSession.setStagiaire(stagiaire);
 		evalFormateur.setStagiaire(stagiaire);
-        evaluationDTO.toStagiaire();
+        //evaluationDTO.toStagiaire();
 		utilisateurManager.addEvaluationFormateur(evalFormateur);
 		utilisateurManager.addEvaluationSession(evalSession);
-		formationManager.addSessionFormation(session);
-		utilisateurManager.addStagiaire(stagiaire);
+		//formationManager.addSessionFormation(session);
+		//utilisateurManager.addStagiaire(stagiaire);
 		return "lstFormateurs";
 	}
 

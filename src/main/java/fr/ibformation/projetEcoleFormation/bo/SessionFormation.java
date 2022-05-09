@@ -28,6 +28,7 @@ public class SessionFormation {
 	private Integer idSession;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
+	private LocalDate dateAnnulation;
 	private String typeFormation;
 	private Boolean salleInstallee;
 	private Boolean formateurConfirme;

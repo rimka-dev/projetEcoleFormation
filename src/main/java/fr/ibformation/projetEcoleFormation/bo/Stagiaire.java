@@ -23,6 +23,7 @@ public class Stagiaire extends Utilisateur {
 	private String codePostal;
 	private String ville;
 	
+	
 	@ManyToOne
 	@JsonBackReference
 	private EntrepriseClient entreprise;

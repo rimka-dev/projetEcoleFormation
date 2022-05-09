@@ -118,15 +118,15 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
-		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,04,10), LocalDate.of(2022,05,8), "intra-entreprise", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,16), LocalDate.of(2022,05,22), "intra-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		sessionManag.setFormateur(formateurManag);
 		salle.addSessionFormation(sessionManag);
 		sessionManag.setSalleFormation(salle);
 		sessionManag.setFormation(formation3);
-	
-		
+	    sessionManag.setDateAnnulation(LocalDate.of(2022,05,9));
+
 		formationManager.addSessionFormation(sessionManag);
 		
 		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,03,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);

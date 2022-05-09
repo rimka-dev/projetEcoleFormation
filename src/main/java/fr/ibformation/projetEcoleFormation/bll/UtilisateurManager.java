@@ -44,6 +44,7 @@ public interface UtilisateurManager {
     public Double getNoteMoyenneGlobalFormateur(Integer idFormateur);
     public List<EvaluationFormateur> getListeEvaluationFormateurMauvaiseNote();
     public List<EvaluationSession> getListeEvaluationSessionMauvaiseNote();
+	
     }
 
     
