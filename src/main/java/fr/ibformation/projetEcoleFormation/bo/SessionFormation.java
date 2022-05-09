@@ -4,12 +4,17 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -54,16 +59,18 @@ public class SessionFormation {
 	@JsonBackReference
 	private EntrepriseClient entreprise;
 
-	@ManyToMany(mappedBy = "listeSessionFormation")
+
+	@ManyToMany(mappedBy = "listeSessionFormation", cascade = CascadeType.ALL)
 	@JsonManagedReference(value = "session-formation-stagiaire")
 	private Set<Stagiaire> listeStagiaires = new HashSet<>();
 
-	@OneToOne
-	@JsonManagedReference(value="evaluation-session")
-	private EvaluationSession evalSession;
+    @OneToMany(mappedBy = "sessionFormation", cascade= CascadeType.ALL)
+	@JsonManagedReference(value = "evaluation-session")
+	private Set<EvaluationSession> listeEvalSession = new HashSet<>();
 
-	@OneToOne
-	private EvaluationFormateur evalFormateur;
+	@OneToMany(mappedBy = "sessionFormation", cascade= CascadeType.ALL)
+	@JsonManagedReference(value = "evaluation-formateur")
+	private Set<EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 
 	public SessionFormation(LocalDate dateDebut, LocalDate dateFin, String typeFormation, Boolean salleInstallee,
 			Boolean formateurConfirme, Boolean supportImprime, Boolean convocationEnvoyee, Boolean planningMisAjour,
@@ -85,6 +92,16 @@ public class SessionFormation {
 	public void addStagiaire(Stagiaire stagiaire) {
 		this.listeStagiaires.add(stagiaire);
 		stagiaire.getListeSessionFormation().add(this);
+	}
+
+	public void addEvalSession(EvaluationSession evalSession) {
+		this.listeEvalSession.add(evalSession);
+		evalSession.setSessionFormation(this);
+	}
+
+	public void addEvalFormateur(EvaluationFormateur evalFormateur) {
+		this.listeEvalFormateur.add(evalFormateur);
+		evalFormateur.setSessionFormation(this);
 	}
 
 	@Override

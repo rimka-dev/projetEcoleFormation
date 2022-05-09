@@ -145,8 +145,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS);
 		evalF.setStagiaire(stagiaireManag);
 		evalF.setSessionFormation(sessionManag);
-		sessionManag.setEvalFormateur(evalF);
-		sessionManag.setEvalSession(evalS);
+		sessionManag.addEvalFormateur(evalF);
+		sessionManag.addEvalSession(evalS);
 		evalF.setFormateur(formateurManag);
 		evalS.setSessionFormation(sessionManag);
 		evalS.setStagiaire(stagiaireManag);
@@ -161,8 +161,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS2);
 		evalF2.setStagiaire(stagiaire3);
 		evalF2.setSessionFormation(sessionManag2);
-		sessionManag2.setEvalFormateur(evalF2);
-		sessionManag2.setEvalSession(evalS2);
+		sessionManag2.addEvalFormateur(evalF2);
+		sessionManag2.addEvalSession(evalS2);
 		evalF2.setFormateur(formateur3);
 		evalS2.setSessionFormation(sessionManag2);
 		evalS2.setStagiaire(stagiaire3);

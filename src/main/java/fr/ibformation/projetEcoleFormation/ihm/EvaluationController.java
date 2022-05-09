@@ -41,7 +41,7 @@ public class EvaluationController {
 		evaluationDTO.setNom(stagiaire.getNom());
 		evaluationDTO.setPrenom(stagiaire.getPrenom());
 
-        model.addAttribute("evaluation", evaluationDTO);
+         model.addAttribute("evaluation", evaluationDTO);
         
     	//SessionFormation session = formationManager.getSessionFormationById(id);
     	
@@ -62,7 +62,8 @@ public class EvaluationController {
 		
 		EvaluationSession evalSession = evaluationDTO.toEvaluationSession();
 		EvaluationFormateur evalFormateur = evaluationDTO.toEvaluationFormateur();
-        SessionFormation session = evaluationDTO.toSessionFormation();
+        SessionFormation session = formationManager.getSessionFormationById(id);
+        
         evalSession.setSessionFormation(session);
         evalFormateur.setFormateur(formateur);
         evalFormateur.setSessionFormation(session);

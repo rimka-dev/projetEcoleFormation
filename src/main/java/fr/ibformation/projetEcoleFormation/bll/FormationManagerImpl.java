@@ -1,25 +1,18 @@
 package fr.ibformation.projetEcoleFormation.bll;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
+
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
-import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.dal.FormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
@@ -33,16 +26,18 @@ public class FormationManagerImpl implements FormationManager {
 	private SousThemeFormationDAO sousThemeFormationDAO;
 	@Autowired
 	private SessionFormationDAO sessionFormationDAO;
+
+
 	
 	@Override
 	@Transactional
 	public void addFormation(Formation formation) throws FormationException {
 		// CT002 : pas de doublon(nom/prenom)
-				for(Formation formationCourante : formationDAO.findAll()) {
-					if(formationCourante.getNomFormation().equals(formation.getNomFormation())){
-						throw new FormationException(formationCourante.getNomFormation()+" est déjà présente");
-					}
-				}
+		for(Formation formationCourante : formationDAO.findAll()) {
+			if(formationCourante.getNomFormation().equals(formation.getNomFormation())){
+				throw new FormationException(formationCourante.getNomFormation()+" est déjà présente");
+			}
+		}
 		formationDAO.save(formation);
 	}
 	@Override
@@ -53,31 +48,31 @@ public class FormationManagerImpl implements FormationManager {
 	@Transactional
 	public void modifyFormation(Formation formation) {
 		formationDAO.save(formation);
-		
+
 	}
 	@Override
 	@Transactional
 	public void deleteFormationById(Integer idFormation)  throws FormationException {
 		Formation formation = formationDAO.findById(idFormation)
 				.orElseThrow(() -> new FormationException("Formation Inexistante"));
-		
+
 		for (SessionFormation session : formation.getListeSessionFormation()) {
 			deleteSessionFormationById(session.getIdSession());
 		}
 		formation.getListeSessionFormation().clear();
-		
+
 		//https://stackoverflow.com/a/38302308
 		for (SousThemeFormation sousTheme : formation.getListeSousThemeFormation()) {
 			sousTheme.getListeFormations().remove(formation);
 		}
-		
+
 		formation.getListeSousThemeFormation().clear();
-		
-		
+
+
 		formationDAO.save(formation);
-		
+
 		formationDAO.deleteById(idFormation);
-		
+
 	}
 	@Override
 	public Formation getFormationById(Integer idFormation) {
@@ -87,7 +82,7 @@ public class FormationManagerImpl implements FormationManager {
 	@Transactional
 	public void addSousThemeFormation(SousThemeFormation... sousThemesFormation) throws FormationException {
 		for (SousThemeFormation sousThemeFormation : sousThemesFormation) {
-			
+
 			for(SousThemeFormation sousThemeCourante : sousThemeFormationDAO.findAll()) {
 				if(sousThemeCourante.getNomSousTheme().equals(sousThemeFormation.getNomSousTheme())){
 					throw new FormationException(sousThemeFormation.getNomSousTheme()+" est déjà présent");
@@ -109,30 +104,30 @@ public class FormationManagerImpl implements FormationManager {
 	public List<SousThemeFormation> getListeSousThemesFormation() {
 		return (List<SousThemeFormation>) sousThemeFormationDAO.findAll();
 	}
-	
+
 	@Override
 	@Transactional
 	public void modifySousThemeFormation(SousThemeFormation sousThemeFormation) {
 		sousThemeFormationDAO.save(sousThemeFormation);
-		
+
 	}
 	@Override
 	@Transactional
 	public void deleteSousThemeFormationById(Integer idSousThemeFormation) throws FormationException {
-		SousThemeFormation sousThemeFormation = sousThemeFormationDAO.findById(idSousThemeFormation)
+		sousThemeFormationDAO.findById(idSousThemeFormation)
 				.orElseThrow(() -> new FormationException("Sous-Theme Formation Inexistant"));
 		sousThemeFormationDAO.deleteById(idSousThemeFormation);
-		
+
 	}
-	
+
 	@Override
 	@Transactional
 	public void addSessionFormation(SessionFormation sessionFormation) {
 		sessionFormationDAO.save(sessionFormation);
-		
+
 	}
-	
-	
+
+
 	@Override
 	public List<SessionFormation> getListeSessionsFormation() {
 		return (List<SessionFormation>) sessionFormationDAO.findAll();
@@ -141,24 +136,52 @@ public class FormationManagerImpl implements FormationManager {
 	@Transactional
 	public void modifySessionFormation(SessionFormation sessionFormation) {
 		sessionFormationDAO.save(sessionFormation);
-		
+
 	}
+
+	
 	@Override
 	@Transactional
 	public void deleteSessionFormationById(Integer idSessionFormation) throws FormationException {
+		
 		SessionFormation session = sessionFormationDAO.findById(idSessionFormation)
 				.orElseThrow(() -> new FormationException("SessionFormation Inexistant"));
-		//on doit supprimer le lien entre stagiaire et sessionFormation
-		//https://stackoverflow.com/a/38302308
-		for (Stagiaire stagiaire : session.getListeStagiaires()) {
-			stagiaire.getListeSessionFormation().remove(session);
-		}
-        session.getListeStagiaires().clear();
+
+		sessionFormationDAO.delete(session);
 		
-        sessionFormationDAO.save(session);
-		sessionFormationDAO.deleteById(idSessionFormation);
-		
+		//		SessionFormation session = sessionFormationDAO.findById(idSessionFormation)
+		//				.orElseThrow(() -> new FormationException("SessionFormation Inexistant"));
+		//		//on doit supprimer le lien entre stagiaire et sessionFormation
+		//		//https://stackoverflow.com/a/38302308
+		//		for (Stagiaire stagiaire : session.getListeStagiaires()) {
+		//			stagiaire.getListeSessionFormation().remove(session);
+		//		}
+		//        session.getListeStagiaires().clear();
+		//		
+		//        session.getFormation().getListeSessionFormation().remove(session);
+		//        session.setFormation(null);
+		//        
+		//    	for (EvaluationSession evalSession : session.getListeEvalSession()) {
+		//    		evalSession.setSessionFormation(null);
+		//    		evalSessionDao.save(evalSession);
+		//    		evalSessionDao.delete(evalSession);
+		//    		
+		//    	}
+		//      	session.getListeEvalSession().clear();
+		//
+		//      	
+		//    	for (EvaluationFormateur evalFormateur : session.getListeEvalFormateur()) {
+		//    		evalFormateur.setSessionFormation(null);
+		//		}
+		//    	session.getListeEvalFormateur().clear();
+		//    	
+		//    	
+		//    	sessionFormationDAO.save(session);
+		//    	sessionFormationDAO.deleteById(session.getIdSession());
+
 	}
+
+
 	@Override
 	public SessionFormation getSessionFormationById(Integer idSessionFormation) {
 		return sessionFormationDAO.findById(idSessionFormation).orElse(null);
@@ -166,15 +189,15 @@ public class FormationManagerImpl implements FormationManager {
 	@Override
 	public Integer getExperienceGlobalFormateur(Integer idFormateur) {
 		Integer jour = 0; 
-		  for (SessionFormation session : sessionFormationDAO.findAllByFormateur(idFormateur)) {
-			  
-			 jour = (int) ChronoUnit.DAYS.between(session.getDateDebut(), session.getDateFin());
-			 jour++;
-	        }
+		for (SessionFormation session : sessionFormationDAO.findAllByFormateur(idFormateur)) {
+
+			jour = (int) ChronoUnit.DAYS.between(session.getDateDebut(), session.getDateFin());
+			jour++;
+		}
 		return jour;
 	}
-	
-	
+
+
 	@Override
 	public List<SessionFormation> getListeSessionsAAnnuler() {
 		List <SessionFormation> sessions = (List<SessionFormation>) sessionFormationDAO.findAll();
@@ -188,18 +211,18 @@ public class FormationManagerImpl implements FormationManager {
 	}
 	@Override
 	public List<SessionFormation> getListeFormateurAnnulationApresLimite() {
-			Integer jour = 0; 
-			List<SessionFormation> listeSessions = (List<SessionFormation>) sessionFormationDAO.findAll();
-			List<SessionFormation> listeSessionAnnulationApresLimite = new ArrayList<>();
-			for (SessionFormation session : listeSessions) {
-	        if (session.getDateAnnulation() == null) {
-	        continue;
-	        }
-				jour = (int) ChronoUnit.DAYS.between(session.getDateAnnulation(), session.getDateDebut());
-				if (jour <15) {
-					listeSessionAnnulationApresLimite.add(session);
-				}
-			}return listeSessionAnnulationApresLimite;
-		}
-	
+		Integer jour = 0; 
+		List<SessionFormation> listeSessions = (List<SessionFormation>) sessionFormationDAO.findAll();
+		List<SessionFormation> listeSessionAnnulationApresLimite = new ArrayList<>();
+		for (SessionFormation session : listeSessions) {
+			if (session.getDateAnnulation() == null) {
+				continue;
+			}
+			jour = (int) ChronoUnit.DAYS.between(session.getDateAnnulation(), session.getDateDebut());
+			if (jour <15) {
+				listeSessionAnnulationApresLimite.add(session);
+			}
+		}return listeSessionAnnulationApresLimite;
+	}
+
 }

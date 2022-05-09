@@ -42,6 +42,8 @@
 			<label for="name">Numéro de Session : </label>
 			
 			<span th:text="${evaluation.idSession}">ID Session</span>
+			</div>
+			<div>
 			<label for="name">Nom Stagiaire :</label>
 			<span th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom Stagiaire :</span>
 			</div>
@@ -53,29 +55,38 @@
 				<div>
 				<label for="name">Qualité de l'accueil: </label>
 			
+			<input class="form-check-input" type="hidden" id="idSession"
+					th:field="*{idSession}" name="idSession" value="*{idSession}"/>
+			
+			<input class="form-check-input" type="hidden" id="nom"
+					th:field="*{nom}" name="nom" value="*{nom}"/>
+					
+					<input class="form-check-input" type="hidden" id="prenom"
+					th:field="*{prenom}" name="prenom" value="*{prenom}"/>
+					
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="accueil-note-1"
-					th:field="*{noteAccueil}" name="accueil" value="1"> <label
+					th:field="*{noteAccueil}" name="accueil" value="1"/> <label
 					class="form-check-label" for="1">1</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="accueil-note-2"
-					th:field="*{noteAccueil}" name="accueil" value="2"> <label
+					th:field="*{noteAccueil}" name="accueil" value="2"/> <label
 					class="form-check-label" for="2">2</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="accueil-note-3"
-					th:field="*{noteAccueil}" name="accueil" value="3"> <label
+					th:field="*{noteAccueil}" name="accueil" value="3"/> <label
 					class="form-check-label" for="3">3</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="accueil-note-4"
-					th:field="*{noteAccueil}" name="accueil" value="4"> <label
+					th:field="*{noteAccueil}" name="accueil" value="4"/> <label
 					class="form-check-label" for="4">4</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="accueil-note-5"
-					th:field="*{noteAccueil}" name="accueil" value="5"> <label
+					th:field="*{noteAccueil}" name="accueil" value="5"/> <label
 					class="form-check-label" for="5">5</label>
 			</div>
 			</div>
@@ -85,31 +96,31 @@
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio"
 					id="environnement-note-1" th:field="*{noteEnvironnement}"
-					name="environnement" value="1" checked> <label
+					name="environnement" value="1" checked/> <label
 					class="form-check-label" for="1">1</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio"
 					id="environnement-note-2" th:field="*{noteEnvironnement}"
-					name="environnement" value="2"> <label
+					name="environnement" value="2"/> <label
 					class="form-check-label" for="2">2</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio"
 					id="environnement-note-3" th:field="*{noteEnvironnement}"
-					name="environnement" value="3"> <label
+					name="environnement" value="3"/> <label
 					class="form-check-label" for="3">3</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio"
 					id="environnement-note-4" th:field="*{noteEnvironnement}"
-					name="environnement" value="4"> <label
+					name="environnement" value="4"/> <label
 					class="form-check-label" for="4">4</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio"
 					id="environnement-note-5" th:field="*{noteEnvironnement}"
-					name="environnement" value="5"> <label
+					name="environnement" value="5"/> <label
 					class="form-check-label" for="5">5</label>
 			</div>
 			</div>
@@ -118,27 +129,27 @@
 			
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="contenu-note-1"
-					th:field="*{noteContenuFormation}" name="contenu" value="1" checked>
+					th:field="*{noteContenuFormation}" name="contenu" value="1" checked/>
 				<label class="form-check-label" for="1">1</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="contenu-note-2"
-					th:field="*{noteContenuFormation}" name="contenu" value="2">
+					th:field="*{noteContenuFormation}" name="contenu" value="2"/>
 				<label class="form-check-label" for="2">2</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="contenu-note-3"
-					th:field="*{noteContenuFormation}" name="contenu" value="3">
+					th:field="*{noteContenuFormation}" name="contenu" value="3"/>
 				<label class="form-check-label" for="3">3</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input type="radio" id="contenu-note-4"
-					th:field="*{noteContenuFormation}" name="contenu" value="4">
+					th:field="*{noteContenuFormation}" name="contenu" value="4"/>
 				<label class="form-check-label" for="4">4</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" id="contenu-note-5"
-					th:field="*{noteContenuFormation}" name="contenu" value="5">
+					th:field="*{noteContenuFormation}" name="contenu" value="5"/>
 				<label class="form-check-label" for="5">5</label>
 			</div>
 			</div>
@@ -149,27 +160,27 @@
 				
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="pedagogie-note-1"
-						th:field="*{notePedagogie}" name="pedagogie" value="1"> <label
+						th:field="*{notePedagogie}" name="pedagogie" value="1"/> <label
 						class="form-check-label" for="1">1</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="pedagogie-note-2"
-						th:field="*{notePedagogie}" name="pedagogie" value="2"> <label
+						th:field="*{notePedagogie}" name="pedagogie" value="2"/> <label
 						class="form-check-label" for="2">2</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="pedagogie-note-3"
-						th:field="*{notePedagogie}" name="pedagogie" value="3"> <label
+						th:field="*{notePedagogie}" name="pedagogie" value="3"/> <label
 						class="form-check-label" for="3">3</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="pedagogie-note-4"
-						th:field="*{notePedagogie}" name="pedagogie" value="4"> <label
+						th:field="*{notePedagogie}" name="pedagogie" value="4"/> <label
 						class="form-check-label" for="4">4</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="pedagogie-note-5"
-						th:field="*{notePedagogie}" name="pedagogie" value="5"> <label
+						th:field="*{notePedagogie}" name="pedagogie" value="5"/> <label
 						class="form-check-label" for="5">5</label>
 				</div>
 				</div>
@@ -179,27 +190,27 @@
 				
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="maitrise-note-1"
-						th:field="*{noteMaitriseDomaine}" name="maitrise" value="1"> <label
+						th:field="*{noteMaitriseDomaine}" name="maitrise" value="1"/> <label
 						class="form-check-label" for="1">1</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="maitrise-note-2"
-						th:field="*{noteMaitriseDomaine}" name="maitrise" value="2"> <label
+						th:field="*{noteMaitriseDomaine}" name="maitrise" value="2"/> <label
 						class="form-check-label" for="2">2</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="maitrise-note-3"
-						th:field="*{noteMaitriseDomaine}" name="maitrise" value="3"> <label
+						th:field="*{noteMaitriseDomaine}" name="maitrise" value="3"/> <label
 						class="form-check-label" for="3">3</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="maitrise-note-4"
-						th:field="*{noteMaitriseDomaine}" name="maitrise" value="4"> <label
+						th:field="*{noteMaitriseDomaine}" name="maitrise" value="4"/> <label
 						class="form-check-label" for="4">4</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="maitrise-note-5"
-						th:field="*{noteMaitriseDomaine}" name="maitrise" value="5"> <label
+						th:field="*{noteMaitriseDomaine}" name="maitrise" value="5"/> <label
 						class="form-check-label" for="5">5</label>
 				</div>
 				</div>
@@ -208,27 +219,27 @@
 				
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="disponibilite-note-1"
-						th:field="*{noteDisponibilite}" name="disponibilite" value="1"> <label
+						th:field="*{noteDisponibilite}" name="disponibilite" value="1"/> <label
 						class="form-check-label" for="1">1</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="disponibilite-note-2"
-						th:field="*{noteDisponibilite}" name="disponibilite" value="2"> <label
+						th:field="*{noteDisponibilite}" name="disponibilite" value="2"/> <label
 						class="form-check-label" for="2">2</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="disponibilite-note-3"
-						th:field="*{noteDisponibilite}" name="disponibilite" value="3"> <label
+						th:field="*{noteDisponibilite}" name="disponibilite" value="3"/> <label
 						class="form-check-label" for="3">3</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="disponibilite-note-4"
-						th:field="*{noteDisponibilite}" name="disponibilite" value="4"> <label
+						th:field="*{noteDisponibilite}" name="disponibilite" value="4"/> <label
 						class="form-check-label" for="4">4</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="disponibilite-note-5"
-						th:field="*{noteDisponibilite}" name="disponibilite" value="5"> <label
+						th:field="*{noteDisponibilite}" name="disponibilite" value="5"/> <label
 						class="form-check-label" for="5">5</label>
 				</div>
 				</div>
@@ -237,27 +248,27 @@
 			
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="question-reponse-note-1"
-						th:field="*{noteReponsesQuestions}" name="question-reponse" value="1"> <label
+						th:field="*{noteReponsesQuestions}" name="question-reponse" value="1"/> <label
 						class="form-check-label" for="1">1</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="question-reponse-note-2"
-						th:field="*{noteReponsesQuestions}" name="question-reponse" value="2"> <label
+						th:field="*{noteReponsesQuestions}" name="question-reponse" value="2"/> <label
 						class="form-check-label" for="2">2</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="question-reponse-note-3"
-						th:field="*{noteReponsesQuestions}" name="question-reponse" value="3"> <label
+						th:field="*{noteReponsesQuestions}" name="question-reponse" value="3"/> <label
 						class="form-check-label" for="3">3</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="question-reponse-note-4"
-						th:field="*{noteReponsesQuestions}" name="question-reponse" value="4"> <label
+						th:field="*{noteReponsesQuestions}" name="question-reponse" value="4"/> <label
 						class="form-check-label" for="4">4</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="question-reponse-note-5"
-						th:field="*{noteReponsesQuestions}" name="question-reponse" value="5"> <label
+						th:field="*{noteReponsesQuestions}" name="question-reponse" value="5"/> <label
 						class="form-check-label" for="5">5</label>
 				</div>
 					</div>
@@ -266,27 +277,27 @@
 				
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="animation-note-1"
-						th:field="*{noteTechniqueAnimation}" name="animation" value="1"> <label
+						th:field="*{noteTechniqueAnimation}" name="animation" value="1"/> <label
 						class="form-check-label" for="1">1</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="animation-note-2"
-						th:field="*{noteTechniqueAnimation}" name="animation" value="2"> <label
+						th:field="*{noteTechniqueAnimation}" name="animation" value="2"/> <label
 						class="form-check-label" for="2">2</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="animation-note-3"
-						th:field="*{noteTechniqueAnimation}" name="animation" value="3"> <label
+						th:field="*{noteTechniqueAnimation}" name="animation" value="3"/> <label
 						class="form-check-label" for="3">3</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="animation-note-4"
-						th:field="*{noteTechniqueAnimation}" name="animation" value="4"> <label
+						th:field="*{noteTechniqueAnimation}" name="animation" value="4"/> <label
 						class="form-check-label" for="4">4</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="animation-note-5"
-						th:field="*{noteTechniqueAnimation}" name="animation" value="5"> <label
+						th:field="*{noteTechniqueAnimation}" name="animation" value="5"/> <label
 						class="form-check-label" for="5">5</label>
 				</div>
 				</div>
@@ -296,22 +307,22 @@
 			
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="insatisfait"
-						th:field="*{niveauSatisfaction}" name="satisfaction" value="insatisfait"> <label
+						th:field="*{niveauSatisfaction}" name="satisfaction" value="insatisfait"/> <label
 						class="form-check-label" for="1">Insatisfait</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="plutot-insatisfait"
-						th:field="*{niveauSatisfaction}" name="satisfaction" value="plutôt insatisfait"> <label
+						th:field="*{niveauSatisfaction}" name="satisfaction" value="plutôt insatisfait"/> <label
 						class="form-check-label" for="2">Plutôt insatisfait</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="plutot-satisfait"
-						th:field="*{niveauSatisfaction}" name="satisfaction" value="plutôt satisfait"> <label
+						th:field="*{niveauSatisfaction}" name="satisfaction" value="plutôt satisfait"/> <label
 						class="form-check-label" for="3">Plutôt satisfait</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="tres-satisfait"
-						th:field="*{niveauSatisfaction}" name="satisfaction" value="très satisfait"> <label
+						th:field="*{niveauSatisfaction}" name="satisfaction" value="très satisfait"/> <label
 						class="form-check-label" for="tres-satisfait">Très satisfait</label>
 				</div>
 					</div>
@@ -320,12 +331,12 @@
 				
 					<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="recommandation-oui"
-						th:field="*{recommandationFormation}" name="recommandation" value="true"> <label
+						th:field="*{recommandationFormation}" name="recommandation" value="true"/> <label
 						class="form-check-label" for="oui">Oui</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="recommandation-non"
-						th:field="*{recommandationFormation}" name="recommandation" value="false"> <label
+						th:field="*{recommandationFormation}" name="recommandation" value="false"/> <label
 						class="form-check-label" for="non">Non</label>
 				</div>
 				</div>
@@ -334,12 +345,12 @@
 		
 					<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="projets-oui"
-						th:field="*{autresProjetsFormations}" name="projets" value="true"> <label
+						th:field="*{autresProjetsFormations}" name="projets" value="true"/> <label
 						class="form-check-label" for="oui">Oui</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" id="projets-non"
-						th:field="*{autresProjetsFormations}" name="projets" value="false"> <label
+						th:field="*{autresProjetsFormations}" name="projets" value="false"/> <label
 						class="form-check-label" for="non">Non</label>
 				</div>
 						</div>
