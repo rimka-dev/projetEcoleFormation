@@ -8,6 +8,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
@@ -19,8 +21,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Stagiaire extends Utilisateur {
+	//@NotBlank(message="Veuillez saisir une adresse")
 	private String adresse;
+	//@NotBlank(message="Veuillez saisir un code postal")
+	//@Size(min = 5, max = 5)
 	private String codePostal;
+	//@NotBlank(message="Veuillez saisir un mot de passe")
 	private String ville;
 	
 	@ManyToOne

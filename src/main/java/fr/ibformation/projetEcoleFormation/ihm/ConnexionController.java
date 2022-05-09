@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.ihm;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
+import fr.ibformation.projetEcoleFormation.bo.Utilisateur;
 import fr.ibformation.projetEcoleFormation.dal.FormateurDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class ConnexionController {
 
     @Autowired
     FormateurDAO formateurDAO;
+
 
 
     @GetMapping("/formateur")
@@ -59,6 +61,7 @@ public class ConnexionController {
         if(errors.hasErrors()) {
             return "connexionStagiaire";
             }
+
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
         //if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == stagiaire.getMdp().hashCode()) {
         if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){

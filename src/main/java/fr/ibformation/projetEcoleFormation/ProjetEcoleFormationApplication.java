@@ -79,6 +79,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		
 	}
+
 	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -245,7 +246,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Anael ==================================
 
-		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
+		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdpmdp","Stagiaire","6 rue du coq","31000","Toulouse");
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		e1.setSessionFormation(sessionManag2);
 		utilisateurManager.addEvaluationSession(e1);

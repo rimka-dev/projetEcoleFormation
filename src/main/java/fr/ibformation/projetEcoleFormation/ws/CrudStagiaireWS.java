@@ -15,6 +15,7 @@ public class CrudStagiaireWS {
     @Autowired
     private UtilisateurManager manager;
 
+
     @GetMapping("/stagiaire")
     public List<Stagiaire> getStagiaires(){
         return manager.getAllStagiaire();
