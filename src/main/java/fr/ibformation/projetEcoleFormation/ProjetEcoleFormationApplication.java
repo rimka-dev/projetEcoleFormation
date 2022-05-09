@@ -5,28 +5,20 @@ import java.time.LocalDate;
 import javax.transaction.Transactional;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 
-import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
-import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
-import fr.ibformation.projetEcoleFormation.bo.Formation;
-import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
-import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
-import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
-import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 import fr.ibformation.projetEcoleFormation.dal.CentreFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.EntrepriseClientDAO;
 import fr.ibformation.projetEcoleFormation.dal.EvaluationFormateurDAO;
@@ -37,6 +29,7 @@ import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
+import org.springframework.web.context.annotation.SessionScope;
 
 @SpringBootApplication
 public class ProjetEcoleFormationApplication implements CommandLineRunner {
@@ -74,7 +67,15 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Autowired
 	private FormationManager formationManager;
-	
+
+//================== Session Manager ================
+
+	@Bean
+	@SessionScope
+	public Stagiaire stagiaireSession() {
+		return new Stagiaire();
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		

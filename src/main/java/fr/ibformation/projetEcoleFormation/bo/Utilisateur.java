@@ -10,11 +10,14 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public abstract class Utilisateur {
 	@Id
 	@GeneratedValue

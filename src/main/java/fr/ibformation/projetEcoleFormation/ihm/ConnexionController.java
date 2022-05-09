@@ -7,13 +7,16 @@ import fr.ibformation.projetEcoleFormation.bo.Utilisateur;
 import fr.ibformation.projetEcoleFormation.dal.FormateurDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.annotation.SessionScope;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Objects;
 
@@ -29,6 +32,9 @@ public class ConnexionController {
 
     @Autowired
     FormateurDAO formateurDAO;
+
+    @Resource(name = "stagiaireSession")
+    Stagiaire sessionScopedStagiaire;
 
 
 
@@ -63,8 +69,10 @@ public class ConnexionController {
             }
 
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
-        //if(checkUserMailExist != null && checkUserMailExist.getMdp().hashCode() == stagiaire.getMdp().hashCode()) {
+        // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD et une verification de la correspondance du mdp à l'authentification
         if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
+            sessionScopedStagiaire = checkUserMailExist;
+            System.out.println(sessionScopedStagiaire);
             return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionStagiaire";

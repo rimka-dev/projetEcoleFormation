@@ -34,7 +34,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 				throw new FormationException(stagiaireCourant.getNom()+" est déjà présent");
 			}
 		}
-    	
+        // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD
         stagiaireDAO.save(stagiaire);
     }
 
@@ -97,7 +97,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 				throw new FormationException(formateurCourant.getNom()+" est déjà présent");
 			}
 		}
-    	
+        // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD
         formateurDAO.save(formateur);
     }
 
