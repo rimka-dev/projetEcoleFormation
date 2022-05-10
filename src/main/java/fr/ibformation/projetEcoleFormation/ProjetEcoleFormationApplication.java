@@ -6,13 +6,13 @@ import javax.transaction.Transactional;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.*;
+import fr.ibformation.projetEcoleFormation.ihm.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
@@ -78,8 +78,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Bean
 	@SessionScope
-	public Stagiaire connectedUser() {
-		return new Stagiaire();
+	public UserSession connectedUser() {
+		return new UserSession();
 	}
 
 	@Bean
@@ -216,13 +216,25 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 		Formation formation1 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
 		Formation formation2 = new Formation ("Informatique", "Apprendre le developpement PYTHON", "Les bases de la programmation Python", 1040, "Langages de développement");
+		Formation formation4 = new Formation ("Informatique", "Apprendre le developpement C++", "Les bases de la programmation C++", 1199, "Langages de développement");
+		Formation formation5 = new Formation ("Informatique", "Apprendre le developpement GO", "Les bases de la programmation GO", 1249, "Langages de développement");
+		Formation formation6 = new Formation ("Informatique", "Apprendre le developpement RUST", "Les bases de la programmation Rust", 1259, "Langages de développement");
+		Formation formation7 = new Formation ("Informatique", "Apprendre le developpement C", "Les bases de la programmation C", 1239, "Langages de développement");
+		Formation formation8 = new Formation ("Informatique", "Apprendre le developpement C#", "Les bases de la programmation C#", 999, "Langages de développement");
 
-		
+
 		/// ==== Create =====
 		formationManager.addFormation(formation1);
 		formationManager.addFormation(formation2);
-		
-		
+		formationManager.addFormation(formation4);
+		formationManager.addFormation(formation5);
+		formationManager.addFormation(formation6);
+		formationManager.addFormation(formation7);
+		formationManager.addFormation(formation8);
+
+
+
+
 		formationManager.addSousThemeToFormation(formation1, sousTheme1Manag, sousTheme2Manag, sousTheme3Manag);
 		
 		/// ==== Modify =====
