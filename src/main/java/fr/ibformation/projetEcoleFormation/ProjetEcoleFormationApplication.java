@@ -29,7 +29,7 @@ import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
-import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 @SpringBootApplication
 public class ProjetEcoleFormationApplication implements CommandLineRunner {
@@ -77,7 +77,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	}
 
 	@Bean
-	@SessionScope
+	@ApplicationScope
 	public UserSession connectedUser() {
 		return new UserSession();
 	}

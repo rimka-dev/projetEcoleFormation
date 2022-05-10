@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Objects;
 
@@ -62,7 +63,7 @@ public class ConnexionController {
     }
 
     @PostMapping("/stagiaire-login")
-    public String valid(@Valid Stagiaire stagiaire, BindingResult errors, Model model) {
+    public String valid(@Valid Stagiaire stagiaire, BindingResult errors) {
         if(errors.hasErrors()) {
             return "connexionStagiaire";
             }
@@ -71,7 +72,6 @@ public class ConnexionController {
         if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
             checkUserMailExist.setMdp("hidden");
             user.setUtilisateur(checkUserMailExist);
-
             return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionStagiaire";
