@@ -92,6 +92,8 @@ for (EvaluationFormateur evalFormateur : utilisateurManager.getListeEvaluationFo
 			evaluationDTO2.setNoteTechniqueAnimation(evalFormateur.getNoteTechniqueAnimation());
 			evaluationDTO2.setNom(evalFormateur.getStagiaire().getNom());
 			evaluationDTO2.setPrenom(evalFormateur.getStagiaire().getPrenom());
+			evaluationDTO2.setNomFormateur(evalFormateur.getFormateur().getNom());
+			evaluationDTO2.setPrenomFormateur(evalFormateur.getFormateur().getPrenom());
 			evalFormateurs.add(evaluationDTO2);
 			}
 

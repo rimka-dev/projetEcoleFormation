@@ -14,15 +14,14 @@
 <body>
 	<header>
 		<div class="row">
-			<div class="col-4">
-				<img src="/assets/logo.png" class="w-25 m-3 img-thumbnail"
-					alt="photo profil">
+			<div class="col-5">
+				<img src="/images/it-training-logo.png"
+					class="w-25 m-3 img-thumbnail" alt="photo profil">
 			</div>
-			<div class="col-8">
-				<span class=" mt-5">Ecole de formation</span>
+			<div class="col-7">
+				<h1 class=" mt-5">Ecole de formation</h1>
 			</div>
 		</div>
-
 
 		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -45,41 +44,44 @@
 			</div>
 		</nav>
 	</header>
-	<div class="row">
-		<div class="col-4 card ">
-			<h2 class="card-header">Gestion</h2>
-			<nav>
-				<ul class="nav flex-column mb-2">
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
-							des Formations</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
-							des Stagiaires</a></li>
-					<li class="nav-item"><a class="nav-link">Gestion des
-							Formateurs</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/admin/mes-taches}">Mes tâches</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/admin/note-experience-formateur}">Notes &
-							Expériences Formateur</a></li>
-				</ul>
+
+	<div class="container p-0">
+		<div class="row m-2">
+			<div class="col-4 p-0">
+				<div class="card ">
+					<h2 class="card-header">Gestion</h2>
+					<nav>
+						<ul class="nav flex-column mb-2">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
+									des Formations</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/liste-des-sessions}">Gestion des Sessions</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
+									des Stagiaires</a></li>
+							<li class="nav-item"><a class="nav-link">Gestion des
+									Formateurs</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/mes-taches}">Mes tâches</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/admin/note-experience-formateur}">Notes &
+									Expériences Formateur</a></li>
+						</ul>
+
+					</nav>
+
+				</div>
+				<a th:href="@{http://localhost:4200/admin}"
+					class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
+			</div>
+			<div class="col-8">
+				<h1>Tableau des notes moyennes et expériences Formateur</h1>
 				<div>
 					<a th:href="@{http://localhost:4200/admin}"
-						class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
+						class="btn btn-primary m-2">Retour</a>
 				</div>
-			</nav>
-		</div>
-		<div class="col-8 container">
-			<div class="row mt-3">
-
-				<div class="col-8">
-
-					<h1>Tableau des notes moyennes et expériences Formateur</h1>
-					<div>
-						<a th:href="@{http://localhost:4200/admin}"
-							class="btn btn-primary m-2">Retour</a>
-					</div>
+				<div class="table-responsive">
 					<table
 						class="table table-info table-striped table-bordered table-hover">
 						<thead class="thead-light">
@@ -109,9 +111,9 @@
 		</div>
 	</div>
 	<footer>
-			<div>
-				<p>Copyright © 2022</p>
-			</div>
-		</footer>
+		<div>
+			<p>Copyright © 2022</p>
+		</div>
+	</footer>
 </body>
 </html>

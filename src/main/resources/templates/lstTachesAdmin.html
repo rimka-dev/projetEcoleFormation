@@ -16,12 +16,12 @@
 <body>
 	<header>
 		<div class="row">
-			<div class="col-4">
-				<img src="/assets/logo.png" class="w-25 m-3 img-thumbnail"
+			<div class="col-5">
+				<img src="/images/it-training-logo.png" class="w-25 m-3 img-thumbnail"
 					alt="photo profil">
 			</div>
-			<div class="col-8">
-				<span class=" mt-5">Ecole de formation</span>
+			   <div class="col-7">
+				 <h1 class=" mt-5">Ecole de formation</h1>
 			</div>
 		</div>
 
@@ -46,7 +46,7 @@
 			</div>
 		</nav>
 	</header>
-<div class="container p-0">
+<div class="container">
 	<div class="row m-2">
 		<div class="col-4 p-0">
 			<div class="card ">
@@ -56,6 +56,9 @@
 						<li class="nav-item"><a class="nav-link"
 							th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
 								des Formations</a></li>
+								<li class="nav-item"><a class="nav-link"
+							th:href="@{/admin/liste-des-sessions}">Gestion
+								des Sessions</a></li>
 						<li class="nav-item"><a class="nav-link"
 							th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
 								des Stagiaires</a></li>
@@ -67,12 +70,12 @@
 							th:href="@{/admin/note-experience-formateur}">Notes &
 								Expériences Formateur</a></li>
 					</ul>
-					<div>
-						<a th:href="@{http://localhost:4200/admin}"
-							class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
-					</div>
+					
 				</nav>
+					
 			</div>
+			<a th:href="@{http://localhost:4200/admin}"
+							class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
 		</div>
 		<div class="col-8">
 	
@@ -183,6 +186,7 @@
 									<th class="text-center">Note Techniques d'Animations</th>
 									<th class="text-center">ID Session</th>
 									<th class="text-center">Nom Stagiaire</th>
+									<th class="text-center">Nom Formateur</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -208,6 +212,9 @@
 									<td><span
 										th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom
 											Stagiaire</span></td>
+											<td><span
+										th:text="${evaluation.nomFormateur} + ' ' + ${evaluation.prenomFormateur}">Nom
+											Formateur</span></td>
 								</tr>
 							</tbody>
 						</table>
