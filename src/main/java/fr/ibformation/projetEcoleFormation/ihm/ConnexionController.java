@@ -46,11 +46,11 @@ public class ConnexionController {
 
     @PostMapping("/formateur-login")
     public String valid(@Valid Formateur formateur, BindingResult errors, Model model) {
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return "connexionFormateur";
         }
         Formateur checkUserMailExist = formateurDAO.findFormateurByEmail(formateur.getMail());
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(formateur.getMdp())){
+        if (checkUserMailExist != null && checkUserMailExist.getMdp().equals(formateur.getMdp())) {
             return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionFormateur";
@@ -64,12 +64,12 @@ public class ConnexionController {
 
     @PostMapping("/stagiaire-login")
     public String valid(@Valid Stagiaire stagiaire, BindingResult errors) {
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return "connexionStagiaire";
-            }
+        }
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
         // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD et une verification de la correspondance du mdp à l'authentification
-        if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
+        if (checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())) {
             checkUserMailExist.setMdp("hidden");
             user.setUtilisateur(checkUserMailExist);
             return "redirect:http://localhost:4200/page-accueil";

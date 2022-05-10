@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.ws;
 
 import fr.ibformation.projetEcoleFormation.bo.Utilisateur;
 import fr.ibformation.projetEcoleFormation.ihm.UserSession;
+import nonapi.io.github.classgraph.utils.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,15 @@ public class UserSessionWS {
 
     @GetMapping("/session")
     public Utilisateur getUserSession() {
-        return user.getUtilisateur();
+        if(user != null) {
+            return user.getUtilisateur();
+        }
+        return null;
+    }
+
+    @GetMapping("/logout")
+    public String logOut() {
+        user.setUtilisateur(null);
+        return "Utilisateur déconnecté";
     }
 }
