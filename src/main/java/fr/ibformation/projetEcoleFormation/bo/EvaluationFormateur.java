@@ -27,7 +27,7 @@ public class EvaluationFormateur {
 	private Double noteMoyenneFormateur;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="evaluation-session-formateur")
 	private Formateur formateur;
 	
 	@ManyToOne

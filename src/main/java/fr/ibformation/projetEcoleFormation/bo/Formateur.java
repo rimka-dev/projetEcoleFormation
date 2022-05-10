@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -29,12 +30,12 @@ public class Formateur extends Utilisateur {
 	private String ville;
 	
 	
-	@OneToMany(mappedBy = "formateur")
+	@OneToMany(mappedBy = "formateur", cascade= CascadeType.ALL)
 	@JsonManagedReference(value="evaluation-session-formateur")
 	@JsonIgnore
 	private Set <EvaluationFormateur> listeEvalFormateur = new HashSet<>();
 	
-	@OneToMany(mappedBy = "formateur")
+	@OneToMany(mappedBy = "formateur", cascade= CascadeType.ALL)
 	@JsonManagedReference(value="session-formation-formateur")
 	@JsonIgnore
 	private Set <SessionFormation> listeSessionFormation = new HashSet<>();

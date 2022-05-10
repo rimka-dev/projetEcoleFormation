@@ -10,7 +10,7 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	
+
 <title>Mes tâches</title>
 </head>
 <body>
@@ -35,44 +35,47 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
-						<a class="nav-link active" aria-current="page" th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
-							class="nav-link active"  th:href="@{http://localhost:4200/catalogue}">Formations</a>
-						<a class="nav-link active"  th:href="@{http://localhost:4200/contact}">Contact</a>
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a>
 					</div>
 				</div>
 			</div>
 		</nav>
 	</header>
-
-	<div class="row">
-		<div class="col-4 card ">
-			<h2 class="card-header">Gestion</h2>
-			<nav>
-				<ul class="nav flex-column mb-2">
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
-							des Formations</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
-							des Stagiaires</a></li>
-					<li class="nav-item"><a class="nav-link">Gestion des
-							Formateurs</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/admin/mes-taches}">Mes tâches</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/admin/note-experience-formateur}">Notes &
-							Expériences Formateur</a></li>
-				</ul>
-				<div>
-					<a th:href="@{http://localhost:4200/admin}"
-						class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
-				</div>
-			</nav>
+<div class="container p-0">
+	<div class="row m-2">
+		<div class="col-4 p-0">
+			<div class="card ">
+				<h2 class="card-header">Gestion</h2>
+				<nav>
+					<ul class="nav flex-column mb-2">
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{http://localhost:4200/admin/formation/liste}">Gestion
+								des Formations</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
+								des Stagiaires</a></li>
+						<li class="nav-item"><a class="nav-link">Gestion des
+								Formateurs</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/admin/mes-taches}">Mes tâches</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/admin/note-experience-formateur}">Notes &
+								Expériences Formateur</a></li>
+					</ul>
+					<div>
+						<a th:href="@{http://localhost:4200/admin}"
+							class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
+					</div>
+				</nav>
+			</div>
 		</div>
-		<div class="col-8 container">
-			<div class="row mt-3">
-
-				<div class="col-8">
+		<div class="col-8">
+	
 					<h1>Mes tâches</h1>
 					<div>
 						<a th:href="@{http://localhost:4200/admin}"
@@ -211,12 +214,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<footer>
-			<div>
-				<p>Copyright © 2022</p>
 			</div>
-		</footer>
+	<footer>
+		<div>
+			<p>Copyright © 2022</p>
+		</div>
+	</footer>
 </body>
 </html>
