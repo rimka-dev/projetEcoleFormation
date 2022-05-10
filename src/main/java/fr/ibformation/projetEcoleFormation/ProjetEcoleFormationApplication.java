@@ -70,18 +70,18 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 //================== Session Manager ================
 
-	@Bean
-	@SessionScope
-	public Stagiaire stagiaireSession() {
-		return new Stagiaire();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		
 	}
 
-	
+	@Bean
+	@SessionScope
+	public Stagiaire connectedUser() {
+		return new Stagiaire();
+	}
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();

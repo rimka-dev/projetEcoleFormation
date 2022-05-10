@@ -27,7 +27,7 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void addFormationTest() throws FormationException {
-		Formation formation = new Formation("InformatiqueManag", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		Formation formation = new Formation("InformatiqueManag", "Apprendre le developpement JAVA test", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		assertNotNull(formation.getIdFormation());
 	}
@@ -45,7 +45,7 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void deleteFormationTest() throws FormationException {
-		Formation formation = new Formation("InformatiqueManag", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		Formation formation = new Formation("InformatiqueManag", "Apprendre le developpement JAVA test", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		Integer idFormation = formation.getIdFormation();
 		formationManager.deleteFormationById(idFormation);
@@ -56,8 +56,8 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void getListeFormationTest() throws FormationException {
-		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
-		Formation formation2 = new Formation("Informatique", "Apprendre le developpement PYTHON", "description", 1040, "Langages de développement");
+		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA test", "description", 1040, "Langages de développement");
+		Formation formation2 = new Formation("Informatique", "Apprendre le developpement PYTHON test", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		formationManager.addFormation(formation2);
 		assertNotEquals(formationManager.getListeFormations().size(), 0);
@@ -67,7 +67,7 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void getFormationByIdTest() throws FormationException {
-		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
+		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA TEST", "description", 1040, "Langages de développement");
 		formationManager.addFormation(formation);
 		
 		Formation formationFromBdd = formationManager.getFormationById(formation.getIdFormation());
@@ -128,7 +128,7 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void addSousThemeFormationTest() throws FormationException {
-		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
+		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA-TEST");
 		formationManager.addSousThemeFormation(sousThemeFormation);
 		assertNotNull(sousThemeFormation.getIdSousTheme());
 	}
@@ -139,7 +139,7 @@ public class FormationManagerTests {
 	@Transactional
 	void addSousThemeToFormation() {
 		Formation formation = new Formation("Informatique", "Apprendre le developpement JAVA", "description", 1040, "Langages de développement");
-		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
+		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA-TEST");
 		formationManager.addSousThemeToFormation(formation, sousThemeFormation);
 		assertTrue(formation.getListeSousThemeFormation().size() >0);
 	}
@@ -158,7 +158,7 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void deleteSousThemeFormationTest() throws FormationException {
-		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
+		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA-TEST");
 		formationManager.addSousThemeFormation(sousThemeFormation);
 		Integer idSousThemeFormation = sousThemeFormation.getIdSousTheme();
 		formationManager.deleteSousThemeFormationById(idSousThemeFormation);
@@ -169,8 +169,8 @@ public class FormationManagerTests {
 	@Test
 	@Transactional
 	void getListeSousThemeFormationTest() throws FormationException {
-		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA");
-		SousThemeFormation sousThemeFormation2 = new SousThemeFormation("HTML");
+		SousThemeFormation sousThemeFormation = new SousThemeFormation("JAVA-TEST");
+		SousThemeFormation sousThemeFormation2 = new SousThemeFormation("HTML TEST");
 		formationManager.addSousThemeFormation(sousThemeFormation);
 		formationManager.addSousThemeFormation(sousThemeFormation2);
 		assertNotEquals(formationManager.getListeSousThemesFormation().size(),0);

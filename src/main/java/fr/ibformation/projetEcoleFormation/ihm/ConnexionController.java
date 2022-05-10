@@ -33,8 +33,10 @@ public class ConnexionController {
     @Autowired
     FormateurDAO formateurDAO;
 
-    @Resource(name = "stagiaireSession")
-    Stagiaire sessionScopedStagiaire;
+    @Autowired
+    private Stagiaire user;
+
+
 
 
 
@@ -67,12 +69,10 @@ public class ConnexionController {
         if(errors.hasErrors()) {
             return "connexionStagiaire";
             }
-
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
         // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD et une verification de la correspondance du mdp à l'authentification
         if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
-            sessionScopedStagiaire = checkUserMailExist;
-            System.out.println(sessionScopedStagiaire);
+            user = checkUserMailExist;
             return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionStagiaire";
