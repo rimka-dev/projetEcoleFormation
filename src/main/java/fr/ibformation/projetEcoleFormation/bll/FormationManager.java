@@ -33,4 +33,5 @@ public interface FormationManager {
 	public Integer getExperienceGlobalFormateur(Integer idFormateur);
 	public List<SessionFormation> getListeSessionsAAnnuler();
 	public List<SessionFormation>  getListeFormateurAnnulationApresLimite();
+	//public SessionFormation getSessionStagiaireByIdStagiaire(Integer idStagiaire);
 }

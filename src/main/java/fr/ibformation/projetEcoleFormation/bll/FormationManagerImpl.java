@@ -224,5 +224,10 @@ public class FormationManagerImpl implements FormationManager {
 			}
 		}return listeSessionAnnulationApresLimite;
 	}
+//	@Override
+//	public SessionFormation getSessionStagiaireByIdStagiaire(Integer idStagiaire) {
+//		
+//		return sessionFormationDAO.findSaissionFormationByIdStagiaire(idStagiaire);
+//	}
 
 }

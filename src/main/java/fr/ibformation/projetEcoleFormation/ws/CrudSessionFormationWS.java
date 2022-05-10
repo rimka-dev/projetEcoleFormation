@@ -56,4 +56,8 @@ public class CrudSessionFormationWS {
 		formationManager.deleteSessionFormationById(id);
 	}
 	
+//	@GetMapping("/session-formation-stagiaire/{idStagiaire}")
+//	public SessionFormation getSessionStagiaire(@PathVariable("idStagiaire") Integer idStagiaire) {
+//		return formationManager.getSessionStagiaireByIdStagiaire(idStagiaire);
+//	}
 }

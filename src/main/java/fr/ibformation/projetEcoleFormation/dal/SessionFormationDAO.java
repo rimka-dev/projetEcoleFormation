@@ -12,5 +12,8 @@ public interface SessionFormationDAO extends CrudRepository<SessionFormation, In
 	
 	@Query("SELECT session FROM SessionFormation session WHERE session.formateur.idUtilisateur=:id")
 	List <SessionFormation> findAllByFormateur(@Param("id")Integer id);
+
+	 //@Query("SELECT s FROM SessionFormation s where s.idUtilisateur = ?1")
+	//SessionFormation findSaissionFormationByIdStagiaire(Integer idStagiaire);
 	
 }
