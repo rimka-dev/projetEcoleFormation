@@ -28,7 +28,7 @@ public class UserSessionWS {
 
     @GetMapping("/logout")
     public String logOut() {
-        user = null;
+        user.setUtilisateur(null);
         return "Utilisateur déconnecté";
     }
 }
