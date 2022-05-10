@@ -78,6 +78,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Bean
 	@ApplicationScope
+	// Pas en SessionScope par manque de temps pour le mettre en place
 	public UserSession connectedUser() {
 		return new UserSession();
 	}
@@ -90,6 +91,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
+
+		// Création Admin
+		Stagiaire admin = new Stagiaire("admin","admin","admin@admin.fr","admin","admin","5 rue des admin","00000","AdminVille");
+		utilisateurManager.addStagiaire(admin);
 		
 		//===================== Celine ==============================
 		
