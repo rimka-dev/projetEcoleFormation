@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/style.css}" />
+<link rel="stylesheet" th:href="@{/style-menu-gestion.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<title>Mes Sessions</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-4">
+				<a th:href="@{http://localhost:4200/page-accueil}">
+				<img src="/images/it-training-logo.png"
+					 class="w-25 m-3 img-thumbnail" alt="photo profil"/></a>
+			</div>
+			<div class="col-8">
+				<span class=" mt-5">Ecole de formation</span>
+			</div>
+		</div>
+
+</div>
+
+		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page"
+							th:href="@{http://localhost:4200/page-accueil}">Accueil</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/contact}">Contact</a>
+							<a
+							class="nav-link active" th:href="@{http://localhost:4200/admin}">Admin</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+    <h2 class="text-center my-3">Ajouter une Session</h2>
+    <div class="row">
+        <div class="col-sm-12">
+        <div th:object="${sessions2}">
+						<label for="formation">Nom de la formation : </label> <span
+							th:text="${sessions2.nomFormation}">ID Session</span>
+					</div>
+					
+            <form class="row g-3" th:action="@{/session-formation/valid/{id}(id=${sessionFormation.idSession})}"
+						th:object="${sessionFormation}" method="post">
+                 <div class="col-md-6">
+                    <label for="formation">Nom de la formation</label>
+                    <input type="hidden" class="form-control" th:field="*{nomFormation}" id="nomFormation" name="nomFormation" required >
+                </div>
+                <div class="col-md-6">
+                    <label for="dateDebut">Date de début</label>
+                    <input type="date" class="form-control" th:field="*{dateDebut}" id="dateDebut" name="dateDebut" required >
+                </div>
+                <div class="col-md-6">
+                  <label for="dateFin" class="form-label">Date de fin</label>
+                  <input type="date" class="form-control" th:field="*{dateFin}" id="dateFin" name="dateFin" required  >
+                
+                </div>
+                <div class="col-6">
+                    <label for="typeFormation" class="form-label">Theme de la formation</label>
+                    <input type="text" placeholder="typeFormation" th:field="*{dateDebut}" class="form-control" id="typeFormation"  required >
+                
+            
+                  <button type="submit" class="btn btn-primary m-1">Ajouter</button>
+                  <a th:href="@{/admin/liste-des-sessions}" class="btn btn-success m-2 mx-auto">Retour</a>
+                </div>
+              </form>
+         
+        </div>
+    </div>
+</div>
+	<footer>
+			<div>
+				<p>Copyright © 2022</p>
+			</div>
+		</footer>
+</body>
+</html>

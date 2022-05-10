@@ -5,12 +5,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
@@ -132,12 +138,67 @@ for (SessionFormation session : formationManager.getListeFormateurAnnulationApre
 					sessionDTO.setNomFormation("N/A");
 				}
 				sessions.add(sessionDTO);
-			}
+		}
 
 	model.addAttribute("sessions", sessions);
 	
 	return "lstSessionsAdmin";
 }
+	
+	
+	@GetMapping("/session-formation/add")
+	public String addSession(SessionFormation session, Model model) {
+		
+		List <SessionDTO> sessions2 = new ArrayList<>();
+
+		for (SessionFormation session2 : formationManager.getListeSessionsFormation()) {
+			
+				SessionDTO sessionDTO2 = new SessionDTO();
+				sessionDTO2.setIdSession(session2.getIdSession());
+				sessionDTO2.setDateDebut(session2.getDateDebut());
+				sessionDTO2.setDateFin(session2.getDateFin());
+				sessionDTO2.setTypeFormation(session2.getTypeFormation());
+
+				if (session2.getFormation() != null) {
+					sessionDTO2.setNomFormation(session2.getFormation().getNomFormation());
+				} else {
+					sessionDTO2.setNomFormation("N/A");
+				}
+				sessions2.add(sessionDTO2);
+		}
+
+	model.addAttribute("sessions2", sessions2);
+	
+		return "formSession";
+	}
+
+	@PostMapping("/session-formation/valid")
+	public String validSession(@Valid SessionFormation session, BindingResult errors, Model model) {
+		if (errors.hasErrors()) {
+			return "formSession";
+		}
+		formationManager.addSessionFormation(session);
+		return "redirect:/liste-des-sessions";
+	}
+
+	@GetMapping("/session-formation/modify/{id}")
+	public String modifySession(@PathVariable Integer id, Model model) {
+		SessionFormation session = formationManager.getSessionFormationById(id);
+		model.addAttribute("session", session);
+		return "formSession";
+	}
+
+	@GetMapping("/session-formation/delete/{id}")
+	public String deleteSession(@PathVariable("id") Integer id, Model model) {
+		try {
+			formationManager.deleteSessionFormationById(id);
+			return "redirect:/liste-des-sessions";
+		} catch (FormationException e) {
+			model.addAttribute("erreurs", e.getMessage());
+			model.addAttribute("lstAnnotations", formationManager.getListeSessionsFormation());
+			return "lstSessionsAdmin";
+		}
+	}
 	
 	////////////////////////////////////////////////////////////
 	///// Données de test

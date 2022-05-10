@@ -15,8 +15,9 @@
 	<header>
 		<div class="row">
 			<div class="col-5">
-				<img src="/images/it-training-logo.png" class="w-25 m-3 img-thumbnail"
-					alt="photo profil">
+				<a th:href="@{http://localhost:4200/page-accueil}">
+				<img src="/images/it-training-logo.png"
+					 class="w-25 m-3 img-thumbnail" alt="photo profil"/></a>
 			</div>
 			   <div class="col-7">
 				 <h1 class=" mt-5">Ecole de formation</h1>
@@ -79,6 +80,11 @@
 						class="btn btn-primary m-2">Retour</a>
 				</div>
 				<div class="table-responsive">
+<!-- 				<div> -->
+<!-- 					<a th:href="@{/admin/session-formation/add}" -->
+<!-- 						class="btn btn-primary m-2">Add</a> -->
+<!-- 				</div> -->
+				
 					<table
 						class="table table-info table-striped table-bordered table-hover">
 						<thead class="thead-light">
