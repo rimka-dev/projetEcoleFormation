@@ -37,9 +37,6 @@ public class ConnexionController {
     private Stagiaire user;
 
 
-
-
-
     @GetMapping("/formateur")
     public String get(Formateur formateur, Model model) {
         model.addAttribute("lstFormateurs", manager.getAllFormateur());
@@ -72,7 +69,11 @@ public class ConnexionController {
         Stagiaire checkUserMailExist = stagiaireDAO.findStagiaireByEmail(stagiaire.getMail());
         // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD et une verification de la correspondance du mdp à l'authentification
         if(checkUserMailExist != null && checkUserMailExist.getMdp().equals(stagiaire.getMdp())){
-            user = checkUserMailExist;
+            user.setPrenom(checkUserMailExist.getPrenom());
+            user.setNom(checkUserMailExist.getNom());
+            user.setMail(checkUserMailExist.getMail());
+            user.setStatut(checkUserMailExist.getStatut());
+            System.out.println(user);
             return "redirect:http://localhost:4200/page-accueil";
         }
         return "connexionStagiaire";

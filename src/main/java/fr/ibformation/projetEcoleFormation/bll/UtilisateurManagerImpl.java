@@ -212,7 +212,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
     @Override
     @Transactional
     public void deleteEvaluationFormateurById(Integer id) throws UtilisateurManagerException {
-        evaluationSessionDAO.findById(id)
+        evaluationFormateurDAO.findById(id)
                 .orElseThrow(()->new UtilisateurManagerException("Evaluation formateur introuvable"));
         evaluationFormateurDAO.deleteById(id);
     }

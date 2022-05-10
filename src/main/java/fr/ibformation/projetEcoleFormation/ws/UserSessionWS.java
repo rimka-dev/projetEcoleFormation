@@ -17,6 +17,6 @@ public class UserSessionWS {
     @GetMapping("/session")
     public String getUserSession() {
         System.out.println(user);
-        return user.getMail();
+        return user.getPrenom();
     }
 }
