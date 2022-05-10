@@ -45,7 +45,8 @@ public class CrudFormateurWS {
     }
 
     @DeleteMapping("/formateur/{id}")
-    public void deleteFormateurById(@PathVariable("id") Integer id) throws UtilisateurManagerException {
+    public List<Formateur> deleteFormateurById(@PathVariable("id") Integer id) throws UtilisateurManagerException {
         manager.deleteFormateurById(id);
+        return manager.getAllFormateur();
     }
 }
