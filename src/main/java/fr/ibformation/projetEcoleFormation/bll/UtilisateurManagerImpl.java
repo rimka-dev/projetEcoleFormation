@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +87,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 	@Override
 	public Stagiaire getStagiaireById(Integer id) {
+
 		return stagiaireDAO.findById(id).orElse(null);
 	}
 
