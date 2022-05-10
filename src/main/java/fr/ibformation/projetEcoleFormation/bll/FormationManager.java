@@ -3,6 +3,7 @@ package fr.ibformation.projetEcoleFormation.bll;
 import java.util.List;
 
 import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
+import fr.ibformation.projetEcoleFormation.bo.Formateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
@@ -31,5 +32,5 @@ public interface FormationManager {
 	
 	public Integer getExperienceGlobalFormateur(Integer idFormateur);
 	public List<SessionFormation> getListeSessionsAAnnuler();
-	
+	public List<SessionFormation>  getListeFormateurAnnulationApresLimite();
 }

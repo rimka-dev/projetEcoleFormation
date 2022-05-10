@@ -65,6 +65,8 @@ public class AdminFormationController {
 		
 		List <EvaluationDTO> evalFormateurs = new ArrayList<>();
 		
+		List <EvaluationDTO> annulationFormateurs = new ArrayList<>();
+		
 		for (EvaluationSession evalSession : utilisateurManager.getListeEvaluationSessionMauvaiseNote()) {
 			
 			EvaluationDTO evaluationDTO = new EvaluationDTO();
@@ -93,6 +95,16 @@ for (EvaluationFormateur evalFormateur : utilisateurManager.getListeEvaluationFo
 			evalFormateurs.add(evaluationDTO2);
 			}
 
+for (SessionFormation session : formationManager.getListeFormateurAnnulationApresLimite()) {
+	
+	EvaluationDTO evaluationDTO3 = new EvaluationDTO();
+	evaluationDTO3.setIdSession(session.getIdSession());
+	evaluationDTO3.setNom(session.getFormateur().getNom());;
+	evaluationDTO3.setPrenom(session.getFormateur().getPrenom());
+	annulationFormateurs.add(evaluationDTO3);
+	}
+
+        model.addAttribute("formateurAnnulationApresLimite", annulationFormateurs);
 		model.addAttribute("sessionsAAnnuler", formationManager.getListeSessionsAAnnuler());
 		model.addAttribute("evaluationFormateurMauvaiseNote", evalFormateurs);
 		model.addAttribute("evaluationSessionMauvaiseNote", evalSessions);

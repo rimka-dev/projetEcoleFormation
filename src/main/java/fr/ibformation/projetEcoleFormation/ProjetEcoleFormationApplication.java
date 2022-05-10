@@ -5,28 +5,20 @@ import java.time.LocalDate;
 import javax.transaction.Transactional;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
 import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 
-import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
-import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
-import fr.ibformation.projetEcoleFormation.bo.Formation;
-import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
-import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
-import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
-import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 import fr.ibformation.projetEcoleFormation.dal.CentreFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.EntrepriseClientDAO;
 import fr.ibformation.projetEcoleFormation.dal.EvaluationFormateurDAO;
@@ -37,6 +29,7 @@ import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
+import org.springframework.web.context.annotation.SessionScope;
 
 @SpringBootApplication
 public class ProjetEcoleFormationApplication implements CommandLineRunner {
@@ -74,12 +67,21 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Autowired
 	private FormationManager formationManager;
-	
+
+//================== Session Manager ================
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		
 	}
-	
+
+	@Bean
+	@SessionScope
+	public Stagiaire connectedUser() {
+		return new Stagiaire();
+	}
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
@@ -118,15 +120,15 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
-		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,04,10), LocalDate.of(2022,05,8), "intra-entreprise", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,16), LocalDate.of(2022,05,9), "intra-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		sessionManag.setFormateur(formateurManag);
 		salle.addSessionFormation(sessionManag);
 		sessionManag.setSalleFormation(salle);
 		sessionManag.setFormation(formation3);
-	
-		
+	    sessionManag.setDateAnnulation(LocalDate.of(2022,05,9));
+
 		formationManager.addSessionFormation(sessionManag);
 		
 		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,03,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
@@ -145,8 +147,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS);
 		evalF.setStagiaire(stagiaireManag);
 		evalF.setSessionFormation(sessionManag);
-		sessionManag.setEvalFormateur(evalF);
-		sessionManag.setEvalSession(evalS);
+		sessionManag.addEvalFormateur(evalF);
+		sessionManag.addEvalSession(evalS);
 		evalF.setFormateur(formateurManag);
 		evalS.setSessionFormation(sessionManag);
 		evalS.setStagiaire(stagiaireManag);
@@ -161,8 +163,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS2);
 		evalF2.setStagiaire(stagiaire3);
 		evalF2.setSessionFormation(sessionManag2);
-		sessionManag2.setEvalFormateur(evalF2);
-		sessionManag2.setEvalSession(evalS2);
+		sessionManag2.addEvalFormateur(evalF2);
+		sessionManag2.addEvalSession(evalS2);
 		evalF2.setFormateur(formateur3);
 		evalS2.setSessionFormation(sessionManag2);
 		evalS2.setStagiaire(stagiaire3);
@@ -245,7 +247,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Anael ==================================
 
-		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
+		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdpmdp","Stagiaire","6 rue du coq","31000","Toulouse");
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		e1.setSessionFormation(sessionManag2);
 		utilisateurManager.addEvaluationSession(e1);

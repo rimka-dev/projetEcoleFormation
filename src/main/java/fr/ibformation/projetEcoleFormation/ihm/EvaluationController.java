@@ -1,7 +1,6 @@
 package fr.ibformation.projetEcoleFormation.ihm;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
@@ -37,21 +37,21 @@ public class EvaluationController {
 
 		EvaluationDTO evaluationDTO = new EvaluationDTO();
 		
-		evaluationDTO.setIdSession(id);
+        evaluationDTO.setIdSession(id);
 		evaluationDTO.setNom(stagiaire.getNom());
+		evaluationDTO.setPrenom(stagiaire.getPrenom());
 
-        model.addAttribute("evaluation", evaluationDTO);
+         model.addAttribute("evaluation", evaluationDTO);
         
     	//SessionFormation session = formationManager.getSessionFormationById(id);
     	
-        model.addAttribute("nom", evaluationDTO);
-        
+ 
         return "evalFormation";
     }
 	
 		
 	@PostMapping("/valid/{id}")
-	public String validInscription(@Valid EvaluationDTO evaluationDTO, @PathVariable("id") Integer id, BindingResult errors, Model model) throws FormationException {
+	public String validInscription(@Valid EvaluationDTO evaluationDTO, @PathVariable("id") Integer id, BindingResult errors, Model model,  RedirectAttributes redirAttrs) throws FormationException {
 		if (errors.hasErrors()) {
 			return "evalFormation";
 		}
@@ -62,18 +62,22 @@ public class EvaluationController {
 		
 		EvaluationSession evalSession = evaluationDTO.toEvaluationSession();
 		EvaluationFormateur evalFormateur = evaluationDTO.toEvaluationFormateur();
-        SessionFormation session = evaluationDTO.toSessionFormation();
+        SessionFormation session = formationManager.getSessionFormationById(id);
+        
         evalSession.setSessionFormation(session);
         evalFormateur.setFormateur(formateur);
         evalFormateur.setSessionFormation(session);
 		evalSession.setStagiaire(stagiaire);
 		evalFormateur.setStagiaire(stagiaire);
-        evaluationDTO.toStagiaire();
+        //evaluationDTO.toStagiaire();
 		utilisateurManager.addEvaluationFormateur(evalFormateur);
 		utilisateurManager.addEvaluationSession(evalSession);
-		formationManager.addSessionFormation(session);
-		utilisateurManager.addStagiaire(stagiaire);
-		return "lstFormateurs";
+		//formationManager.addSessionFormation(session);
+		//utilisateurManager.addStagiaire(stagiaire);
+		
+	    redirAttrs.addFlashAttribute("success", "Everything went just fine.");
+		
+		return "redirect:/espace-client/mes-sessions";
 	}
 
 	
