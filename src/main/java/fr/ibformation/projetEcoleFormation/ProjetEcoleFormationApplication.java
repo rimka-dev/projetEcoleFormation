@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.transaction.Transactional;
 
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.*;
+import fr.ibformation.projetEcoleFormation.ihm.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,16 +19,6 @@ import fr.ibformation.projetEcoleFormation.bll.LieuFormationManager;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 
-import fr.ibformation.projetEcoleFormation.bo.CentreFormation;
-import fr.ibformation.projetEcoleFormation.bo.EntrepriseClient;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
-import fr.ibformation.projetEcoleFormation.bo.EvaluationSession;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
-import fr.ibformation.projetEcoleFormation.bo.Formation;
-import fr.ibformation.projetEcoleFormation.bo.SalleFormation;
-import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
-import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
-import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
 import fr.ibformation.projetEcoleFormation.dal.CentreFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.EntrepriseClientDAO;
 import fr.ibformation.projetEcoleFormation.dal.EvaluationFormateurDAO;
@@ -37,6 +29,7 @@ import fr.ibformation.projetEcoleFormation.dal.SalleFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.StagiaireDAO;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 @SpringBootApplication
 public class ProjetEcoleFormationApplication implements CommandLineRunner {
@@ -74,12 +67,22 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 	@Autowired
 	private FormationManager formationManager;
-	
+
+//================== Session Manager ================
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetEcoleFormationApplication.class, args);
 		
 	}
-	
+
+	@Bean
+	@ApplicationScope
+	// Pas en SessionScope par manque de temps pour le mettre en place
+	public UserSession connectedUser() {
+		return new UserSession();
+	}
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
@@ -88,6 +91,10 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
+
+		// Création Admin
+		Stagiaire admin = new Stagiaire("admin","admin","admin@admin.fr","admin","admin","5 rue des admin","00000","AdminVille");
+		utilisateurManager.addStagiaire(admin);
 		
 		//===================== Celine ==============================
 		
@@ -214,13 +221,25 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 
 		Formation formation1 = new Formation ("Informatique", "Apprendre le developpement JAVA", "Les bases de la programmation Java EE", 1040, "Langages de développement");
 		Formation formation2 = new Formation ("Informatique", "Apprendre le developpement PYTHON", "Les bases de la programmation Python", 1040, "Langages de développement");
+		Formation formation4 = new Formation ("Informatique", "Apprendre le developpement C++", "Les bases de la programmation C++", 1199, "Langages de développement");
+		Formation formation5 = new Formation ("Informatique", "Apprendre le developpement GO", "Les bases de la programmation GO", 1249, "Langages de développement");
+		Formation formation6 = new Formation ("Informatique", "Apprendre le developpement RUST", "Les bases de la programmation Rust", 1259, "Langages de développement");
+		Formation formation7 = new Formation ("Informatique", "Apprendre le developpement C", "Les bases de la programmation C", 1239, "Langages de développement");
+		Formation formation8 = new Formation ("Informatique", "Apprendre le developpement C#", "Les bases de la programmation C#", 999, "Langages de développement");
 
-		
+
 		/// ==== Create =====
 		formationManager.addFormation(formation1);
 		formationManager.addFormation(formation2);
-		
-		
+		formationManager.addFormation(formation4);
+		formationManager.addFormation(formation5);
+		formationManager.addFormation(formation6);
+		formationManager.addFormation(formation7);
+		formationManager.addFormation(formation8);
+
+
+
+
 		formationManager.addSousThemeToFormation(formation1, sousTheme1Manag, sousTheme2Manag, sousTheme3Manag);
 		
 		/// ==== Modify =====
@@ -245,7 +264,7 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		//===================== Anael ==================================
 
-		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdp","Stagiaire","6 rue du coq","31000","Toulouse");
+		Stagiaire s1 = new Stagiaire("LARUE","Benoit","larue.benoit@gmail.com","mdpmdp","Stagiaire","6 rue du coq","31000","Toulouse");
 		EvaluationSession e1 = new EvaluationSession(5,5,5,"satisfait",true,true);
 		e1.setSessionFormation(sessionManag2);
 		utilisateurManager.addEvaluationSession(e1);

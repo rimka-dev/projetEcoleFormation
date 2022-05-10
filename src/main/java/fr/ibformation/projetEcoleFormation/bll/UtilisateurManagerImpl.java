@@ -39,8 +39,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			}
 		}
 
-		stagiaireDAO.save(stagiaire);
-	}
+        // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD
+        stagiaireDAO.save(stagiaire);
+    }
+
 
 	@Override
 	@Transactional
@@ -102,8 +104,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			}
 		}
 
-		formateurDAO.save(formateur);
-	}
+        // TODO: 09/05/2022 Ajouter un chiffrage du mdp en BDD
+        formateurDAO.save(formateur);
+    }
+
 
 	@Override
 	@Transactional
@@ -213,13 +217,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		evaluationFormateurDAO.save(evaluationFormateur);
 	}
 
-	@Override
-	@Transactional
-	public void deleteEvaluationFormateurById(Integer id) throws UtilisateurManagerException {
-		evaluationFormateurDAO.findById(id)
-		.orElseThrow(()->new UtilisateurManagerException("Evaluation formateur introuvable"));
-		evaluationFormateurDAO.deleteById(id);
-	}
+
+    @Override
+    @Transactional
+    public void deleteEvaluationFormateurById(Integer id) throws UtilisateurManagerException {
+        evaluationFormateurDAO.findById(id)
+                .orElseThrow(()->new UtilisateurManagerException("Evaluation formateur introuvable"));
+        evaluationFormateurDAO.deleteById(id);
+    }
+
 
 	@Override
 	public EvaluationFormateur getEvaluationFormateurById(Integer id) {

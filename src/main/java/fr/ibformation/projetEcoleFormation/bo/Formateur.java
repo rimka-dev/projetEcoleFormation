@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,11 +23,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Formateur extends Utilisateur {
-	@NotBlank(message =  "Champs Adresse vide")
+	//@NotBlank(message="Veuillez saisir une adresse")
 	private String adresse;
-	@NotBlank(message =  "Champs Code Postal vide")
+	//@NotBlank(message="Veuillez saisir un code postal")
+	//@Size(min = 5, max = 5)
 	private String codePostal;
-	@NotBlank(message =  "Champs Ville vide")
+	//@NotBlank(message="Veuillez saisir un mot de passe")
 	private String ville;
 	
 	
