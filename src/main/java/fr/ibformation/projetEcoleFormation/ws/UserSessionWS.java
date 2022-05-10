@@ -15,7 +15,8 @@ public class UserSessionWS {
     private Stagiaire user;
 
     @GetMapping("/session")
-    public Stagiaire getUserSession() {
-        return user;
+    public String getUserSession() {
+        System.out.println(user);
+        return user.getMail();
     }
 }
