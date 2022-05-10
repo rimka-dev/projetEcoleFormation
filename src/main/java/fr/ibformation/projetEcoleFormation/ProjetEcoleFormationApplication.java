@@ -120,15 +120,15 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
-		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,04,10), LocalDate.of(2022,05,8), "intra-entreprise", true, true, true, false, false, false, false, false);
+		SessionFormation sessionManag = new SessionFormation(LocalDate.of(2022,05,16), LocalDate.of(2022,05,9), "intra-entreprise", true, true, true, false, false, false, false, false);
 		sessionManag.setEntreprise(entrepriseManag);
 		sessionManag.addStagiaire(stagiaireManag);
 		sessionManag.setFormateur(formateurManag);
 		salle.addSessionFormation(sessionManag);
 		sessionManag.setSalleFormation(salle);
 		sessionManag.setFormation(formation3);
-	
-		
+	    sessionManag.setDateAnnulation(LocalDate.of(2022,05,9));
+
 		formationManager.addSessionFormation(sessionManag);
 		
 		SessionFormation sessionManag2 = new SessionFormation(LocalDate.of(2022,03,10), LocalDate.of(2022,05,15), "inter-entreprise", true, true, true, false, false, false, false, false);
@@ -147,8 +147,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS);
 		evalF.setStagiaire(stagiaireManag);
 		evalF.setSessionFormation(sessionManag);
-		sessionManag.setEvalFormateur(evalF);
-		sessionManag.setEvalSession(evalS);
+		sessionManag.addEvalFormateur(evalF);
+		sessionManag.addEvalSession(evalS);
 		evalF.setFormateur(formateurManag);
 		evalS.setSessionFormation(sessionManag);
 		evalS.setStagiaire(stagiaireManag);
@@ -163,8 +163,8 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		utilisateurManager.addEvaluationSession(evalS2);
 		evalF2.setStagiaire(stagiaire3);
 		evalF2.setSessionFormation(sessionManag2);
-		sessionManag2.setEvalFormateur(evalF2);
-		sessionManag2.setEvalSession(evalS2);
+		sessionManag2.addEvalFormateur(evalF2);
+		sessionManag2.addEvalSession(evalS2);
 		evalF2.setFormateur(formateur3);
 		evalS2.setSessionFormation(sessionManag2);
 		evalS2.setStagiaire(stagiaire3);

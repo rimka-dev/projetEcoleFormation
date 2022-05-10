@@ -30,7 +30,7 @@ public class EvaluationSession {
 	@JsonBackReference(value="evaluation-session-stagiaire")
 	private Stagiaire stagiaire;
 	
-	@OneToOne
+	@ManyToOne
 	@JsonBackReference(value="evaluation-session")
 	private SessionFormation sessionFormation;
 	

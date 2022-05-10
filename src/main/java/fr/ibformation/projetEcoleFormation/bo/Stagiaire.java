@@ -29,6 +29,7 @@ public class Stagiaire extends Utilisateur {
 	//@NotBlank(message="Veuillez saisir un mot de passe")
 	private String ville;
 	
+	
 	@ManyToOne
 	@JsonBackReference
 	private EntrepriseClient entreprise;
