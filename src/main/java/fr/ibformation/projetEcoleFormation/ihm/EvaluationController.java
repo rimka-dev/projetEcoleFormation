@@ -77,7 +77,7 @@ public class EvaluationController {
 		
 	    redirAttrs.addFlashAttribute("success", "Everything went just fine.");
 		
-		return "redirect:/espace-client/mes-sessions";
+		return "redirect:http://localhost:4200/page-accueil";
 	}
 
 	
