@@ -9,7 +9,7 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<title>Insert title here</title>
+<title>Evaluation de Session</title>
 </head>
 <body>
 	<header>
@@ -19,7 +19,7 @@
 					alt="photo profil">
 			</div>
 			<div class="col-8">
-				<span class=" mt-5">Ecole de formation</span>
+				<h1 class=" mt-5">Ecole de formation</h1>
 			</div>
 		</div>
 
@@ -45,7 +45,7 @@
 		</nav>
 	</header>
 	<div class="col-8 container">
-		<div class="row mt-3">
+		<div  class="row mt-3" >
 
 			<div class="col-8">
 				<h1>Evaluation de Session</h1>
@@ -60,7 +60,7 @@
 							Stagiaire :</span>
 					</div>
 
-					<form
+					<form class="alert alert-primary"
 						th:action="@{/evaluation-formation/valid/{id}(id=${evaluation.idSession})}"
 						th:object="${evaluation}" method="post">
 
@@ -396,9 +396,12 @@
 							</div>
 						</div>
 						<div>
-							<input type="submit" id="btnValider" value="valider" />
+							<input class="btn btn-primary m-2" type="submit" id="btnValider" value="valider" />
+							<a th:href="@{http://localhost:4200/page-accueil}"
+							class="btn btn-primary m-2">Retour</a>
 						</div>
 					</form>
+				
 				</div>
 			</div>
 		</div>
