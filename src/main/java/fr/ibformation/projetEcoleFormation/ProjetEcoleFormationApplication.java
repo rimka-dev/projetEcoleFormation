@@ -122,6 +122,12 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		Formation formation3 = new Formation ("Informatique", "Apprendre le developpement JAVASCRIPT", "Les bases de la programmation Javascript", 1040, "Langages de développement");
 		formationManager.addFormation(formation3);
 		
+		
+//		//TEST
+//		System.out.println (utilisateurManager.findSessionByIdStagiaire(stagiaire3.getIdUtilisateur()));
+//		
+		System.out.println("--------------------------------------");
+		
 		// CRUD Session Formation ///
 		
 		/// ==== Create =====
@@ -160,7 +166,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		formationManager.modifySessionFormation(sessionManag);
 		
 		Integer idSession = sessionManag.getIdSession();
-		
 		
 		EvaluationSession evalS2 = new EvaluationSession(5,5,5,"très satisfait",true, true);
 		EvaluationFormateur evalF2 = new EvaluationFormateur(5,5,4,5,5);
@@ -417,6 +422,9 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		sousThemeFormationDAO.save(sousTheme3);
 		
 		System.out.println(formation1bis.getListeSousThemeFormation());
+		
+		System.out.println(utilisateurManager.getStagiaireById(6));
 	}
+	
 	
 }

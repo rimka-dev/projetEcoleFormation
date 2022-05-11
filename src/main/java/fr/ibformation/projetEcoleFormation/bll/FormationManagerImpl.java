@@ -10,9 +10,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
 import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
+import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import fr.ibformation.projetEcoleFormation.dal.FormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SessionFormationDAO;
 import fr.ibformation.projetEcoleFormation.dal.SousThemeFormationDAO;
@@ -223,6 +225,14 @@ public class FormationManagerImpl implements FormationManager {
 				listeSessionAnnulationApresLimite.add(session);
 			}
 		}return listeSessionAnnulationApresLimite;
+	}
+	
+	@Override
+	public void addStagiaireToSession(SessionFormation session, Stagiaire... stagiaire) {
+		for (Stagiaire stagiaires : stagiaire) {
+			session.addStagiaire(stagiaires);
+		}
+		sessionFormationDAO.save(session);
 	}
 
 }

@@ -4,6 +4,8 @@ import fr.ibformation.projetEcoleFormation.bo.*;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 public interface UtilisateurManager {
     // CRUD Stagiaire
     public void addStagiaire(Stagiaire stagiaire) throws FormationException;
@@ -45,6 +47,7 @@ public interface UtilisateurManager {
     public List<EvaluationFormateur> getListeEvaluationFormateurMauvaiseNote();
     public List<EvaluationSession> getListeEvaluationSessionMauvaiseNote();
 	
+    //public List <SessionFormation> findSessionByIdStagiaire (Integer id);
     }
 
     

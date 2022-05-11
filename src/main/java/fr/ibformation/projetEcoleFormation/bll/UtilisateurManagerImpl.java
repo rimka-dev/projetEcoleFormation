@@ -194,7 +194,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 		stagiaireDAO.save(stagiaire);
 	}
-
+	
+	
 
 
 	@Override
@@ -271,5 +272,11 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 		return listeEvalSessionMauvaiseNote;
 	}
+
+//
+//	@Override
+//	public List<SessionFormation> findSessionByIdStagiaire(Integer id) {
+//		return (List<SessionFormation>) stagiaireDAO.findSessionByIdStagiaire(id);
+//	}
 
 }

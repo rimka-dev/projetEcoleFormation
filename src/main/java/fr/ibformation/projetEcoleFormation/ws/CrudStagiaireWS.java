@@ -50,5 +50,14 @@ public class CrudStagiaireWS {
         manager.deleteStagiaireById(id);
         return manager.getAllStagiaire();
     }
+    
+
+    @PostMapping("/stagiaire")
+    public Stagiaire addStagiaire(@RequestBody Stagiaire stagiaire) throws FormationException {
+        manager.addStagiaire(stagiaire);
+        return stagiaire;
+    }
+    
+   
 
 }
