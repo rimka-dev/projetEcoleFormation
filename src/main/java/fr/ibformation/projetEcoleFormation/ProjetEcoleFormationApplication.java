@@ -418,9 +418,6 @@ public class ProjetEcoleFormationApplication implements CommandLineRunner {
 		
 		System.out.println(formation1bis.getListeSousThemeFormation());
 
-		System.out.println("----------------------------------------------------------------");
-		System.out.println(utilisateurManager.getStagiaireById(6).getListeSessionFormation());
-		System.out.println("----------------------------------------------------------------");
 	}
 	
 }

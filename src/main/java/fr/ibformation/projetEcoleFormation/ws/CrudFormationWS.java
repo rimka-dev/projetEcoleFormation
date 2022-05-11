@@ -1,24 +1,19 @@
 package fr.ibformation.projetEcoleFormation.ws;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.mapping.Set;
+import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
+import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
+import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.FormationManager;
 import fr.ibformation.projetEcoleFormation.bo.Formation;
-import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
+
+import javax.transaction.Transactional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/WS")
@@ -26,6 +21,8 @@ public class CrudFormationWS {
 
 	@Autowired
 	private FormationManager formationManager;
+	@Autowired
+	private UtilisateurManager utilisateurManager;
 	
 	
 	@GetMapping("/formation")
@@ -70,5 +67,15 @@ public class CrudFormationWS {
 //		public void deleteSousThemeByIdFormation(@PathVariable("id") Integer id) throws FormationException {
 //		formationManager.deleteSousThemeFormationById(id);
 //	}
+
+	@PostMapping("/stagiaire-to-session/{id1}/{id2}")
+	@Transactional
+	@ResponseBody
+	public SessionFormation addStagiaireToSessionByIds(@PathVariable("id1") Integer idSession, @PathVariable("id2") Integer idStagiaire){
+		Stagiaire stagiaire = utilisateurManager.getStagiaireById(idStagiaire);
+		SessionFormation sessionFormation = formationManager.getSessionFormationById(idSession);
+		stagiaire.addSessionFormation(sessionFormation);
+		return sessionFormation;
+	}
 	
 }
