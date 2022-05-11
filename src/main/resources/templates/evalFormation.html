@@ -54,11 +54,11 @@
 						<label for="name">Numéro de Session : </label> <span
 							th:text="${evaluation.idSession}">ID Session</span>
 					</div>
-					<div>
-						<label for="name">Nom Stagiaire :</label> <span
-							th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom
-							Stagiaire :</span>
-					</div>
+<!-- 					<div> -->
+<!-- 						<label for="name">Nom Stagiaire :</label> <span -->
+<!-- 							th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom -->
+<!-- 							Stagiaire :</span> -->
+<!-- 					</div> -->
 
 					<form class="alert alert-primary"
 						th:action="@{/evaluation-formation/valid/{id}(id=${evaluation.idSession})}"
