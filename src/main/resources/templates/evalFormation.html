@@ -69,13 +69,19 @@
 							<label for="name">Qualité de l'accueil: </label> <input
 								class="form-check-input" type="hidden" id="idSession"
 								th:field="*{idSession}" name="idSession" value="*{idSession}" />
+								
+								<input class="form-check-input" type="hidden" id="nomFormateur"
+								th:field="*{nomFormateur}" name="nomFormateur" value="*{nomFormateur}" />
+								
+									<input class="form-check-input" type="hidden" id="prenomFormateur"
+								th:field="*{prenomFormateur}" name="prenomFormateur" value="*{prenomFormateur}" />
 
 							<input class="form-check-input" type="hidden" id="nom"
 								th:field="*{nom}" name="nom" value="*{nom}" /> <input
 								class="form-check-input" type="hidden" id="prenom"
 								th:field="*{prenom}" name="prenom" value="*{prenom}" />
-
-							<div class="form-check form-check-inline">
+								
+															<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" id="accueil-note-1"
 									th:field="*{noteAccueil}" name="accueil" value="1" /> <label
 									class="form-check-label" for="1">1</label>
