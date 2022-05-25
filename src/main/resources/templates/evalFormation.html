@@ -9,7 +9,7 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<title>Insert title here</title>
+<title>Evaluation de Session</title>
 </head>
 <body>
 	<header>
@@ -20,7 +20,7 @@
 					 class="w-25 m-3 img-thumbnail" alt="photo profil"/></a>
 			</div>
 			<div class="col-8">
-				<span class=" mt-5">Ecole de formation</span>
+				<h1 class=" mt-5">Ecole de formation</h1>
 			</div>
 		</div>
 
@@ -46,7 +46,7 @@
 		</nav>
 	</header>
 	<div class="col-8 container">
-		<div class="row mt-3">
+		<div  class="row mt-3" >
 
 			<div class="col-8">
 				<h1>Evaluation de Session</h1>
@@ -55,13 +55,13 @@
 						<label for="name">Numéro de Session : </label> <span
 							th:text="${evaluation.idSession}">ID Session</span>
 					</div>
-					<div>
-						<label for="name">Nom Stagiaire :</label> <span
-							th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom
-							Stagiaire :</span>
-					</div>
+<!-- 					<div> -->
+<!-- 						<label for="name">Nom Stagiaire :</label> <span -->
+<!-- 							th:text="${evaluation.nom} + ' ' + ${evaluation.prenom}">Nom -->
+<!-- 							Stagiaire :</span> -->
+<!-- 					</div> -->
 
-					<form
+					<form class="alert alert-primary"
 						th:action="@{/evaluation-formation/valid/{id}(id=${evaluation.idSession})}"
 						th:object="${evaluation}" method="post">
 
@@ -70,13 +70,19 @@
 							<label for="name">Qualité de l'accueil: </label> <input
 								class="form-check-input" type="hidden" id="idSession"
 								th:field="*{idSession}" name="idSession" value="*{idSession}" />
+								
+								<input class="form-check-input" type="hidden" id="nomFormateur"
+								th:field="*{nomFormateur}" name="nomFormateur" value="*{nomFormateur}" />
+								
+									<input class="form-check-input" type="hidden" id="prenomFormateur"
+								th:field="*{prenomFormateur}" name="prenomFormateur" value="*{prenomFormateur}" />
 
 							<input class="form-check-input" type="hidden" id="nom"
 								th:field="*{nom}" name="nom" value="*{nom}" /> <input
 								class="form-check-input" type="hidden" id="prenom"
 								th:field="*{prenom}" name="prenom" value="*{prenom}" />
-
-							<div class="form-check form-check-inline">
+								
+															<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" id="accueil-note-1"
 									th:field="*{noteAccueil}" name="accueil" value="1" /> <label
 									class="form-check-label" for="1">1</label>
@@ -397,9 +403,12 @@
 							</div>
 						</div>
 						<div>
-							<input type="submit" id="btnValider" value="valider" />
+							<input class="btn btn-primary m-2" type="submit" id="btnValider" value="valider" />
+							<a th:href="@{http://localhost:4200/page-accueil}"
+							class="btn btn-primary m-2">Retour</a>
 						</div>
 					</form>
+				
 				</div>
 			</div>
 		</div>

@@ -2,12 +2,8 @@ package fr.ibformation.projetEcoleFormation.bll;
 
 import java.util.List;
 
-import fr.ibformation.projetEcoleFormation.bo.EvaluationFormateur;
-import fr.ibformation.projetEcoleFormation.bo.Formateur;
-import fr.ibformation.projetEcoleFormation.bo.Formation;
-import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
-import fr.ibformation.projetEcoleFormation.bo.SousThemeFormation;
-import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
+import fr.ibformation.projetEcoleFormation.bo.*;
+
 
 public interface FormationManager {
 	public void addFormation(Formation formation) throws FormationException;
@@ -34,5 +30,7 @@ public interface FormationManager {
 	public Integer getExperienceGlobalFormateur(Integer idFormateur);
 	public List<SessionFormation> getListeSessionsAAnnuler();
 	public List<SessionFormation>  getListeFormateurAnnulationApresLimite();
-	public void addStagiaireToSession(SessionFormation session, Stagiaire...stagiaires);
+
+
+	void addStagiaireToSession(SessionFormation session, Stagiaire... stagiaire);
 }

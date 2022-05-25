@@ -9,7 +9,7 @@
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<title>Liste des Sessions</title>
+<title>Gestion des Sessions</title>
 </head>
 <body>
 	<header>
@@ -40,8 +40,12 @@
 							th:href="@{http://localhost:4200/catalogue}">Formations</a> <a
 							class="nav-link active"
 							th:href="@{http://localhost:4200/contact}">Contact</a>
+							<a
+							class="nav-link active"
+							th:href="@{http://localhost:4200/admin/formation/liste}">Admin</a>
 					</div>
 				</div>
+				<button class="btn btn-danger me-2" type="button">Deconnexion</button>
 			</div>
 		</nav>
 	</header>
@@ -60,8 +64,9 @@
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{http://localhost:4200/admin/stagiaire/liste}">Gestion
 									des Stagiaires</a></li>
-							<li class="nav-item"><a class="nav-link">Gestion des
-									Formateurs</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{http://localhost:4200/admin/formateur/liste}">Gestion
+									des Formateurs</a></li>
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{/admin/mes-taches}">Mes tâches</a></li>
 							<li class="nav-item"><a class="nav-link"
@@ -74,7 +79,7 @@
 							class="btn btn-success m-2 mx-auto">Accueil Back-Office</a>
 		</div>
 		<div class="col-8">
-				<h1>Liste des Sessions</h1>
+				<h1>Gestion des Sessions</h1>
 				<div>
 					<a th:href="@{http://localhost:4200/admin}"
 						class="btn btn-primary m-2">Retour</a>

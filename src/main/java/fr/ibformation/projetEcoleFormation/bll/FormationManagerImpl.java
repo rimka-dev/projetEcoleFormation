@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -227,6 +228,14 @@ public class FormationManagerImpl implements FormationManager {
 		}return listeSessionAnnulationApresLimite;
 	}
 	
+	@Override
+	public void addStagiaireToSession(SessionFormation session, Stagiaire... stagiaire) {
+		for (Stagiaire stagiaires : stagiaire) {
+			session.addStagiaire(stagiaires);
+		}
+		sessionFormationDAO.save(session);
+	}
+
 	@Override
 	public void addStagiaireToSession(SessionFormation session, Stagiaire... stagiaire) {
 		for (Stagiaire stagiaires : stagiaire) {

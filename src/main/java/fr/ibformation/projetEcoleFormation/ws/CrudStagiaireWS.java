@@ -3,11 +3,14 @@ package fr.ibformation.projetEcoleFormation.ws;
 import fr.ibformation.projetEcoleFormation.bll.FormationException;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManager;
 import fr.ibformation.projetEcoleFormation.bll.UtilisateurManagerException;
+import fr.ibformation.projetEcoleFormation.bo.SessionFormation;
 import fr.ibformation.projetEcoleFormation.bo.Stagiaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/WS")
@@ -59,5 +62,11 @@ public class CrudStagiaireWS {
     }
     
    
+
+    @GetMapping("/stagiaire-session/{id}")
+    public Set<SessionFormation> getStagiaireBySessionformationId(@PathVariable("id") Integer id){
+        return manager.getStagiaireById(id).getListeSessionFormation();
+    }
+
 
 }
